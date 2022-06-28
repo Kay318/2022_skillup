@@ -9,9 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QCoreApplication
 
 
-class UI_Setup_Language(object):
+class UI_Setup_Language(QWidget):
+    def __init__(self):
+        super().__init__()
+
     def setupUi_Language(self, Form):
         Form.setObjectName("Form")
         Form.resize(744, 412)
@@ -43,6 +48,8 @@ class UI_Setup_Language(object):
         self.retranslateUi_language(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+        self.set_slot()
+
         Form.show()
 
     def retranslateUi_language(self, Form):
@@ -59,6 +66,22 @@ class UI_Setup_Language(object):
                              "border-width: 1px;"
                              "border-color: #747474;"
                              "border-radius: 1px")
+
+    def set_slot(self):
+        
+        self.ok_Button.clicked.connect(QCoreApplication.instance().quit)
+    #     self.cancel_Button.clicked.connect(self.onCancelButtonClicked, QCloseEvent)
+
+    def closeEvent(self, QCloseEvent):
+        re = QMessageBox.question(self, "변경사항 알림", "변경사항이 있습니다. \n이대로 종료하시겠습니까?",
+                    QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+
+        if re == QMessageBox.Yes:
+            QCloseEvent.accept()
+        else:
+            QCloseEvent.ignore()  
+
+
 
 if __name__ == "__main__":
     import sys
