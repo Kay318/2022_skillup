@@ -17,13 +17,13 @@ class UI_Setup_Language(QWidget):
     def __init__(self):
         super().__init__()
 
-    def setupUi_Language(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(744, 412)
-        self.addLang_Button = QtWidgets.QPushButton(Form)
+    def setupUi_Language(self):
+        self.setObjectName("Form")
+        self.resize(744, 412)
+        self.addLang_Button = QtWidgets.QPushButton(self)
         self.addLang_Button.setGeometry(QtCore.QRect(307, 10, 130, 31))
         self.addLang_Button.setObjectName("addLang_Button")
-        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget = QtWidgets.QWidget(self)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 50, 701, 311))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
 
@@ -32,7 +32,7 @@ class UI_Setup_Language(QWidget):
         self.langList_VBoxLayout.setObjectName("langList_VBoxLayout")
         self.border()
         self.langList_VBoxLayout.addWidget(self.lbl_border)
-        self.horizontalLayoutWidget = QtWidgets.QWidget(Form)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(560, 370, 161, 31))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
@@ -45,19 +45,17 @@ class UI_Setup_Language(QWidget):
         self.cancel_Button.setObjectName("cancel_Button")
         self.horizontalLayout.addWidget(self.cancel_Button)
 
-        self.retranslateUi_language(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi_language()
+        # QtCore.QMetaObject.connectSlotsByName()
 
-        self.set_slot()
+        # self.set_slot()
+        self.show()
 
-        Form.show()
-
-    def retranslateUi_language(self, Form):
-        self.translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(self.translate("Form", "Form"))
-        self.addLang_Button.setText(self.translate("Form", "언어 추가"))
-        self.ok_Button.setText(self.translate("Form", "확인"))
-        self.cancel_Button.setText(self.translate("Form", "취소"))
+    def retranslateUi_language(self):
+        self.setWindowTitle("언어 설정")
+        self.addLang_Button.setText("언어 추가")
+        self.ok_Button.setText("확인")
+        self.cancel_Button.setText("취소")
 
     def border(self):
         self.lbl_border = QtWidgets.QLabel('')
@@ -67,9 +65,9 @@ class UI_Setup_Language(QWidget):
                              "border-color: #747474;"
                              "border-radius: 1px")
 
-    def set_slot(self):
+    # def set_slot(self):
         
-        self.ok_Button.clicked.connect(QCoreApplication.instance().quit)
+    #     self.ok_Button.clicked.connect(QCoreApplication.instance().quit)
     #     self.cancel_Button.clicked.connect(self.onCancelButtonClicked, QCloseEvent)
 
     def closeEvent(self, QCloseEvent):
@@ -86,7 +84,10 @@ class UI_Setup_Language(QWidget):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = UI_Setup_Language()
-    ui.setupUi_Language(Form)
+    w = UI_Setup_Language()
+    w.setupUi_Language()
+    # Form = QtWidgets.QWidget()
+    # ui = UI_Setup_Language()
+    # ui.setupUi_Language(Form)
+    # w.show()
     sys.exit(app.exec_())

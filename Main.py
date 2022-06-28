@@ -8,12 +8,10 @@ class Main(QMainWindow, Ui_MainWindow, UI_Setup_Language):
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
-        self.Form = QWidget()
-
         self.set_slot()
 
     def set_slot(self):
-        self.actionLanguage.triggered.connect(lambda:self.setupUi_Language(self.Form))
+        self.actionLanguage.triggered.connect(lambda:self.setupUi_Language())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv) 
