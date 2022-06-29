@@ -48,7 +48,7 @@ class UI_Setup_Language(QWidget):
         self.retranslateUi_language(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        self.set_slot()
+        # self.set_slot()
 
         Form.show()
 
@@ -67,19 +67,19 @@ class UI_Setup_Language(QWidget):
                              "border-color: #747474;"
                              "border-radius: 1px")
 
-    def set_slot(self):
+    # def set_slot(self):
         
-        self.ok_Button.clicked.connect(QCoreApplication.instance().quit)
+        # self.ok_Button.clicked.connect(QCoreApplication.instance().quit)
     #     self.cancel_Button.clicked.connect(self.onCancelButtonClicked, QCloseEvent)
 
-    def closeEvent(self, QCloseEvent):
-        re = QMessageBox.question(self, "변경사항 알림", "변경사항이 있습니다. \n이대로 종료하시겠습니까?",
-                    QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+    # def closeEvent(self, QCloseEvent):
+    #     re = QMessageBox.question(self, "변경사항 알림", "변경사항이 있습니다. \n이대로 종료하시겠습니까?",
+    #                 QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
 
-        if re == QMessageBox.Yes:
-            QCloseEvent.accept()
-        else:
-            QCloseEvent.ignore()  
+    #     if re == QMessageBox.Yes:
+    #         QCloseEvent.accept()
+    #     else:
+    #         QCloseEvent.ignore()  
 
 
 
