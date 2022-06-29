@@ -23,34 +23,39 @@ class UI_Setup_Language(QWidget):
         self.addLang_Button = QtWidgets.QPushButton(Form)
         self.addLang_Button.setGeometry(QtCore.QRect(307, 10, 130, 31))
         self.addLang_Button.setObjectName("addLang_Button")
-        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 50, 701, 311))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
 
-        self.langList_VBoxLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.langlist_verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.langlist_verticalLayoutWidget.setGeometry(QtCore.QRect(20, 50, 701, 311))
+        self.langlist_verticalLayoutWidget.setObjectName("langlist_verticalLayoutWidget")
+        self.langList_VBoxLayout = QtWidgets.QVBoxLayout(self.langlist_verticalLayoutWidget)
         self.langList_VBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.langList_VBoxLayout.setObjectName("langList_VBoxLayout")
-        self.border()
-        self.langList_VBoxLayout.addWidget(self.lbl_border)
-        self.horizontalLayoutWidget = QtWidgets.QWidget(Form)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(560, 370, 161, 31))
-        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.ok_Button = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.langList_scrollArea = QtWidgets.QScrollArea(self.langlist_verticalLayoutWidget)
+        self.langList_scrollArea.setWidgetResizable(True)
+        self.langList_scrollArea.setObjectName("langList_scrollArea")
+        self.langList_scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.langList_scrollAreaWidgetContents.setGeometry(QtCore.QRect(20, 50, 701, 311))
+        self.langList_scrollAreaWidgetContents.setObjectName("langList_scrollAreaWidgetContents")
+        self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
+        self.langList_VBoxLayout.addWidget(self.langList_scrollArea)
+
+        self.sl_ok_horizontalLayoutWidget = QtWidgets.QWidget(Form)
+        self.sl_ok_horizontalLayoutWidget.setGeometry(QtCore.QRect(560, 370, 161, 31))
+        self.sl_ok_horizontalLayoutWidget.setObjectName("sl_ok_horizontalLayoutWidget")
+        self.sl_ok_horizontalLayout = QtWidgets.QHBoxLayout(self.sl_ok_horizontalLayoutWidget)
+        self.sl_ok_horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.sl_ok_horizontalLayout.setObjectName("sl_ok_horizontalLayout")
+        self.ok_Button = QtWidgets.QPushButton(self.sl_ok_horizontalLayoutWidget)
         self.ok_Button.setObjectName("ok_Button")
-        self.horizontalLayout.addWidget(self.ok_Button)
-        self.cancel_Button = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.sl_ok_horizontalLayout.addWidget(self.ok_Button)
+        self.cancel_Button = QtWidgets.QPushButton(self.sl_ok_horizontalLayoutWidget)
         self.cancel_Button.setObjectName("cancel_Button")
-        self.horizontalLayout.addWidget(self.cancel_Button)
+        self.sl_ok_horizontalLayout.addWidget(self.cancel_Button)
 
         self.retranslateUi_language(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-        # self.set_slot()
-
-        Form.show()
+        self.sl_set_slot()
 
     def retranslateUi_language(self, Form):
         self.translate = QtCore.QCoreApplication.translate
@@ -59,29 +64,14 @@ class UI_Setup_Language(QWidget):
         self.ok_Button.setText(self.translate("Form", "확인"))
         self.cancel_Button.setText(self.translate("Form", "취소"))
 
-    def border(self):
-        self.lbl_border = QtWidgets.QLabel('')
-        self.lbl_border.setStyleSheet("color: gray;"
-                             "border-style: solid;"
-                             "border-width: 1px;"
-                             "border-color: #747474;"
-                             "border-radius: 1px")
+    def sl_set_slot(self):
+        self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
 
-    # def set_slot(self):
-        
-        # self.ok_Button.clicked.connect(QCoreApplication.instance().quit)
-    #     self.cancel_Button.clicked.connect(self.onCancelButtonClicked, QCloseEvent)
-
-    # def closeEvent(self, QCloseEvent):
-    #     re = QMessageBox.question(self, "변경사항 알림", "변경사항이 있습니다. \n이대로 종료하시겠습니까?",
-    #                 QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
-
-    #     if re == QMessageBox.Yes:
-    #         QCloseEvent.accept()
-    #     else:
-    #         QCloseEvent.ignore()  
-
-
+    def addLang_Button_clicked(self):
+        self.lang_LineEdit = QtWidgets.QLineEdit(self.langlist_verticalLayoutWidget)
+        self.lang_LineEdit.setObjectName("lang_LineEdit")
+        self.lang_LineEdit.setContentsMargins(10, 10, 10, 10)
+        self.langList_scrollArea.setWidget(self.lang_LineEdit)
 
 if __name__ == "__main__":
     import sys
@@ -89,4 +79,5 @@ if __name__ == "__main__":
     Form = QtWidgets.QWidget()
     ui = UI_Setup_Language()
     ui.setupUi_Language(Form)
+    Form.show()
     sys.exit(app.exec_())
