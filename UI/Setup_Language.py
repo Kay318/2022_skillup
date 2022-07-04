@@ -17,58 +17,46 @@ class UI_Setup_Language(QWidget):
     def __init__(self):
         super().__init__()
 
-    def setupUi_Language(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(744, 412)
-        self.addLang_Button = QtWidgets.QPushButton(Form)
+    def setupUi_Language(self):
+        self.resize(744, 412)
+        self.setWindowTitle("언어별 경로 설정")
+        self.addLang_Button = QPushButton("언어 추가", self)
         self.addLang_Button.setGeometry(QtCore.QRect(307, 10, 130, 31))
         self.addLang_Button.setObjectName("addLang_Button")
 
-        self.langlist_verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.langlist_verticalLayoutWidget = QWidget(self)
         self.langlist_verticalLayoutWidget.setGeometry(QtCore.QRect(20, 50, 701, 311))
         self.langlist_verticalLayoutWidget.setObjectName("langlist_verticalLayoutWidget")
-        self.langList_VBoxLayout = QtWidgets.QVBoxLayout(self.langlist_verticalLayoutWidget)
+        self.langList_VBoxLayout = QVBoxLayout(self.langlist_verticalLayoutWidget)
         self.langList_VBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.langList_VBoxLayout.setObjectName("langList_VBoxLayout")
-        self.langList_scrollArea = QtWidgets.QScrollArea(self.langlist_verticalLayoutWidget)
+        self.langList_scrollArea = QScrollArea(self.langlist_verticalLayoutWidget)
         self.langList_scrollArea.setWidgetResizable(True)
         self.langList_scrollArea.setObjectName("langList_scrollArea")
-        self.langList_scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.langList_scrollAreaWidgetContents = QWidget()
         self.langList_scrollAreaWidgetContents.setGeometry(QtCore.QRect(20, 50, 701, 311))
         self.langList_scrollAreaWidgetContents.setObjectName("langList_scrollAreaWidgetContents")
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.langList_VBoxLayout.addWidget(self.langList_scrollArea)
 
-        self.sl_ok_horizontalLayoutWidget = QtWidgets.QWidget(Form)
+
+        # [확인], [취소] 버튼
+        self.sl_ok_horizontalLayoutWidget = QWidget(self)
         self.sl_ok_horizontalLayoutWidget.setGeometry(QtCore.QRect(560, 370, 161, 31))
-        self.sl_ok_horizontalLayoutWidget.setObjectName("sl_ok_horizontalLayoutWidget")
-        self.sl_ok_horizontalLayout = QtWidgets.QHBoxLayout(self.sl_ok_horizontalLayoutWidget)
+        self.sl_ok_horizontalLayout = QHBoxLayout(self.sl_ok_horizontalLayoutWidget)
         self.sl_ok_horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.sl_ok_horizontalLayout.setObjectName("sl_ok_horizontalLayout")
-        self.ok_Button = QtWidgets.QPushButton(self.sl_ok_horizontalLayoutWidget)
-        self.ok_Button.setObjectName("ok_Button")
+        self.ok_Button = QPushButton("확인", self.sl_ok_horizontalLayoutWidget)
         self.sl_ok_horizontalLayout.addWidget(self.ok_Button)
-        self.cancel_Button = QtWidgets.QPushButton(self.sl_ok_horizontalLayoutWidget)
-        self.cancel_Button.setObjectName("cancel_Button")
+        self.cancel_Button = QPushButton("취소", self.sl_ok_horizontalLayoutWidget)
         self.sl_ok_horizontalLayout.addWidget(self.cancel_Button)
 
-        self.retranslateUi_language(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
-
         self.sl_set_slot()
-
-    def retranslateUi_language(self, Form):
-        self.translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(self.translate("Form", "Form"))
-        self.addLang_Button.setText(self.translate("Form", "언어 추가"))
-        self.ok_Button.setText(self.translate("Form", "확인"))
-        self.cancel_Button.setText(self.translate("Form", "취소"))
 
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
 
     def addLang_Button_clicked(self):
-        self.lang_LineEdit = QtWidgets.QLineEdit(self.langlist_verticalLayoutWidget)
+        self.lang_LineEdit = QLineEdit(self.langlist_verticalLayoutWidget)
         self.lang_LineEdit.setObjectName("lang_LineEdit")
         self.lang_LineEdit.setContentsMargins(10, 10, 10, 10)
         self.langList_scrollArea.setWidget(self.lang_LineEdit)
@@ -76,8 +64,7 @@ class UI_Setup_Language(QWidget):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
     ui = UI_Setup_Language()
-    ui.setupUi_Language(Form)
-    Form.show()
+    ui.setupUi_Language()
+    ui.show()
     sys.exit(app.exec_())
