@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, Qt
 
 
 class UI_Setup_Language(QWidget):
@@ -18,48 +18,79 @@ class UI_Setup_Language(QWidget):
         super().__init__()
 
     def setupUi_Language(self):
+        # 언어별 경로 설정 메인 창
         self.resize(744, 412)
         self.setWindowTitle("언어별 경로 설정")
-        self.addLang_Button = QPushButton("언어 추가", self)
-        self.addLang_Button.setGeometry(QtCore.QRect(307, 10, 130, 31))
-        self.addLang_Button.setObjectName("addLang_Button")
 
-        self.langlist_verticalLayoutWidget = QWidget(self)
-        self.langlist_verticalLayoutWidget.setGeometry(QtCore.QRect(20, 50, 701, 311))
-        self.langlist_verticalLayoutWidget.setObjectName("langlist_verticalLayoutWidget")
-        self.langList_VBoxLayout = QVBoxLayout(self.langlist_verticalLayoutWidget)
-        self.langList_VBoxLayout.setContentsMargins(0, 0, 0, 0)
-        self.langList_VBoxLayout.setObjectName("langList_VBoxLayout")
-        self.langList_scrollArea = QScrollArea(self.langlist_verticalLayoutWidget)
+        # 전체 화면 배치
+        self.verticalLayout = QVBoxLayout(self)
+
+        # [언어 추가] 버튼
+        self.sl_addLang_horizontalLayout = QHBoxLayout()
+        self.sl_addLang_horizontalLayout.setAlignment(Qt.AlignCenter)
+        self.addLang_Button = QPushButton("언어 추가", self)
+        self.addLang_Button.setMaximumWidth(130)
+        self.sl_addLang_horizontalLayout.addWidget(self.addLang_Button)
+        self.verticalLayout.addLayout(self.sl_addLang_horizontalLayout)
+
+        # 언어 설정 리스트 영역
+        self.langList_scrollArea = QScrollArea(self)
         self.langList_scrollArea.setWidgetResizable(True)
-        self.langList_scrollArea.setObjectName("langList_scrollArea")
         self.langList_scrollAreaWidgetContents = QWidget()
         self.langList_scrollAreaWidgetContents.setGeometry(QtCore.QRect(20, 50, 701, 311))
-        self.langList_scrollAreaWidgetContents.setObjectName("langList_scrollAreaWidgetContents")
+        self.langListScroll_verticalLayout = QVBoxLayout(self.langList_scrollAreaWidgetContents)
+
+        self.langList_verticalLayout = QVBoxLayout()
+        self.langList_verticalLayout.setAlignment(Qt.AlignTop)
+
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
-        self.langList_VBoxLayout.addWidget(self.langList_scrollArea)
+        self.verticalLayout.addWidget(self.langList_scrollArea)
 
-
+        
         # [확인], [취소] 버튼
-        self.sl_ok_horizontalLayoutWidget = QWidget(self)
-        self.sl_ok_horizontalLayoutWidget.setGeometry(QtCore.QRect(560, 370, 161, 31))
-        self.sl_ok_horizontalLayout = QHBoxLayout(self.sl_ok_horizontalLayoutWidget)
-        self.sl_ok_horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.ok_Button = QPushButton("확인", self.sl_ok_horizontalLayoutWidget)
+        self.sl_ok_horizontalLayout = QHBoxLayout()
+        self.sl_ok_horizontalLayout.setAlignment(Qt.AlignRight)
+        
+        self.ok_Button = QPushButton("확인", self)
         self.sl_ok_horizontalLayout.addWidget(self.ok_Button)
-        self.cancel_Button = QPushButton("취소", self.sl_ok_horizontalLayoutWidget)
+        self.cancel_Button = QPushButton("취소", self)
         self.sl_ok_horizontalLayout.addWidget(self.cancel_Button)
+        self.verticalLayout.addLayout(self.sl_ok_horizontalLayout)
 
+        # 버튼 이벤트 함수
         self.sl_set_slot()
 
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
 
     def addLang_Button_clicked(self):
-        self.lang_LineEdit = QLineEdit(self.langlist_verticalLayoutWidget)
-        self.lang_LineEdit.setObjectName("lang_LineEdit")
-        self.lang_LineEdit.setContentsMargins(10, 10, 10, 10)
-        self.langList_scrollArea.setWidget(self.lang_LineEdit)
+        self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.langList_scrollArea)
+
+        # 삭제 버튼
+        self.langList_horizontalLayout = QHBoxLayout()
+        self.del_langList_button = QPushButton("-", self.langList_scrollAreaWidgetContents)
+        self.del_langList_button.setMaximumWidth(30)
+        self.langList_horizontalLayout.addWidget(self.del_langList_button)
+
+        # 언어 입력
+        self.lang_lineEdit = QLineEdit(self.langList_scrollAreaWidgetContents)
+        self.lang_lineEdit.setMaximumWidth(100)
+        self.langList_horizontalLayout.addWidget(self.lang_lineEdit)
+
+        # 경로 입력
+        self.dir_lineEdit = QLineEdit(self.langList_scrollAreaWidgetContents)
+        self.langList_horizontalLayout.addWidget(self.dir_lineEdit)
+
+        # 경로 검색 버튼
+        self.langList_toolButton = QToolButton(self.langList_scrollAreaWidgetContents)
+        self.langList_horizontalLayout.addWidget(self.langList_toolButton)
+
+        self.langList_verticalLayout.addLayout(self.langList_horizontalLayout)
+        
+        self.langListScroll_verticalLayout.addLayout(self.langList_verticalLayout)
+        self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.langList_scrollArea)
 
 if __name__ == "__main__":
     import sys
