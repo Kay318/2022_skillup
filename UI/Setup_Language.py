@@ -42,9 +42,7 @@ class UI_Setup_Language(QWidget):
         self.langList_scrollAreaWidgetContents = QWidget()
         self.langList_scrollAreaWidgetContents.setGeometry(QtCore.QRect(20, 50, 701, 311))
         self.langListScroll_verticalLayout = QVBoxLayout(self.langList_scrollAreaWidgetContents)
-
-        self.langList_verticalLayout = QVBoxLayout()
-        self.langList_verticalLayout.setAlignment(Qt.AlignTop)
+        self.langListScroll_verticalLayout.setAlignment(Qt.AlignTop)
 
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
@@ -75,6 +73,7 @@ class UI_Setup_Language(QWidget):
         self.langList_horizontalLayout = QHBoxLayout()
         self.del_langList_button = QPushButton("-", self.langList_scrollAreaWidgetContents)
         self.del_langList_button.setMaximumWidth(30)
+        self.del_langList_button.clicked.connect(self.del_langList_button_clicked)
         self.langList_horizontalLayout.addWidget(self.del_langList_button)
 
         # 언어 입력
@@ -90,11 +89,14 @@ class UI_Setup_Language(QWidget):
         self.langList_toolButton = QToolButton(self.langList_scrollAreaWidgetContents)
         self.langList_horizontalLayout.addWidget(self.langList_toolButton)
 
-        self.langList_verticalLayout.addLayout(self.langList_horizontalLayout)
+        self.langListScroll_verticalLayout.addLayout(self.langList_horizontalLayout)
         
-        self.langListScroll_verticalLayout.addLayout(self.langList_verticalLayout)
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
+
+    def del_langList_button_clicked(self):
+        for i in range(self.langList_horizontalLayout.count()):
+            self.langList_horizontalLayout.itemAt(i).widget().deleteLater()
 
 if __name__ == "__main__":
     import sys
