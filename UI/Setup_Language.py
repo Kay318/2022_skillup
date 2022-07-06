@@ -16,6 +16,7 @@ from PyQt5.QtCore import QCoreApplication, Qt
 class UI_Setup_Language(QWidget):
     def __init__(self):
         super().__init__()
+        self.cnt = 0
 
     def setupUi_Language(self):
         # 언어별 경로 설정 메인 창
@@ -70,33 +71,36 @@ class UI_Setup_Language(QWidget):
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
         # 삭제 버튼
-        self.langList_horizontalLayout = QHBoxLayout()
-        self.del_langList_button = QPushButton("-", self.langList_scrollAreaWidgetContents)
-        self.del_langList_button.setMaximumWidth(30)
-        self.del_langList_button.clicked.connect(self.del_langList_button_clicked)
-        self.langList_horizontalLayout.addWidget(self.del_langList_button)
+        globals()[f'self.langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
+        globals()[f'self.del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
+        globals()[f'self.del_langList_button{self.cnt}'].setMaximumWidth(30)
+        globals()[f'self.del_langList_button{self.cnt}'].clicked.connect(self.del_langList_button_clicked)
+        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_langList_button{self.cnt}'])
 
         # 언어 입력
-        self.lang_lineEdit = QLineEdit(self.langList_scrollAreaWidgetContents)
-        self.lang_lineEdit.setMaximumWidth(100)
-        self.langList_horizontalLayout.addWidget(self.lang_lineEdit)
+        globals()[f'self.lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+        globals()[f'self.lang_lineEdit{self.cnt}'].setMaximumWidth(100)
+        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.lang_lineEdit{self.cnt}'])
 
         # 경로 입력
-        self.dir_lineEdit = QLineEdit(self.langList_scrollAreaWidgetContents)
-        self.langList_horizontalLayout.addWidget(self.dir_lineEdit)
+        globals()[f'self.dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.dir_lineEdit{self.cnt}'])
 
         # 경로 검색 버튼
-        self.langList_toolButton = QToolButton(self.langList_scrollAreaWidgetContents)
-        self.langList_horizontalLayout.addWidget(self.langList_toolButton)
+        globals()[f'self.langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
+        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.langList_toolButton{self.cnt}'])
 
-        self.langListScroll_verticalLayout.addLayout(self.langList_horizontalLayout)
+        self.langListScroll_verticalLayout.addLayout(globals()[f'self.langList_horizontalLayout{self.cnt}'])
+
+        self.cnt += 1
         
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
     def del_langList_button_clicked(self):
-        for i in range(self.langList_horizontalLayout.count()):
-            self.langList_horizontalLayout.itemAt(i).widget().deleteLater()
+        pass
+        # for i in range(globals()[f'self.langList_horizontalLayout{self.cnt}'].count()):
+        #     globals()[f'self.langList_horizontalLayout{self.cnt}'].itemAt(i).widget().deleteLater()
 
 if __name__ == "__main__":
     import sys
