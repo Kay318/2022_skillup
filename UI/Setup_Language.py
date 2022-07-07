@@ -10,7 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QCoreApplication, Qt
+from functools import partial
+from PyQt5.QtCore import QCoreApplication, Qt, pyqtSlot
 
 
 class UI_Setup_Language(QWidget):
@@ -30,12 +31,15 @@ class UI_Setup_Language(QWidget):
         self.top_verticalLayout = QVBoxLayout()
 
         # [언어 추가] 버튼
-        self.sl_addLang_horizontalLayout = QHBoxLayout()
-        self.sl_addLang_horizontalLayout.setAlignment(Qt.AlignCenter)
+        self.sl_editLang_horizontalLayout = QHBoxLayout()
+        self.sl_editLang_horizontalLayout.setAlignment(Qt.AlignCenter)
         self.addLang_Button = QPushButton("언어 추가", self)
         self.addLang_Button.setMaximumWidth(130)
-        self.sl_addLang_horizontalLayout.addWidget(self.addLang_Button)
-        self.top_verticalLayout.addLayout(self.sl_addLang_horizontalLayout)
+        self.sl_editLang_horizontalLayout.addWidget(self.addLang_Button)
+        # self.delLang_Button = QPushButton("삭제", self)
+        # self.delLang_Button.setMaximumWidth(130)
+        # self.sl_editLang_horizontalLayout.addWidget(self.delLang_Button)
+        self.top_verticalLayout.addLayout(self.sl_editLang_horizontalLayout)
 
         # 언어 설정 리스트 영역
         self.langList_scrollArea = QScrollArea(self)
@@ -70,11 +74,12 @@ class UI_Setup_Language(QWidget):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
-        # 삭제 버튼
         globals()[f'self.langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
+
+        # 삭제 버튼
         globals()[f'self.del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
         globals()[f'self.del_langList_button{self.cnt}'].setMaximumWidth(30)
-        globals()[f'self.del_langList_button{self.cnt}'].clicked.connect(self.del_langList_button_clicked)
+        globals()[f'self.del_langList_button{self.cnt}'].clicked.connect(partial(self.del_langList_button_clicked, self.cnt))
         globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_langList_button{self.cnt}'])
 
         # 언어 입력
@@ -88,7 +93,9 @@ class UI_Setup_Language(QWidget):
 
         # 경로 검색 버튼
         globals()[f'self.langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
+        globals()[f'self.langList_toolButton{self.cnt}'].setText("...")
         globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.langList_toolButton{self.cnt}'])
+        globals()[f'self.langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, self.cnt))
 
         self.langListScroll_verticalLayout.addLayout(globals()[f'self.langList_horizontalLayout{self.cnt}'])
 
@@ -97,10 +104,23 @@ class UI_Setup_Language(QWidget):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
-    def del_langList_button_clicked(self):
-        pass
-        # for i in range(globals()[f'self.langList_horizontalLayout{self.cnt}'].count()):
-        #     globals()[f'self.langList_horizontalLayout{self.cnt}'].itemAt(i).widget().deleteLater()
+    def del_langList_button_clicked(self, cnt):
+        """라인 삭제 함수
+
+        Args:
+            cnt: 변수명
+        """
+        for i in range(globals()[f'self.langList_horizontalLayout{cnt}'].count()):
+            globals()[f'self.langList_horizontalLayout{cnt}'].itemAt(i).widget().deleteLater()
+
+    def langList_toolButton_clicked(self, cnt):
+        """폴더 경로 불러오기
+
+        Args:
+            cnt: 변수명
+        """
+        folderPath = QFileDialog.getExistingDirectory(self, 'Select Folder')
+        globals()[f'self.dir_lineEdit{cnt}'].setText(folderPath)
 
 if __name__ == "__main__":
     import sys
