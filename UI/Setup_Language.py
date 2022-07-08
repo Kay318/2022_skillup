@@ -11,7 +11,7 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import *
 from functools import partial
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QCoreApplication
 
 from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
@@ -112,7 +112,7 @@ class UI_Setup_Language(QWidget, DBManager):
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
         self.ok_Button.clicked.connect(self.ok_Button_clicked)
-        # self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
+        self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
 
     def addLang_Button_clicked(self):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
