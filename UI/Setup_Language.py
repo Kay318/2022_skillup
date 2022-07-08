@@ -55,6 +55,46 @@ class UI_Setup_Language(QWidget, DBManager):
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
         self.verticalLayout.addLayout(self.top_verticalLayout)
 
+        # DB에서 언어 설정 불러옴
+        self.c.execute('SELECT * FROM Setup_Language')
+        dataList = self.c.fetchall()
+
+        for data in dataList:
+            self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
+            self.top_verticalLayout.addWidget(self.langList_scrollArea)
+
+            globals()[f'self.langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
+
+            # 삭제 버튼
+            globals()[f'self.del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
+            globals()[f'self.del_langList_button{self.cnt}'].setMaximumWidth(30)
+            globals()[f'self.del_langList_button{self.cnt}'].clicked.connect(partial(
+                self.del_langList_button_clicked, layout = globals()[f'self.langList_horizontalLayout{self.cnt}']))
+            globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_langList_button{self.cnt}'])
+
+            # 언어 입력
+            globals()[f'self.lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+            globals()[f'self.lang_lineEdit{self.cnt}'].setMaximumWidth(100)
+            globals()[f'self.lang_lineEdit{self.cnt}'].setText(data[0])
+            globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.lang_lineEdit{self.cnt}'])
+
+            # 경로 입력
+            globals()[f'self.dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+            globals()[f'self.dir_lineEdit{self.cnt}'].setText(data[1])
+            globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.dir_lineEdit{self.cnt}'])
+
+            # 경로 검색 버튼
+            globals()[f'self.langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
+            globals()[f'self.langList_toolButton{self.cnt}'].setText("...")
+            globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.langList_toolButton{self.cnt}'])
+            globals()[f'self.langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'self.dir_lineEdit{self.cnt}']))
+
+            self.langListScroll_verticalLayout.addLayout(globals()[f'self.langList_horizontalLayout{self.cnt}'])
+
+            self.cnt += 1
+            
+            self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
+            self.top_verticalLayout.addWidget(self.langList_scrollArea)
         
         # [확인], [취소] 버튼
         self.sl_ok_horizontalLayout = QHBoxLayout()
@@ -72,7 +112,7 @@ class UI_Setup_Language(QWidget, DBManager):
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
         self.ok_Button.clicked.connect(self.ok_Button_clicked)
-        self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
+        # self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
 
     def addLang_Button_clicked(self):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
@@ -129,28 +169,49 @@ class UI_Setup_Language(QWidget, DBManager):
 
     def ok_Button_clicked(self):
         checkOverlap = []
+
+        # 빈칸 및 중복 언어 체크
         for i in range(self.cnt):
-            if globals()[f'self.lang_lineEdit{i}'].text() == "" or globals()[f'self.dir_lineEdit{i}'].text() == "":
-                QMessageBox.about(self, '주의', '빈칸이 있습니다. \n 확인해 주세요.')
-                return
-            if i not in checkOverlap:
+            try:
+                if globals()[f'self.lang_lineEdit{i}'].text() == "" or globals()[f'self.dir_lineEdit{i}'].text() == "":
+                    QMessageBox.about(self, '주의', '빈칸이 있습니다. \n 확인해 주세요.')
+                    return
+            except RuntimeError:
+                continue
+
+            if (globals()[f'self.lang_lineEdit{i}'].text() not in checkOverlap and
+                globals()[f'self.dir_lineEdit{i}'].text() not in checkOverlap):
                 checkOverlap.append(globals()[f'self.lang_lineEdit{i}'].text())
                 checkOverlap.append(globals()[f'self.dir_lineEdit{i}'].text())
-
             else:
-                QMessageBox.about(self, f'{i+1}번째 라인이 중복으로 입력되었습니다.')
+                QMessageBox.about(self, '주의', f'{i+1}번째 라인이 중복으로 입력되었습니다.')
                 return
 
+        # DB에 저장
         for i in range(self.cnt):
-            self.dbConn.execute(f"INSERT INTO 'Setup_Language' VALUES (?, ?)", 
-                                (globals()[f'self.lang_lineEdit{i}'].text(), globals()[f'self.dir_lineEdit{i}'].text()))
+            try:
+                self.c.execute(f"SELECT COUNT(*) FROM Setup_Language WHERE 언어=(?)", 
+                                (globals()[f'self.lang_lineEdit{i}'].text(),))
+                cnt = self.c.fetchall()
+                if cnt[0][0] > 0:
+                    self.dbConn.execute(f"UPDATE Setup_Language SET 경로=(?) WHERE 언어=(?)",
+                        (globals()[f'self.dir_lineEdit{i}'].text(), globals()[f'self.lang_lineEdit{i}'].text()))
+                else:
+                    self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
+                        (globals()[f'self.lang_lineEdit{i}'].text(), globals()[f'self.dir_lineEdit{i}'].text()))
 
-            self.dbConn.commit()
+                self.dbConn.commit()
+            except RuntimeError:
+                continue
         
         self.close()
     
     def cancel_Button_clicked(self):
-        pass
+        self.close()
+
+    def __del__(self):
+        DBManager().close()
+        self.close()
 
 if __name__ == "__main__":
     import sys

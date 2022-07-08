@@ -5,10 +5,12 @@ class DBManager:
     def __init__(self):
         self.dbpath = f"{os.getcwd()}\\ExcelRPA.db"
         self.dbConn = sqlite3.connect(self.dbpath)
+        self.c = self.dbConn.cursor()
         self.__create_table()
 
-    def __del__(self):
+    def close(self):
         self.dbConn.close()
+        print('끝남')
 
     def __create_table(self):
         self.dbConn.executescript(
