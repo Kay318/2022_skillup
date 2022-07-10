@@ -22,15 +22,18 @@ class Ui_MainWindow(QMainWindow):
         self.resize(1472, 876)
         self.setWindowTitle("다국어 자동화")
 
+        # 전체 화면 배치
+        self.horizontalLayout = QHBoxLayout()
+
         # 좌측 이미지 리스트
-        self.verticalLayoutWidget = QWidget(self)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 70, 821))
-        self.img_VBoxLayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.img_VBoxLayout = QVBoxLayout()
         self.img_VBoxLayout.setContentsMargins(0, 0, 0, 0)
         self.border()
         self.img_VBoxLayout.addWidget(self.lbl_border)
+        self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
         # 우측 큰 이미지
+        
         self.img_Label = QLabel(self)
         self.img_Label.setGeometry(QtCore.QRect(90, 10, 1350, 600))
         self.img_Label.setStyleSheet("color: gray;"

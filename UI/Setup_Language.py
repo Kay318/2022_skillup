@@ -130,10 +130,12 @@ class UI_Setup_Language(QWidget, DBManager):
         # 언어 입력
         globals()[f'self.lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
         globals()[f'self.lang_lineEdit{self.cnt}'].setMaximumWidth(100)
+        globals()[f'self.lang_lineEdit{self.cnt}'].setPlaceholderText('언어 입력')
         globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.lang_lineEdit{self.cnt}'])
 
         # 경로 입력
         globals()[f'self.dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+        globals()[f'self.dir_lineEdit{self.cnt}'].setPlaceholderText('우측 버튼으로 폴더 경로 설정')
         globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.dir_lineEdit{self.cnt}'])
 
         # 경로 검색 버튼
