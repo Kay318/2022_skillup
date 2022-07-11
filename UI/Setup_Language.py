@@ -215,10 +215,6 @@ class UI_Setup_Language(QWidget, DBManager):
     def cancel_Button_clicked(self):
         self.close()
 
-    def __del__(self):
-        DBManager().close()
-        self.close()
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
