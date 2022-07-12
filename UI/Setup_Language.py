@@ -21,7 +21,6 @@ from Database.DB import DBManager
 class UI_Setup_Language(QWidget, DBManager):
     def __init__(self):
         super().__init__()
-        DBManager().__init__()
         self.cnt = 0
         self.func_cnt = 0
 

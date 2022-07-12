@@ -14,9 +14,13 @@ from PyQt5.QtWidgets import *
 import sys
 import os
 
+from pathlib import Path
+sys.path.append(str(Path(__file__).parents[1]))
+from Database.DB import DBManager
+
 print(os.getcwd())
 
-class Ui_MainWindow(QMainWindow):
+class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
         self.setupUi()
@@ -127,12 +131,19 @@ class Ui_MainWindow(QMainWindow):
         self.menubar = self.menuBar()
         self.menu = self.menubar.addMenu("Menu")
 
-        self.actionOpen = QAction("Open", self)
+        self.menuOpen = QMenu("Open", self)
         self.actionCreateExcel = QAction("Create Excel", self)
         self.actionClose = QAction("Close", self)
-        self.menu.addAction(self.actionOpen)
+        self.menu.addMenu(self.menuOpen)
         self.menu.addAction(self.actionCreateExcel)
         self.menu.addAction(self.actionClose)
+
+        self.c.execute('SELECT * FROM Setup_Language')
+        langList = self.c.fetchall()
+
+        for lang in langList:
+            lang = QAction(lang[0], self)
+            self.menuOpen.addAction(lang)
 
         self.setup = self.menubar.addMenu("Setup")
         self.actionLanguage = QAction("Language", self)

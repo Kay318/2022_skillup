@@ -30,6 +30,6 @@ class Main(QMainWindow):
         TL.show()
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv) 
+    app = QApplication(sys.argv)
     myWindow = Main()
     app.exec_()
