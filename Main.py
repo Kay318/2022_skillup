@@ -4,25 +4,30 @@ from UI.Test_List import Ui_Test_List
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
+MAINWINDOW = None
+SL = None
+TL = None
+
 class Main(QMainWindow):
     def __init__(self) -> None:
+        global MAINWINDOW, SL, TL
         super().__init__()
-        self.mainWindow = Ui_MainWindow()
-        self.sl = UI_Setup_Language()
-        self.test = Ui_Test_List()
+        MAINWINDOW = Ui_MainWindow()
+        SL = UI_Setup_Language()
+        TL = Ui_Test_List()
         self.set_slot()
 
     def set_slot(self):
-        self.mainWindow.actionLanguage.triggered.connect(self.sl_ui)
-        self.mainWindow.actionTest_List.triggered.connect(self.sl_test)
+        MAINWINDOW.actionLanguage.triggered.connect(self.sl_ui)
+        MAINWINDOW.actionTest_List.triggered.connect(self.tl_ui)
 
     def sl_ui(self):
-        self.sl.setupUi_Language()
-        self.sl.show()
+        SL.setupUi_Language()
+        SL.show()
         
-    def sl_test(self):
-        self.test.setupUi_Test()
-        self.test.show()
+    def tl_ui(self):
+        TL.setupUi_Test()
+        TL.show()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv) 

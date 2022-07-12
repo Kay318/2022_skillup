@@ -115,7 +115,6 @@ class UI_Setup_Language(QWidget, DBManager):
 
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
-        self.ok_Button.clicked.connect(self.ok_Button_clicked)
         self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
 
     def addLang_Button_clicked(self):
@@ -173,44 +172,7 @@ class UI_Setup_Language(QWidget, DBManager):
         folderPath = QFileDialog.getExistingDirectory(self, 'Select Folder')
         lineEdit.setText(folderPath)
 
-    def ok_Button_clicked(self):
-        checkOverlap = []
-
-        # 빈칸 및 중복 언어 체크
-        for i in range(self.cnt):
-            try:
-                if globals()[f'self.lang_lineEdit{i}'].text() == "" or globals()[f'self.dir_lineEdit{i}'].text() == "":
-                    QMessageBox.about(self, '주의', '빈칸이 있습니다. \n 확인해 주세요.')
-                    return
-            except RuntimeError:
-                continue
-
-            if (globals()[f'self.lang_lineEdit{i}'].text() not in checkOverlap and
-                globals()[f'self.dir_lineEdit{i}'].text() not in checkOverlap):
-                checkOverlap.append(globals()[f'self.lang_lineEdit{i}'].text())
-                checkOverlap.append(globals()[f'self.dir_lineEdit{i}'].text())
-            else:
-                QMessageBox.about(self, '주의', '중복 라인이 있습니다.')
-                return
-
-        # DB에 저장
-        for i in range(self.cnt):
-            try:
-                self.c.execute(f"SELECT COUNT(*) FROM Setup_Language WHERE 언어=(?)", 
-                                (globals()[f'self.lang_lineEdit{i}'].text(),))
-                cnt = self.c.fetchall()
-                if cnt[0][0] > 0:
-                    self.dbConn.execute(f"UPDATE Setup_Language SET 경로=(?) WHERE 언어=(?)",
-                        (globals()[f'self.dir_lineEdit{i}'].text(), globals()[f'self.lang_lineEdit{i}'].text()))
-                else:
-                    self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
-                        (globals()[f'self.lang_lineEdit{i}'].text(), globals()[f'self.dir_lineEdit{i}'].text()))
-
-                self.dbConn.commit()
-            except RuntimeError:
-                continue
-        
-        self.close()
+    
     
     def cancel_Button_clicked(self):
         self.close()
