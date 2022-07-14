@@ -11,7 +11,8 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from UI.Setup_Language import UI_Setup_Language
+from functools import partial
+from PIL import Image
 import sys
 import os
 
@@ -42,32 +43,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
     
         self.img_scrollAreaWidgetContents = QWidget()
         self.img_VBoxLayout = QVBoxLayout(self.img_scrollAreaWidgetContents)
+        self.img_VBoxLayout.setAlignment(Qt.AlignTop)
 
         self.img_scrollArea.setWidget(self.img_scrollAreaWidgetContents)
         self.horizontalLayout.addWidget(self.img_scrollArea)
-        
-        self.qbuttons = {}
-
-        self.selection_list = []
-        self.figures = ['temp.png', 'dog.jpg', 'rabbit.jpg', 'fox.jpg', 'elephant.jpg', 'tiger.jpg', '', '', '', '', '', '', '', '', '', '']
-
-        self.icons = {}
-        for index, filename in enumerate(self.figures):
-            pixmap = QPixmap(filename)
-            pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
-            icon = QIcon()
-            icon.addPixmap(pixmap)
-            self.icons[index] = icon
-
-        for index, icon in self.icons.items():
-            button = QPushButtonIcon()
-            button.setIcon(icon)
-            button.clicked.connect(lambda state, button = button, idx = index :
-                                   self.qbutton_clicked(state, idx, button))
-            self.img_VBoxLayout.addWidget(button)
-            self.qbuttons[index] = button
-
-        self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
         # 우측 큰 이미지
         self.right_VBoxLayout = QVBoxLayout()
@@ -157,17 +136,50 @@ class Ui_MainWindow(QMainWindow, DBManager):
         langList = self.c.fetchall()
 
         for lang in langList:
-            lang = QAction(lang[0], self)
-            self.menuOpen.addAction(lang)
+            subMenu = QAction(lang[0], self)
+            subMenu.triggered.connect(partial(self.show_imgList, lang))
+            self.menuOpen.addAction(subMenu)
         
         self.menu.addMenu(self.menuOpen)
 
     def qbutton_clicked(self, state, idx, button):
-        self.selection_list.append(idx)
-        pixmap = QPixmap(self.figures[idx])
-        pixmap = pixmap.scaledToWidth(1536)
-        pixmap = pixmap.scaledToHeight(576)
+        img_dir = self.img_dir[0] + '\\' + self.imgList[idx]
+        pixmap = QPixmap(img_dir)
+        img = Image.open(img_dir)
+        pixmap = pixmap.scaledToHeight(600)
+        self.img_Label.resize(700*img.width/img.height, 600)
         self.img_Label.setPixmap(QPixmap(pixmap))
+
+    def show_imgList(self, lang):
+        # 이미지 리스트 초기화
+        for i in range(self.img_VBoxLayout.count()):
+            self.img_VBoxLayout.itemAt(i).widget().deleteLater()
+
+        # 이미지 경로 불러옴
+        self.c.execute("SELECT 경로 FROM Setup_Language WHERE 언어=?", (lang[0],))
+        self.img_dir = self.c.fetchone()
+        self.imgList = [fn for fn in os.listdir(self.img_dir[0])
+                if (fn.endswith('.png') or fn.endswith('.jpg'))]
+
+        # 이미지 버튼 추가
+        self.qbuttons = {}
+        self.icons = {}
+        for index, filename in enumerate(self.imgList):
+            pixmap = QPixmap(self.img_dir[0] + '\\' + filename)
+            pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
+            icon = QIcon()
+            icon.addPixmap(pixmap)
+            self.icons[index] = icon
+
+        for index, icon in self.icons.items():
+            button = QPushButtonIcon()
+            button.setIcon(icon)
+            button.clicked.connect(lambda state, button = button, idx = index :
+                        self.qbutton_clicked(state, idx, button))
+            self.img_VBoxLayout.addWidget(button)
+            self.qbuttons[index] = button
+
+        self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
