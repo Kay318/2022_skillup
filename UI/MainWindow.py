@@ -11,6 +11,7 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from UI.Setup_Language import UI_Setup_Language
 import sys
 import os
 
@@ -24,7 +25,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
         self.setupUi()
-        self.show()
+        # self.show()
 
     def setupUi(self):
         widget = QWidget()
@@ -129,22 +130,9 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.horizontalLayout.addLayout(self.right_VBoxLayout)
 
         self.menubar = self.menuBar()
-        self.menu = self.menubar.addMenu("Menu")
 
-        self.menuOpen = QMenu("Open", self)
-        self.actionCreateExcel = QAction("Create Excel", self)
-        self.actionClose = QAction("Close", self)
-        self.menu.addMenu(self.menuOpen)
-        self.menu.addAction(self.actionCreateExcel)
-        self.menu.addAction(self.actionClose)
-
-        self.c.execute('SELECT * FROM Setup_Language')
-        langList = self.c.fetchall()
-
-        for lang in langList:
-            lang = QAction(lang[0], self)
-            self.menuOpen.addAction(lang)
-
+        self.setMenu()
+        
         self.setup = self.menubar.addMenu("Setup")
         self.actionLanguage = QAction("Language", self)
         self.actionTest_List = QAction("Test List", self)
@@ -154,6 +142,25 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.setup.addAction(self.actionExcel_Setting)
 
         self.setCentralWidget(widget)
+
+    def setMenu(self):
+        self.menu = self.menubar.addMenu("Menu")
+        self.menuOpen = QMenu("Open", self)
+        self.setOpenMenu()
+        self.actionCreateExcel = QAction("Create Excel", self)
+        self.actionClose = QAction("Close", self)
+        self.menu.addAction(self.actionCreateExcel)
+        self.menu.addAction(self.actionClose)
+
+    def setOpenMenu(self):
+        self.c.execute('SELECT * FROM Setup_Language')
+        langList = self.c.fetchall()
+
+        for lang in langList:
+            lang = QAction(lang[0], self)
+            self.menuOpen.addAction(lang)
+        
+        self.menu.addMenu(self.menuOpen)
 
     def qbutton_clicked(self, state, idx, button):
         self.selection_list.append(idx)

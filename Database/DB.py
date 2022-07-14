@@ -10,7 +10,6 @@ class DBManager:
 
     def close(self):
         self.dbConn.close()
-        print('끝남')
 
     def __create_table(self):
         self.dbConn.executescript(

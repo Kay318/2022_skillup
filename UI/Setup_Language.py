@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import *
 from functools import partial
 from PyQt5.QtCore import Qt, QCoreApplication
+# from UI.MainWindow import Ui_MainWindow
 
 from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
@@ -22,6 +23,7 @@ class UI_Setup_Language(QWidget, DBManager):
     def __init__(self):
         super().__init__()
         self.cnt = 0
+        # self.mainwindow = Ui_MainWindow()
         self.func_cnt = 0
 
     def setupUi_Language(self):
@@ -109,7 +111,7 @@ class UI_Setup_Language(QWidget, DBManager):
 
             # 버튼 이벤트 함수
             self.sl_set_slot()
-        
+
         self.func_cnt += 1
 
     def sl_set_slot(self):
@@ -194,18 +196,11 @@ class UI_Setup_Language(QWidget, DBManager):
                 return
 
         # DB에 저장
+        self.c.execute(f"DELETE FROM Setup_Language")
         for i in range(self.cnt):
             try:
-                self.c.execute(f"SELECT COUNT(*) FROM Setup_Language WHERE 언어=(?)", 
-                                (globals()[f'self.lang_lineEdit{i}'].text(),))
-                cnt = self.c.fetchall()
-                if cnt[0][0] > 0:
-                    self.dbConn.execute(f"UPDATE Setup_Language SET 경로=(?) WHERE 언어=(?)",
-                        (globals()[f'self.dir_lineEdit{i}'].text(), globals()[f'self.lang_lineEdit{i}'].text()))
-                else:
-                    self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
+                self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
                         (globals()[f'self.lang_lineEdit{i}'].text(), globals()[f'self.dir_lineEdit{i}'].text()))
-
                 self.dbConn.commit()
             except RuntimeError:
                 continue
