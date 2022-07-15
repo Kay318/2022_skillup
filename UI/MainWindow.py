@@ -109,9 +109,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.horizontalLayout.addLayout(self.right_VBoxLayout)
 
         self.menubar = self.menuBar()
+        self.menu = self.menubar.addMenu("Menu")
 
-        self.setMenu()
-        
+        self.menu.aboutToShow.connect(self.update_open_menu)
+
         self.setup = self.menubar.addMenu("Setup")
         self.actionLanguage = QAction("Language", self)
         self.actionTest_List = QAction("Test List", self)
@@ -122,16 +123,9 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.setCentralWidget(widget)
 
-    def setMenu(self):
-        self.menu = self.menubar.addMenu("Menu")
-        self.menuOpen = QMenu("Open", self)
-        self.setOpenMenu()
-        self.actionCreateExcel = QAction("Create Excel", self)
-        self.actionClose = QAction("Close", self)
-        self.menu.addAction(self.actionCreateExcel)
-        self.menu.addAction(self.actionClose)
-
-    def setOpenMenu(self):
+    def update_open_menu(self):
+        self.menu.clear()
+        self.menuOpen = self.menu.addMenu("Open")
         self.c.execute('SELECT * FROM Setup_Language')
         langList = self.c.fetchall()
 
@@ -141,6 +135,11 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.menuOpen.addAction(subMenu)
         
         self.menu.addMenu(self.menuOpen)
+
+        self.actionCreateExcel = QAction("Create Excel", self)
+        self.actionClose = QAction("Close", self)
+        self.menu.addAction(self.actionCreateExcel)
+        self.menu.addAction(self.actionClose)
 
     def qbutton_clicked(self, state, idx, button):
         img_dir = self.img_dir[0] + '\\' + self.imgList[idx]
