@@ -13,7 +13,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from functools import partial
 from PIL import Image
+from UI.ImageView import ImageViewer
 import sys
+import time
 import os
 
 from pathlib import Path
@@ -26,7 +28,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
         self.setupUi()
-        # self.show()
 
     def setupUi(self):
         widget = QWidget()
@@ -102,15 +103,17 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.testAll_VBoxLayout.addWidget(self.allNT_RadioButton)
         self.allFail_RadioButton = QRadioButton("ALL FAIL")
         self.testAll_VBoxLayout.addWidget(self.allFail_RadioButton)
+        self.allNull_RadioButton = QRadioButton("ALL NULL")
+        self.testAll_VBoxLayout.addWidget(self.allNull_RadioButton)
         self.bottomR_VBoxLayout.addLayout(self.testAll_VBoxLayout)
 
         self.bottom_HBoxLayout.addLayout(self.bottomR_VBoxLayout)
         self.right_VBoxLayout.addLayout(self.bottom_HBoxLayout)
         self.horizontalLayout.addLayout(self.right_VBoxLayout)
 
+        # 메뉴바
         self.menubar = self.menuBar()
         self.menu = self.menubar.addMenu("Menu")
-
         self.menu.aboutToShow.connect(self.update_open_menu)
 
         self.setup = self.menubar.addMenu("Setup")
@@ -144,10 +147,24 @@ class Ui_MainWindow(QMainWindow, DBManager):
     def qbutton_clicked(self, state, idx, button):
         img_dir = self.img_dir[0] + '\\' + self.imgList[idx]
         pixmap = QPixmap(img_dir)
-        img = Image.open(img_dir)
-        pixmap = pixmap.scaledToHeight(600)
-        self.img_Label.resize(700*img.width/img.height, 600)
+        self.img = Image.open(img_dir)
+
+        self.img_Label.resize(self.img.width, self.img.height)
+
+        if self.img.width < self.img_Label.width() and self.img.height < self.img_Label.height():
+            pass
+        elif self.img.width/self.img.height < self.img_Label.width()/self.img_Label.height():
+            pixmap = pixmap.scaledToHeight(self.img_Label.height())
+        else:
+            pixmap = pixmap.scaledToHeight(self.img_Label.width())
         self.img_Label.setPixmap(QPixmap(pixmap))
+        self.img_Label.setAlignment(Qt.AlignCenter)
+
+        self.img_Label.mouseDoubleClickEvent = partial(self.double_click_img, img_dir)
+
+    def double_click_img(self, img_dir, e):
+        self.viewer = ImageViewer(img_dir)
+        self.viewer.show()
 
     def show_imgList(self, lang):
         # 이미지 리스트 초기화
@@ -180,6 +197,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
+    def resizeEvent(self, event):
+        print("사이즈 변경")
+        print(event)
+
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
         super().__init__(parent)
@@ -191,4 +212,5 @@ if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
     ui = Ui_MainWindow()
+    ui.show()
     sys.exit(app.exec_())

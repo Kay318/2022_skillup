@@ -23,7 +23,6 @@ class UI_Setup_Language(QWidget, DBManager):
     def __init__(self):
         super().__init__()
         self.cnt = 0
-        # self.mainwindow = Ui_MainWindow()
         self.func_cnt = 0
 
     def setupUi_Language(self):
