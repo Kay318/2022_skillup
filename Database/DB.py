@@ -18,6 +18,10 @@ class DBManager:
                     "언어" TEXT,
                     "경로" TEXT
                     );
+
+                CREATE TABLE IF NOT EXISTS "Setup_Field" (
+                    "엑셀 필드" TEXT
+                    );
                 """
             )
 

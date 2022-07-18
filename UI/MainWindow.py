@@ -27,6 +27,7 @@ print(os.getcwd())
 class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
+        self.cnt = 0
         self.setupUi()
 
     def setupUi(self):
@@ -66,20 +67,28 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.bottom_HBoxLayout = QHBoxLayout()
         self.bottomL_VBoxLayout = QVBoxLayout()
         self.bottomR_VBoxLayout = QVBoxLayout()
+        
+        self.c.execute('SELECT * FROM Setup_Field')
+        fieldList = self.c.fetchall()
 
         self.desc_gridLayout = QGridLayout()
-        self.desc_Label = QLabel("이미지 설명")
-        self.desc_gridLayout.addWidget(self.desc_Label, 0,0,1,1)
-        self.desc_LineEdit = QLineEdit()
-        self.desc_gridLayout.addWidget(self.desc_LineEdit, 0,1,1,1)
-        self.scripts_Label = QLabel("스크립트명")
-        self.desc_gridLayout.addWidget(self.scripts_Label, 1,0,1,1)
-        self.scripts_LineEdit = QLineEdit()
-        self.desc_gridLayout.addWidget(self.scripts_LineEdit, 1,1,1,1)
+
+        for i,field in enumerate(fieldList):
+            if i%2==0:
+                globals()[f'self.field_Label{self.cnt}'] = QLabel(field[0])
+                self.desc_gridLayout.addWidget(globals()[f'self.field_Label{self.cnt}'], 0,i)
+                globals()[f'self.desc_LineEdit{self.cnt}'] = QLineEdit()
+                self.desc_gridLayout.addWidget(globals()[f'self.desc_LineEdit{self.cnt}'], 0,i+1)
+            else:
+                globals()[f'self.field_Label{self.cnt}'] = QLabel(field[0])
+                self.desc_gridLayout.addWidget(globals()[f'self.field_Label{self.cnt}'], 1,i-1)
+                globals()[f'self.desc_LineEdit{self.cnt}'] = QLineEdit()
+                self.desc_gridLayout.addWidget(globals()[f'self.desc_LineEdit{self.cnt}'], 1,i)
 
         self.bottomL_VBoxLayout.addLayout(self.desc_gridLayout)
 
         # 평가 목록
+
         self.testList_groupbox = QGroupBox("평가 목록")
         self.testList_groupbox.setMinimumSize(1141, 151)
 
@@ -118,9 +127,11 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.setup = self.menubar.addMenu("Setup")
         self.actionLanguage = QAction("Language", self)
+        self.actionField = QAction("Field", self)
         self.actionTest_List = QAction("Test List", self)
         self.actionExcel_Setting = QAction("Excel Setting", self)
         self.setup.addAction(self.actionLanguage)
+        self.setup.addAction(self.actionField)
         self.setup.addAction(self.actionTest_List)
         self.setup.addAction(self.actionExcel_Setting)
 
@@ -196,10 +207,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.qbuttons[index] = button
 
         self.horizontalLayout.addLayout(self.img_VBoxLayout)
-
-    def resizeEvent(self, event):
-        print("사이즈 변경")
-        print(event)
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):

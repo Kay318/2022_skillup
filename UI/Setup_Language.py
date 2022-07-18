@@ -190,7 +190,6 @@ class UI_Setup_Language(QWidget, DBManager):
                 checkOverlap.append(globals()[f'self.lang_lineEdit{i}'].text())
                 checkOverlap.append(globals()[f'self.dir_lineEdit{i}'].text())
             else:
-                QMessageBox.about(self, '주의', f'{i+1}번째 라인이 중복으로 입력되었습니다.')
                 QMessageBox.about(self, '주의', '중복 라인이 있습니다.')
                 return
 
