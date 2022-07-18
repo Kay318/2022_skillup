@@ -65,33 +65,33 @@ class UI_Setup_Language(QWidget, DBManager):
                 self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
                 self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
-                globals()[f'self.langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
+                globals()[f'langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
 
                 # 삭제 버튼
-                globals()[f'self.del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
-                globals()[f'self.del_langList_button{self.cnt}'].setMaximumWidth(30)
-                globals()[f'self.del_langList_button{self.cnt}'].clicked.connect(partial(
-                    self.del_langList_button_clicked, layout = globals()[f'self.langList_horizontalLayout{self.cnt}']))
-                globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_langList_button{self.cnt}'])
+                globals()[f'del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
+                globals()[f'del_langList_button{self.cnt}'].setMaximumWidth(30)
+                globals()[f'del_langList_button{self.cnt}'].clicked.connect(partial(
+                    self.del_langList_button_clicked, layout = globals()[f'langList_horizontalLayout{self.cnt}']))
+                globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'del_langList_button{self.cnt}'])
 
                 # 언어 입력
-                globals()[f'self.lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
-                globals()[f'self.lang_lineEdit{self.cnt}'].setMaximumWidth(100)
-                globals()[f'self.lang_lineEdit{self.cnt}'].setText(data[0])
-                globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.lang_lineEdit{self.cnt}'])
+                globals()[f'lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+                globals()[f'lang_lineEdit{self.cnt}'].setMaximumWidth(100)
+                globals()[f'lang_lineEdit{self.cnt}'].setText(data[0])
+                globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'lang_lineEdit{self.cnt}'])
 
                 # 경로 입력
-                globals()[f'self.dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
-                globals()[f'self.dir_lineEdit{self.cnt}'].setText(data[1])
-                globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.dir_lineEdit{self.cnt}'])
+                globals()[f'dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+                globals()[f'dir_lineEdit{self.cnt}'].setText(data[1])
+                globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'dir_lineEdit{self.cnt}'])
 
                 # 경로 검색 버튼
-                globals()[f'self.langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
-                globals()[f'self.langList_toolButton{self.cnt}'].setText("...")
-                globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.langList_toolButton{self.cnt}'])
-                globals()[f'self.langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'self.dir_lineEdit{self.cnt}']))
+                globals()[f'langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
+                globals()[f'langList_toolButton{self.cnt}'].setText("...")
+                globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'langList_toolButton{self.cnt}'])
+                globals()[f'langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'dir_lineEdit{self.cnt}']))
 
-                self.langListScroll_verticalLayout.addLayout(globals()[f'self.langList_horizontalLayout{self.cnt}'])
+                self.langListScroll_verticalLayout.addLayout(globals()[f'langList_horizontalLayout{self.cnt}'])
 
                 self.cnt += 1
                 
@@ -122,33 +122,33 @@ class UI_Setup_Language(QWidget, DBManager):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
-        globals()[f'self.langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
+        globals()[f'langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
 
         # 삭제 버튼
-        globals()[f'self.del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
-        globals()[f'self.del_langList_button{self.cnt}'].setMaximumWidth(30)
-        globals()[f'self.del_langList_button{self.cnt}'].clicked.connect(partial(
-            self.del_langList_button_clicked, layout = globals()[f'self.langList_horizontalLayout{self.cnt}']))
-        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_langList_button{self.cnt}'])
+        globals()[f'del_langList_button{self.cnt}'] = QPushButton("-", self.langList_scrollAreaWidgetContents)
+        globals()[f'del_langList_button{self.cnt}'].setMaximumWidth(30)
+        globals()[f'del_langList_button{self.cnt}'].clicked.connect(partial(
+            self.del_langList_button_clicked, layout = globals()[f'langList_horizontalLayout{self.cnt}']))
+        globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'del_langList_button{self.cnt}'])
 
         # 언어 입력
-        globals()[f'self.lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
-        globals()[f'self.lang_lineEdit{self.cnt}'].setMaximumWidth(100)
-        globals()[f'self.lang_lineEdit{self.cnt}'].setPlaceholderText('언어 입력')
-        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.lang_lineEdit{self.cnt}'])
+        globals()[f'lang_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+        globals()[f'lang_lineEdit{self.cnt}'].setMaximumWidth(100)
+        globals()[f'lang_lineEdit{self.cnt}'].setPlaceholderText('언어 입력')
+        globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'lang_lineEdit{self.cnt}'])
 
         # 경로 입력
-        globals()[f'self.dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
-        globals()[f'self.dir_lineEdit{self.cnt}'].setPlaceholderText('우측 버튼으로 폴더 경로 설정')
-        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.dir_lineEdit{self.cnt}'])
+        globals()[f'dir_lineEdit{self.cnt}'] = QLineEdit(self.langList_scrollAreaWidgetContents)
+        globals()[f'dir_lineEdit{self.cnt}'].setPlaceholderText('우측 버튼으로 폴더 경로 설정')
+        globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'dir_lineEdit{self.cnt}'])
 
         # 경로 검색 버튼
-        globals()[f'self.langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
-        globals()[f'self.langList_toolButton{self.cnt}'].setText("...")
-        globals()[f'self.langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.langList_toolButton{self.cnt}'])
-        globals()[f'self.langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'self.dir_lineEdit{self.cnt}']))
+        globals()[f'langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
+        globals()[f'langList_toolButton{self.cnt}'].setText("...")
+        globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'langList_toolButton{self.cnt}'])
+        globals()[f'langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'dir_lineEdit{self.cnt}']))
 
-        self.langListScroll_verticalLayout.addLayout(globals()[f'self.langList_horizontalLayout{self.cnt}'])
+        self.langListScroll_verticalLayout.addLayout(globals()[f'langList_horizontalLayout{self.cnt}'])
 
         self.cnt += 1
         
@@ -159,7 +159,7 @@ class UI_Setup_Language(QWidget, DBManager):
         """라인 삭제 함수
 
         Args:
-            cnt: 변수명
+            layout: 삭제할 레이아웃
         """
         for i in range(layout.count()):
             layout.itemAt(i).widget().deleteLater()
@@ -179,16 +179,16 @@ class UI_Setup_Language(QWidget, DBManager):
         # 빈칸 및 중복 언어 체크
         for i in range(self.cnt):
             try:
-                if globals()[f'self.lang_lineEdit{i}'].text() == "" or globals()[f'self.dir_lineEdit{i}'].text() == "":
+                if globals()[f'lang_lineEdit{i}'].text() == "" or globals()[f'dir_lineEdit{i}'].text() == "":
                     QMessageBox.about(self, '주의', '빈칸이 있습니다. \n 확인해 주세요.')
                     return
             except RuntimeError:
                 continue
 
-            if (globals()[f'self.lang_lineEdit{i}'].text() not in checkOverlap and
-                globals()[f'self.dir_lineEdit{i}'].text() not in checkOverlap):
-                checkOverlap.append(globals()[f'self.lang_lineEdit{i}'].text())
-                checkOverlap.append(globals()[f'self.dir_lineEdit{i}'].text())
+            if (globals()[f'lang_lineEdit{i}'].text() not in checkOverlap and
+                globals()[f'dir_lineEdit{i}'].text() not in checkOverlap):
+                checkOverlap.append(globals()[f'lang_lineEdit{i}'].text())
+                checkOverlap.append(globals()[f'dir_lineEdit{i}'].text())
             else:
                 QMessageBox.about(self, '주의', '중복 라인이 있습니다.')
                 return
@@ -198,7 +198,7 @@ class UI_Setup_Language(QWidget, DBManager):
         for i in range(self.cnt):
             try:
                 self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
-                        (globals()[f'self.lang_lineEdit{i}'].text(), globals()[f'self.dir_lineEdit{i}'].text()))
+                        (globals()[f'lang_lineEdit{i}'].text(), globals()[f'dir_lineEdit{i}'].text()))
                 self.dbConn.commit()
             except RuntimeError:
                 continue

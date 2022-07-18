@@ -109,7 +109,10 @@ class UI_Setup_Field(QWidget, DBManager):
                 except RuntimeError:
                     continue
         
-        # self.mainwindow.self.field_Label1.setText("FIELD")
+        # for i in range(self.mainwindow.field_gridLayout.count()):
+        #     self.mainwindow.field_gridLayout.itemAt(i).widget().deleteLater()
+        self.mainwindow.set_field()
+        self.mainwindow.widget.update()
 
         self.close()
     

@@ -31,12 +31,12 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.setupUi()
 
     def setupUi(self):
-        widget = QWidget()
+        self.widget = QWidget()
         self.resize(1472, 876)
         self.setWindowTitle("다국어 자동화")
 
         # 전체 화면 배치
-        self.horizontalLayout = QHBoxLayout(widget)
+        self.horizontalLayout = QHBoxLayout(self.widget)
 
         # 좌측 이미지 리스트
         self.img_scrollArea = QScrollArea()
@@ -68,24 +68,11 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.bottomL_VBoxLayout = QVBoxLayout()
         self.bottomR_VBoxLayout = QVBoxLayout()
         
-        self.c.execute('SELECT * FROM Setup_Field')
-        fieldList = self.c.fetchall()
+        self.field_gridLayout = QGridLayout()
 
-        self.desc_gridLayout = QGridLayout()
+        self.set_field()
 
-        for i,field in enumerate(fieldList):
-            if i%2==0:
-                globals()[f'self.field_Label{self.cnt}'] = QLabel(field[0])
-                self.desc_gridLayout.addWidget(globals()[f'self.field_Label{self.cnt}'], 0,i)
-                globals()[f'self.desc_LineEdit{self.cnt}'] = QLineEdit()
-                self.desc_gridLayout.addWidget(globals()[f'self.desc_LineEdit{self.cnt}'], 0,i+1)
-            else:
-                globals()[f'self.field_Label{self.cnt}'] = QLabel(field[0])
-                self.desc_gridLayout.addWidget(globals()[f'self.field_Label{self.cnt}'], 1,i-1)
-                globals()[f'self.desc_LineEdit{self.cnt}'] = QLineEdit()
-                self.desc_gridLayout.addWidget(globals()[f'self.desc_LineEdit{self.cnt}'], 1,i)
-
-        self.bottomL_VBoxLayout.addLayout(self.desc_gridLayout)
+        self.bottomL_VBoxLayout.addLayout(self.field_gridLayout)
 
         # 평가 목록
 
@@ -135,7 +122,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.setup.addAction(self.actionTest_List)
         self.setup.addAction(self.actionExcel_Setting)
 
-        self.setCentralWidget(widget)
+        self.setCentralWidget(self.widget)
 
     def update_open_menu(self):
         self.menu.clear()
@@ -207,6 +194,22 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.qbuttons[index] = button
 
         self.horizontalLayout.addLayout(self.img_VBoxLayout)
+
+    def set_field(self):
+        self.c.execute('SELECT * FROM Setup_Field')
+        fieldList = self.c.fetchall()
+
+        for i,field in enumerate(fieldList):
+            if i%2==0:
+                globals()[f'field_Label{self.cnt}'] = QLabel(field[0])
+                self.field_gridLayout.addWidget(globals()[f'field_Label{self.cnt}'], 0,i)
+                globals()[f'desc_LineEdit{self.cnt}'] = QLineEdit()
+                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{self.cnt}'], 0,i+1)
+            else:
+                globals()[f'field_Label{self.cnt}'] = QLabel(field[0])
+                self.field_gridLayout.addWidget(globals()[f'field_Label{self.cnt}'], 1,i-1)
+                globals()[f'desc_LineEdit{self.cnt}'] = QLineEdit()
+                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{self.cnt}'], 1,i)
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
