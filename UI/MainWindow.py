@@ -77,13 +77,18 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         # 평가 목록
 
-        self.testList_groupbox = QGroupBox("평가 목록")
-        self.testList_groupbox.setMinimumSize(1141, 151)
+        self.Tgroupbox = QGroupBox("평가 목록")
+        self.Tgroupbox.setMinimumSize(1141, 151)
 
+        # 스크롤 적용이 layout과 layout 사이라 어려움. 평가목록 개수제한을 하는게 나아보임 [8~10개 목록을 만들수있음]
+        # self.TestList_scrollArea = QScrollArea()
         self.testList_Layout = QHBoxLayout()
-        self.testList_groupbox.setLayout(self.testList_Layout)
+        # self.testList_Layout.addWidget(self.TestList_scrollArea)
+        self.Tgroupbox.setLayout(self.testList_Layout)
 
-        self.bottomL_VBoxLayout.addWidget(self.testList_groupbox)
+        self.setWidget_func()
+
+        self.bottomL_VBoxLayout.addWidget(self.Tgroupbox)
         self.bottom_HBoxLayout.addLayout(self.bottomL_VBoxLayout)
 
         # 저장 버튼
@@ -124,6 +129,53 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.setup.addAction(self.actionExcel_Setting)
 
         self.setCentralWidget(self.widget)
+
+    def DBManager_Test_List(self):
+
+        self.c.execute(f"SELECT 평가목록 FROM Test_List")
+        List = self.c.fetchall()
+        List = list(set(List))
+
+        result = []
+        for i in List:
+            name = str(i)
+            name = name[2 : name.find(",")- 1]
+
+            print(f'name : {name}')
+            result.append(name)
+
+        return result
+
+    def setWidget_func(self):
+
+        result = list(self.DBManager_Test_List())
+        print(f"result값 : {len(result)}")
+
+        if len(result) != 0:
+            
+            for i in range(self.testList_Layout.count()):
+                self.testList_Layout.itemAt(i).widget().deleteLater()
+
+            for val in result:
+
+                val = str(val)
+                locals()[f'testList_groupbox_{val}'] = QGroupBox(val)
+                locals()[f'testList_groupbox_{val}'].setMinimumSize(80, 120)
+                # locals()[f'testList_groupbox_{val}'].setCheckable(True)
+                testList_lay = QVBoxLayout()
+                ck_True = QCheckBox("True")
+                ck_False = QCheckBox("False")
+                ck_NA = QCheckBox("N/A")
+                ck_NT = QCheckBox("N/T")
+
+                testList_lay.addWidget(ck_True)
+                testList_lay.addWidget(ck_False)
+                testList_lay.addWidget(ck_NA)
+                testList_lay.addWidget(ck_NT)
+                locals()[f'testList_groupbox_{val}'].setLayout(testList_lay)
+
+                self.testList_Layout.addWidget(locals()[f'testList_groupbox_{val}'])
+                self.testList_Layout.setAlignment(Qt.AlignLeft)
 
     def update_open_menu(self):
         self.menu.clear()

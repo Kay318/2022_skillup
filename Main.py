@@ -1,3 +1,4 @@
+from regex import E
 from UI.MainWindow import Ui_MainWindow
 from UI.Setup_Field import UI_Setup_Field
 from UI.Setup_Language import UI_Setup_Language
@@ -15,6 +16,9 @@ class Main(QMainWindow):
         global MAINWINDOW, SL, TL, SF
         super().__init__()
         MAINWINDOW = Ui_MainWindow()
+        SL = UI_Setup_Language()
+        SF = UI_Setup_Field()
+        TL = Ui_Test_List(MAINWINDOW)
         self._set_slot()
         MAINWINDOW.show()
 
@@ -24,19 +28,19 @@ class Main(QMainWindow):
         MAINWINDOW.actionTest_List.triggered.connect(self._tl_ui)
 
     def _sl_ui(self):
-        SL = UI_Setup_Language()
         SL.setupUi_Language()
         SL.show()
 
     def _sf_ui(self):
-        SF = UI_Setup_Field()
         SF.setupUi_Field()
         SF.show()
         
     def _tl_ui(self):
-        TL = Ui_Test_List()
         TL.setupUi_Test()
+        MAINWINDOW.setDisabled(True)
+        TL.setTest_Button()
         TL.show()
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
