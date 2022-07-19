@@ -27,7 +27,7 @@ class UI_Setup_Language(QWidget, DBManager):
 
     def setupUi_Language(self):
         # 언어별 경로 설정 메인 창
-        if self.func_cnt == 0:
+        # if self.func_cnt == 0:
             self.resize(744, 412)
             self.setWindowTitle("언어별 경로 설정")
 
@@ -111,7 +111,7 @@ class UI_Setup_Language(QWidget, DBManager):
             # 버튼 이벤트 함수
             self.sl_set_slot()
 
-        self.func_cnt += 1
+        # self.func_cnt += 1
 
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
