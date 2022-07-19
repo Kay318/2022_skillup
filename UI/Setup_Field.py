@@ -24,11 +24,11 @@ class UI_Setup_Field(QWidget, DBManager):
         super().__init__()
         self.cnt = 0
         self.mainwindow = Ui_MainWindow()
-        self.func_cnt = 0
+        self.start = True
 
     def setupUi_Field(self):
         # 언어별 경로 설정 메인 창
-        if self.func_cnt == 0:
+        if self.start:
             self.resize(744, 412)
             self.setWindowTitle("엑셀에 추가할 필드 설정")
 
@@ -65,7 +65,7 @@ class UI_Setup_Field(QWidget, DBManager):
             # 버튼 이벤트 함수
             self.sl_set_slot()
 
-        self.func_cnt += 1
+        self.start = False
 
 
     def set_data(self):
