@@ -71,6 +71,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.field_gridLayout = QGridLayout()
 
         self.set_field()
+        self.cnt = 0
 
         self.bottomL_VBoxLayout.addLayout(self.field_gridLayout)
 
@@ -210,6 +211,8 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 self.field_gridLayout.addWidget(globals()[f'field_Label{self.cnt}'], 1,i-1)
                 globals()[f'desc_LineEdit{self.cnt}'] = QLineEdit()
                 self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{self.cnt}'], 1,i)
+            
+            self.cnt += 1
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
