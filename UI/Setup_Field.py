@@ -138,7 +138,8 @@ class UI_Setup_Field(QWidget, DBManager):
                 event.accept()
             else:
                 event.ignore()
-        
+                
+        self.mainwin.setDisabled(False)
 
 if __name__ == "__main__":
     import sys

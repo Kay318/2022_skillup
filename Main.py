@@ -27,12 +27,14 @@ class Main(QMainWindow):
         MAINWINDOW.actionTest_List.triggered.connect(self._tl_ui)
 
     def _sl_ui(self):
-        SL = UI_Setup_Language()
+        SL = UI_Setup_Language(MAINWINDOW)
         SL.setupUi_Language()
+        MAINWINDOW.setDisabled(True)
         SL.show()
 
     def _sf_ui(self):
         SF.setupUi_Field()
+        MAINWINDOW.setDisabled(True)
         SF.show()
         
     def _tl_ui(self):

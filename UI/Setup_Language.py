@@ -19,10 +19,11 @@ from Database.DB import DBManager
 
 
 class UI_Setup_Language(QWidget, DBManager):
-    def __init__(self):
+    def __init__(self, mainwindow):
         super().__init__()
         self.cnt = 0
         self.start = True
+        self.mainwin = mainwindow
 
     def setupUi_Language(self):
         # 언어별 경로 설정 메인 창
@@ -207,7 +208,6 @@ class UI_Setup_Language(QWidget, DBManager):
     def closeEvent(self, event) -> None:
         self.c.execute('SELECT * FROM Setup_Language')
         dataList = self.c.fetchall()
-        temp_cnt = 1
 
         dbList = [data for data in dataList]
         langList = []
@@ -232,6 +232,8 @@ class UI_Setup_Language(QWidget, DBManager):
                 event.accept()
             else:
                 event.ignore()
+
+        self.mainwin.setDisabled(False)
 
 if __name__ == "__main__":
     import sys
