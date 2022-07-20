@@ -40,7 +40,6 @@ class Main(QMainWindow):
         MAINWINDOW.setDisabled(True)
         TL.setTest_Button()
         TL.show()
-        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

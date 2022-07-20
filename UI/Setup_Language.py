@@ -115,7 +115,7 @@ class UI_Setup_Language(QWidget, DBManager):
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(self.addLang_Button_clicked)
         self.ok_Button.clicked.connect(self.ok_Button_clicked)
-        self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
+        self.cancel_Button.clicked.connect(self.close)
 
     def addLang_Button_clicked(self):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
@@ -203,9 +203,35 @@ class UI_Setup_Language(QWidget, DBManager):
                 continue
         
         self.close()
-    
-    def cancel_Button_clicked(self):
-        self.close()
+
+    def closeEvent(self, event) -> None:
+        self.c.execute('SELECT * FROM Setup_Language')
+        dataList = self.c.fetchall()
+        temp_cnt = 1
+
+        dbList = [data for data in dataList]
+        langList = []
+        dirList = []
+        
+        for i in range(self.cnt):
+            try:
+                langList.append(globals()[f'lang_lineEdit{i}'].text())
+                dirList.append(globals()[f'dir_lineEdit{i}'].text())
+            except RuntimeError:
+                continue
+
+        if len(langList) > 0:
+            lineList = [i for i in zip(langList, dirList)]
+        
+
+        if dbList != lineList:
+            reply = QMessageBox.question(self, '알림', '변경사항이 있습니다.\n취소하시겠습니까?',
+                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.Yes:
+                event.accept()
+            else:
+                event.ignore()
 
 if __name__ == "__main__":
     import sys
