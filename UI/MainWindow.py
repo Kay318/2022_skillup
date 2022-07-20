@@ -29,6 +29,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         super().__init__()
         self.cnt = 0
         self.setupUi()
+        self.cliced_lang = None
 
     def setupUi(self):
         self.widget = QWidget()
@@ -49,6 +50,8 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.img_scrollArea.setWidget(self.img_scrollAreaWidgetContents)
         self.horizontalLayout.addWidget(self.img_scrollArea)
+
+        print(self.img_scrollAreaWidgetContents.size())
 
         # 우측 큰 이미지
         self.right_VBoxLayout = QVBoxLayout()
@@ -128,6 +131,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.setup.addAction(self.actionTest_List)
         self.setup.addAction(self.actionExcel_Setting)
 
+        # 상태바
+        self.statusbar = QStatusBar()
+        self.setStatusBar(self.statusbar)
+
         self.setCentralWidget(self.widget)
 
     def DBManager_Test_List(self):
@@ -141,7 +148,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
             name = str(i)
             name = name[2 : name.find(",")- 1]
 
-            print(f'name : {name}')
             result.append(name)
 
         return result
@@ -149,7 +155,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
     def setWidget_func(self):
 
         result = list(self.DBManager_Test_List())
-        print(f"result값 : {len(result)}")
 
         if len(result) != 0:
             
@@ -182,12 +187,15 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.menuOpen = self.menu.addMenu("Open")
         self.c.execute('SELECT * FROM Setup_Language')
         langList = self.c.fetchall()
-
+        
         for lang in langList:
             subMenu = QAction(lang[0], self)
             subMenu.triggered.connect(partial(self.show_imgList, lang))
             self.menuOpen.addAction(subMenu)
-        
+
+            if subMenu.text() == self.cliced_lang:
+                subMenu.setIcon(QIcon("icon.png"))
+                
         self.menu.addMenu(self.menuOpen)
 
         self.actionCreateExcel = QAction("Create Excel", self)
@@ -218,6 +226,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.viewer.show()
 
     def show_imgList(self, lang):
+        self.cliced_lang = lang[0]
         # 이미지 리스트 초기화
         for i in range(self.img_VBoxLayout.count()):
             self.img_VBoxLayout.itemAt(i).widget().deleteLater()
