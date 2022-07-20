@@ -12,7 +12,6 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import *
 from functools import partial
 from PyQt5.QtCore import Qt, QCoreApplication
-# from UI.MainWindow import Ui_MainWindow
 
 from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))

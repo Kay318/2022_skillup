@@ -20,10 +20,10 @@ from Database.DB import DBManager
 
 
 class UI_Setup_Field(QWidget, DBManager):
-    def __init__(self):
+    def __init__(self, mainwindow):
         super().__init__()
         self.cnt = 0
-        self.mainwindow = Ui_MainWindow()
+        self.mainwin = mainwindow
         self.start = True
 
     def setupUi_Field(self):
@@ -67,7 +67,6 @@ class UI_Setup_Field(QWidget, DBManager):
 
         self.start = False
 
-
     def set_data(self):
         globals()[f'horizontalLayout{self.cnt}'] = QHBoxLayout()
 
@@ -109,14 +108,26 @@ class UI_Setup_Field(QWidget, DBManager):
                 except RuntimeError:
                     continue
         
-        for i in range(self.mainwindow.field_gridLayout.count()):
-            self.mainwindow.field_gridLayout.itemAt(i).widget().deleteLater()
-        self.mainwindow.set_field()
-        self.mainwindow.widget.update()
+        for i in range(self.mainwin.field_gridLayout.count()):
+            self.mainwin.field_gridLayout.itemAt(i).widget().deleteLater()
+        self.mainwin.set_field()
 
         self.close()
     
     def cancel_Button_clicked(self):
+        self.c.execute('SELECT * FROM Setup_Field')
+        dataList = self.c.fetchall()
+        temp_cnt = 1
+
+        for i in range(self.cnt):
+            globals()[f'lineEdit{i}'].setText("")
+
+        if len(dataList) > 0:
+            for data in dataList:
+                # self.set_data()
+                globals()[f'lineEdit{temp_cnt-1}'].setText(data[0])
+                temp_cnt += 1
+
         self.close()
 
 if __name__ == "__main__":
