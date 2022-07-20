@@ -51,7 +51,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.img_scrollArea.setWidget(self.img_scrollAreaWidgetContents)
         self.horizontalLayout.addWidget(self.img_scrollArea)
 
-        print(self.img_scrollAreaWidgetContents.size())
 
         # 우측 큰 이미지
         self.right_VBoxLayout = QVBoxLayout()
@@ -278,8 +277,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
         super().__init__(parent)
-        self.setFixedHeight(50)
-        self.setFixedWidth(50)
         self.setIconSize(QSize(40, 40))
 
 if __name__ == "__main__":
