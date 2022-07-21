@@ -29,6 +29,12 @@ class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
         self.cnt = 0
+        self.all_RadioList = []
+        self.pass_RadioList = []
+        self.fail_RadioList = []
+        self.nt_RadioList = []
+        self.na_RadioList = []
+        self.nl_RadioList = []
         self.setupUi()
         self.cliced_lang = None
 
@@ -103,8 +109,24 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.testAll_VBoxLayout.addSpacing(5)
         self.testAll_VBoxLayout.addWidget(self.allNull_RadioButton)
         self.testAll_VBoxLayout.setAlignment(Qt.AlignCenter)
+
+        self.allPass_RadioButton.clicked.connect(self.allPass_clicked)
+        self.allFail_RadioButton.clicked.connect(self.allFail_clicked)
+        self.allNT_RadioButton.clicked.connect(self.allNT_clicked)
+        self.allNA_RadioButton.clicked.connect(self.allNA_clicked)
+        self.allNull_RadioButton.clicked.connect(self.allNull_clicked)
         self.all_groupbox.setLayout(self.testAll_VBoxLayout)
         self.bottom_HBoxLayout.addWidget(self.all_groupbox)
+
+        self.version_groupbox = QGroupBox("버전 정보")
+        self.version_groupbox.setMinimumWidth(200)
+        self.version_VBoxLayout = QVBoxLayout()
+        self.version_textEdit = QTextEdit()
+        # self.version_textEdit.setMinimumWidth(200)
+        self.version_VBoxLayout.addWidget(self.version_textEdit)
+        self.version = self.version_textEdit.toPlainText()
+        self.version_groupbox.setLayout(self.version_VBoxLayout)
+        self.bottom_HBoxLayout.addWidget(self.version_groupbox)
 
         self.result_groupbox = QGroupBox("진행 상황")
         self.result_Layout = QVBoxLayout()
@@ -146,6 +168,26 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.setCentralWidget(self.widget)
 
+    def allPass_clicked(self):
+        for pass_radio in self.pass_RadioList:
+            pass_radio.setChecked(True)
+
+    def allFail_clicked(self):
+        for fail_radio in self.fail_RadioList:
+            fail_radio.setChecked(True)
+
+    def allNT_clicked(self):
+        for nt_radio in self.nt_RadioList:
+            nt_radio.setChecked(True)
+
+    def allNA_clicked(self):
+        for na_Radio in self.na_RadioList:
+            na_Radio.setChecked(True)
+
+    def allNull_clicked(self):
+        for nl_radio in self.nl_RadioList:
+            nl_radio.setChecked(True)
+
     def DBManager_Test_List(self):
 
         self.c.execute(f"SELECT 평가목록 FROM Test_List")
@@ -163,39 +205,44 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
     def setWidget_func(self):
 
-        result = list(self.DBManager_Test_List())
+        dataList = list(self.DBManager_Test_List())
 
-        if len(result) != 0:
+        if len(dataList) != 0:
             
             for i in range(self.testList_Layout.count()):
                 self.testList_Layout.itemAt(i).widget().deleteLater()
 
-            for val in result:
+            for val in dataList:
 
                 val = str(val)
-                locals()[f'testList_groupbox_{val}'] = QGroupBox(val)
-                locals()[f'testList_groupbox_{val}'].setMinimumSize(80, 125)
+                globals()[f'testList_groupbox_{val}'] = QGroupBox(val)
+                globals()[f'testList_groupbox_{val}'].setMinimumSize(80, 125)
 
                 testList_lay = QVBoxLayout()
-                Text = QFont()
-                Text.setPixelSize(10)
 
-                ck_True = QRadioButton("PASS")
-                ck_False = QRadioButton("FAIL")
-                ck_NA = QRadioButton("N/A")
-                ck_NT = QRadioButton("N/T")
-                ck_NL = QRadioButton("NULL")
+                globals()[f'gb{val}_pass'] = QRadioButton("PASS")
+                globals()[f'gb{val}_fail'] = QRadioButton("FAIL")
+                globals()[f'gb{val}_nt'] = QRadioButton("N/T")
+                globals()[f'gb{val}_na'] = QRadioButton("N/A")
+                globals()[f'gb{val}_nl'] = QRadioButton("NULL")
 
-                Key = [ck_True, ck_False, ck_NA, ck_NT, ck_NL]
+                results = [globals()[f'gb{val}_pass'], globals()[f'gb{val}_fail'], globals()[f'gb{val}_nt'], globals()[f'gb{val}_na'], globals()[f'gb{val}_nl']]
+
+                self.pass_RadioList.append(globals()[f'gb{val}_pass'])
+                self.fail_RadioList.append(globals()[f'gb{val}_fail'])
+                self.nt_RadioList.append(globals()[f'gb{val}_nt'])
+                self.na_RadioList.append(globals()[f'gb{val}_na'])
+                self.nl_RadioList.append(globals()[f'gb{val}_nl'])
+                self.all_RadioList = self.pass_RadioList + self.fail_RadioList\
+                                   + self.nt_RadioList + self.na_RadioList + self.nl_RadioList
 
                 # 평가 목록 그룹 자녀 생성
-                for widget in Key:
-                    widget.setFont(Text)
-                    testList_lay.addWidget(widget)
+                for result in results:
+                    testList_lay.addWidget(result)
 
-                locals()[f'testList_groupbox_{val}'].setLayout(testList_lay)
+                globals()[f'testList_groupbox_{val}'].setLayout(testList_lay)
 
-                self.testList_Layout.addWidget(locals()[f'testList_groupbox_{val}'])
+                self.testList_Layout.addWidget(globals()[f'testList_groupbox_{val}'])
                 self.testList_Layout.setAlignment(Qt.AlignLeft)
 
     def update_open_menu(self):
@@ -227,6 +274,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.menu.addAction(self.actionCreateExcel)
         self.menu.addAction(self.actionClose)
         self.actionClose.triggered.connect(self.closeEvent) # close이벤트
+
     def save_result(self):
         pass
 
@@ -247,6 +295,9 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.img_Label.setAlignment(Qt.AlignCenter)
 
         self.img_Label.mouseDoubleClickEvent = partial(self.double_click_img, img_dir)
+
+        
+
 
     def double_click_img(self, img_dir, e):
         self.viewer = ImageViewer(img_dir)
