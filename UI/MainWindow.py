@@ -16,6 +16,7 @@ from PIL import Image
 from UI.ImageView import ImageViewer
 import sys
 import time
+import math
 import os
 
 from pathlib import Path
@@ -64,21 +65,15 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.right_VBoxLayout.addWidget(self.img_Label)
 
-        # 이미지 설명, 스크립트명
-        self.bottom_HBoxLayout = QHBoxLayout()
-        self.bottomL_VBoxLayout = QVBoxLayout()
-        self.bottomR_VBoxLayout = QVBoxLayout()
-        
+        # 필드 세팅
         self.field_gridLayout = QGridLayout()
-
         self.set_field()
         self.cnt = 0
 
-        self.bottomL_VBoxLayout.addLayout(self.field_gridLayout)
-        print(self.field_gridLayout.sizeHint())
+        self.right_VBoxLayout.addLayout(self.field_gridLayout)
 
         # 평가 목록, all pass, fail
-        self.bottomL_HBoxLayout = QHBoxLayout()
+        self.bottom_HBoxLayout = QHBoxLayout()
 
         self.Tgroupbox = QGroupBox("평가 목록")
         self.Tgroupbox.setMinimumSize(1141, 200)
@@ -87,10 +82,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.setWidget_func()
 
-        self.bottomL_HBoxLayout.addWidget(self.Tgroupbox)
-        self.bottom_HBoxLayout.addLayout(self.bottomL_VBoxLayout)
+        self.bottom_HBoxLayout.addWidget(self.Tgroupbox)
 
         # ALL PASS, ALL FAIL, ALL N/T, ALL N/A
+        self.all_groupbox = QGroupBox("ALL")
         self.testAll_VBoxLayout = QVBoxLayout()
         self.allPass_RadioButton = QRadioButton("ALL PASS")
         self.allFail_RadioButton = QRadioButton("ALL FAIL")
@@ -107,16 +102,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.testAll_VBoxLayout.addSpacing(5)
         self.testAll_VBoxLayout.addWidget(self.allNull_RadioButton)
         self.testAll_VBoxLayout.setAlignment(Qt.AlignCenter)
-        self.bottomL_HBoxLayout.addLayout(self.testAll_VBoxLayout)
-
-        self.bottomL_VBoxLayout.addLayout(self.bottomL_HBoxLayout)
-
-        # 저장 버튼
-        self.save_Button = QPushButton("저장")
-        self.bottomR_VBoxLayout.addWidget(self.save_Button)
+        self.all_groupbox.setLayout(self.testAll_VBoxLayout)
+        self.bottom_HBoxLayout.addWidget(self.all_groupbox)
 
         self.result_groupbox = QGroupBox("진행 상황")
-        # self.result_groupbox.minimumWidth(100)
         self.result_Layout = QVBoxLayout()
         self.null_lbl = QLabel("미평가:")
         self.pass_lbl = QLabel("PASS:")
@@ -130,9 +119,8 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.result_Layout.addWidget(self.na_lbl)
         self.result_groupbox.setLayout(self.result_Layout)
 
-        self.bottomR_VBoxLayout.addWidget(self.result_groupbox)
+        self.bottom_HBoxLayout.addWidget(self.result_groupbox)
 
-        self.bottom_HBoxLayout.addLayout(self.bottomR_VBoxLayout)
         self.right_VBoxLayout.addLayout(self.bottom_HBoxLayout)
         self.horizontalLayout.addLayout(self.right_VBoxLayout)
 
@@ -229,10 +217,17 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 
         self.menu.addMenu(self.menuOpen)
 
+        self.actionSave = QAction("Save", self)
+        self.actionSave.setShortcut("Ctrl+S")
+        self.actionSave.triggered.connect(self.save_result)
         self.actionCreateExcel = QAction("Create Excel", self)
         self.actionClose = QAction("Close", self)
+        self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionCreateExcel)
         self.menu.addAction(self.actionClose)
+
+    def save_result(self):
+        pass
 
     def qbutton_clicked(self, state, idx, button):
         img_dir = self.img_dir[0] + '\\' + self.imgList[idx]
@@ -306,16 +301,13 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{self.cnt}'], 1,i)
             
             self.cnt += 1
-
-    def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         
+    def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         sys.exit()
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
         super().__init__(parent)
-        # self.setFixedHeight(50)
-        # self.setFixedWidth(50)
         self.setIconSize(QSize(40, 40))
 
 if __name__ == "__main__":
