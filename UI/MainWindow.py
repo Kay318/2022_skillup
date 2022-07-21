@@ -33,7 +33,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
     def setupUi(self):
         self.widget = QWidget()
-        self.resize(1472, 876)
+        self.resize(1472, 900)
         self.setWindowTitle("다국어 자동화")
 
         # 전체 화면 배치
@@ -50,7 +50,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.img_scrollArea.setWidget(self.img_scrollAreaWidgetContents)
         self.horizontalLayout.addWidget(self.img_scrollArea)
-
 
         # 우측 큰 이미지
         self.right_VBoxLayout = QVBoxLayout()
@@ -76,40 +75,62 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.cnt = 0
 
         self.bottomL_VBoxLayout.addLayout(self.field_gridLayout)
+        print(self.field_gridLayout.sizeHint())
 
-        # 평가 목록
+        # 평가 목록, all pass, fail
+        self.bottomL_HBoxLayout = QHBoxLayout()
 
         self.Tgroupbox = QGroupBox("평가 목록")
-        self.Tgroupbox.setMinimumSize(1141, 151)
-
-        # 스크롤 적용이 layout과 layout 사이라 어려움. 평가목록 개수제한을 하는게 나아보임 [8~10개 목록을 만들수있음]
-        # self.TestList_scrollArea = QScrollArea()
+        self.Tgroupbox.setMinimumSize(1141, 200)
         self.testList_Layout = QHBoxLayout()
-        # self.testList_Layout.addWidget(self.TestList_scrollArea)
         self.Tgroupbox.setLayout(self.testList_Layout)
 
         self.setWidget_func()
 
-        self.bottomL_VBoxLayout.addWidget(self.Tgroupbox)
+        self.bottomL_HBoxLayout.addWidget(self.Tgroupbox)
         self.bottom_HBoxLayout.addLayout(self.bottomL_VBoxLayout)
+
+        # ALL PASS, ALL FAIL, ALL N/T, ALL N/A
+        self.testAll_VBoxLayout = QVBoxLayout()
+        self.allPass_RadioButton = QRadioButton("ALL PASS")
+        self.allFail_RadioButton = QRadioButton("ALL FAIL")
+        self.allNT_RadioButton = QRadioButton("ALL N/T")
+        self.allNA_RadioButton = QRadioButton("ALL N/A")
+        self.allNull_RadioButton = QRadioButton("ALL NULL")
+        self.testAll_VBoxLayout.addWidget(self.allPass_RadioButton)
+        self.testAll_VBoxLayout.addSpacing(5)
+        self.testAll_VBoxLayout.addWidget(self.allFail_RadioButton)
+        self.testAll_VBoxLayout.addSpacing(5)
+        self.testAll_VBoxLayout.addWidget(self.allNT_RadioButton)
+        self.testAll_VBoxLayout.addSpacing(5)
+        self.testAll_VBoxLayout.addWidget(self.allNA_RadioButton)
+        self.testAll_VBoxLayout.addSpacing(5)
+        self.testAll_VBoxLayout.addWidget(self.allNull_RadioButton)
+        self.testAll_VBoxLayout.setAlignment(Qt.AlignCenter)
+        self.bottomL_HBoxLayout.addLayout(self.testAll_VBoxLayout)
+
+        self.bottomL_VBoxLayout.addLayout(self.bottomL_HBoxLayout)
 
         # 저장 버튼
         self.save_Button = QPushButton("저장")
         self.bottomR_VBoxLayout.addWidget(self.save_Button)
 
-        # ALL PASS, ALL FAIL, ALL N/T, ALL N/A
-        self.testAll_VBoxLayout = QVBoxLayout()
-        self.allPass_RadioButton = QRadioButton("ALL PASS")
-        self.testAll_VBoxLayout.addWidget(self.allPass_RadioButton)
-        self.allNA_RadioButton = QRadioButton("ALL N/A")
-        self.testAll_VBoxLayout.addWidget(self.allNA_RadioButton)
-        self.allNT_RadioButton = QRadioButton("ALL N/T")
-        self.testAll_VBoxLayout.addWidget(self.allNT_RadioButton)
-        self.allFail_RadioButton = QRadioButton("ALL FAIL")
-        self.testAll_VBoxLayout.addWidget(self.allFail_RadioButton)
-        self.allNull_RadioButton = QRadioButton("ALL NULL")
-        self.testAll_VBoxLayout.addWidget(self.allNull_RadioButton)
-        self.bottomR_VBoxLayout.addLayout(self.testAll_VBoxLayout)
+        self.result_groupbox = QGroupBox("진행 상황")
+        # self.result_groupbox.minimumWidth(100)
+        self.result_Layout = QVBoxLayout()
+        self.null_lbl = QLabel("미평가:")
+        self.pass_lbl = QLabel("PASS:")
+        self.fail_lbl = QLabel("FAIL:")
+        self.nt_lbl = QLabel("N/T:")
+        self.na_lbl = QLabel("N/A:")
+        self.result_Layout.addWidget(self.null_lbl)
+        self.result_Layout.addWidget(self.pass_lbl)
+        self.result_Layout.addWidget(self.fail_lbl)
+        self.result_Layout.addWidget(self.nt_lbl)
+        self.result_Layout.addWidget(self.na_lbl)
+        self.result_groupbox.setLayout(self.result_Layout)
+
+        self.bottomR_VBoxLayout.addWidget(self.result_groupbox)
 
         self.bottom_HBoxLayout.addLayout(self.bottomR_VBoxLayout)
         self.right_VBoxLayout.addLayout(self.bottom_HBoxLayout)
@@ -164,18 +185,25 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
                 val = str(val)
                 locals()[f'testList_groupbox_{val}'] = QGroupBox(val)
-                locals()[f'testList_groupbox_{val}'].setMinimumSize(80, 120)
-                # locals()[f'testList_groupbox_{val}'].setCheckable(True)
-                testList_lay = QVBoxLayout()
-                ck_True = QCheckBox("True")
-                ck_False = QCheckBox("False")
-                ck_NA = QCheckBox("N/A")
-                ck_NT = QCheckBox("N/T")
+                locals()[f'testList_groupbox_{val}'].setMinimumSize(80, 125)
 
-                testList_lay.addWidget(ck_True)
-                testList_lay.addWidget(ck_False)
-                testList_lay.addWidget(ck_NA)
-                testList_lay.addWidget(ck_NT)
+                testList_lay = QVBoxLayout()
+                Text = QFont()
+                Text.setPixelSize(10)
+
+                ck_True = QRadioButton("PASS")
+                ck_False = QRadioButton("FAIL")
+                ck_NA = QRadioButton("N/A")
+                ck_NT = QRadioButton("N/T")
+                ck_NL = QRadioButton("NULL")
+
+                Key = [ck_True, ck_False, ck_NA, ck_NT, ck_NL]
+
+                # 평가 목록 그룹 자녀 생성
+                for widget in Key:
+                    widget.setFont(Text)
+                    testList_lay.addWidget(widget)
+
                 locals()[f'testList_groupbox_{val}'].setLayout(testList_lay)
 
                 self.testList_Layout.addWidget(locals()[f'testList_groupbox_{val}'])
@@ -186,14 +214,18 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.menuOpen = self.menu.addMenu("Open")
         self.c.execute('SELECT * FROM Setup_Language')
         langList = self.c.fetchall()
-        
+    
         for lang in langList:
             subMenu = QAction(lang[0], self)
             subMenu.triggered.connect(partial(self.show_imgList, lang))
-            self.menuOpen.addAction(subMenu)
+            
+            subMenu.setCheckable(True)
+            if (self.cliced_lang == subMenu.text()):
+                subMenu.setChecked(True)
+            else:
+                subMenu.setChecked(False)
 
-            if subMenu.text() == self.cliced_lang:
-                subMenu.setIcon(QIcon("icon.png"))
+            self.menuOpen.addAction(subMenu)
                 
         self.menu.addMenu(self.menuOpen)
 
@@ -225,6 +257,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.viewer.show()
 
     def show_imgList(self, lang):
+
         self.cliced_lang = lang[0]
         # 이미지 리스트 초기화
         for i in range(self.img_VBoxLayout.count()):
@@ -274,9 +307,15 @@ class Ui_MainWindow(QMainWindow, DBManager):
             
             self.cnt += 1
 
+    def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
+        
+        sys.exit()
+
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
         super().__init__(parent)
+        # self.setFixedHeight(50)
+        # self.setFixedWidth(50)
         self.setIconSize(QSize(40, 40))
 
 if __name__ == "__main__":

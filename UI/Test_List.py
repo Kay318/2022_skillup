@@ -11,11 +11,11 @@ class Ui_Test_List(QWidget, DBManager):
         super().__init__()
         DBManager().__init__()
 
-        self.cnt = 0
         self.save_List = []
         self.key = []
         self.mainwin = mainwindow
         self.Bool_start = True
+        self.Bool_quit = False
 
     def setupUi_Test(self):
 
@@ -75,109 +75,92 @@ class Ui_Test_List(QWidget, DBManager):
             self.set_btn_QWidget.setLayout(self.sethorizontalLayout)
 
             # 버튼 이벤트 함수
-            # self.setTest_Button()
             self.btn_set_slot()
 
             self.fill_verticalLayout.addWidget(self.add_btn_QWidget)
             self.fill_verticalLayout.addWidget(self.set_QWidget)
             self.fill_verticalLayout.addWidget(self.set_btn_QWidget)
             self.setLayout(self.fill_verticalLayout)
-            self.show()
             self.Bool_start = False
 
     def btn_set_slot(self):
-        self.addTest_Button.clicked.connect(self.addTest_Button_clicked)
+        self.addTest_Button.clicked.connect(partial(self.addTest_Button_clicked, val = None)) # 0719
         self.ok_Button.clicked.connect(self.ok_Button_clicked)
         self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
 
     def setTest_Button(self):
 
+        self.cnt = 0
         # 중복제거 중간점검
         self.c.execute(f"SELECT 평가목록 FROM Test_List")
         List = self.c.fetchall()
-
-        self.cnt = 0
 
         if List != NULL and len(self.TestListScroll_verticalLayout) != 0:
 
             item_list = list(range(self.TestListScroll_verticalLayout.count()))
             item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
 
+            print(item_list)
             for i in item_list:
+
+                globals()[f'TestList_horizontalLayout{i}'].itemAt(0).widget().deleteLater() 
+                globals()[f'TestList_horizontalLayout{i}'].itemAt(1).widget().deleteLater() 
+                    
                 item = self.TestListScroll_verticalLayout.itemAt(i)
                 self.TestListScroll_verticalLayout.removeItem(item)
                 if item.widget():
                     item.widget().deleteLater()
 
+        print(List)
         for val in List:
 
             val = str(val)
+            val = val[2 : val.find(",")- 1]
+            self.addTest_Button_clicked(val= val)
 
-            self.TestList_scrollArea.setWidget(self.TestList_scrollAreaWidgetContents)
-            self.verticalLayout.addWidget(self.TestList_scrollArea)
-
-            globals()[f'self.TestList_horizontalLayout{self.cnt}'] = QHBoxLayout()
-
-            # 삭제 버튼
-            globals()[f'self.del_TestList_btn{self.cnt}'] = QPushButton("-", self.TestList_scrollAreaWidgetContents)
-            globals()[f'self.del_TestList_btn{self.cnt}'].setMaximumWidth(30)
-            globals()[f'self.del_TestList_btn{self.cnt}'].clicked.connect(partial(
-                self.del_TestList_btn_clicked, layout = globals()[f'self.TestList_horizontalLayout{self.cnt}'], cnt = self.cnt))
-            
-            # 내용 입력
-            globals()[f'self.Test_lineEdit{self.cnt}'] = QLineEdit(self.TestList_scrollAreaWidgetContents)
-            globals()[f'self.Test_lineEdit{self.cnt}'].setMaximumWidth(300)
-            globals()[f'self.Test_lineEdit{self.cnt}'].setText(val[2 : val.find(",")- 1])
-
-            globals()[f'self.TestList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_TestList_btn{self.cnt}'])
-            globals()[f'self.TestList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.Test_lineEdit{self.cnt}'])
-
-            self.TestListScroll_verticalLayout.addLayout(globals()[f'self.TestList_horizontalLayout{self.cnt}'])
-
-            self.cnt += 1
-
-            print("호출당한 횟수ㅣ%s", self.cnt)
-            
-            self.TestList_scrollArea.setWidget(self.TestList_scrollAreaWidgetContents)
-            self.verticalLayout.addWidget(self.TestList_scrollArea)
-
-    def addTest_Button_clicked(self):
+    def addTest_Button_clicked(self, val):
 
         self.TestList_scrollArea.setWidget(self.TestList_scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.TestList_scrollArea)
 
-        globals()[f'self.TestList_horizontalLayout{self.cnt}'] = QHBoxLayout()
+        globals()[f'TestList_horizontalLayout{self.cnt}'] = QHBoxLayout()
 
         # 삭제 버튼
-        globals()[f'self.del_TestList_btn{self.cnt}'] = QPushButton("-", self.TestList_scrollAreaWidgetContents)
-        globals()[f'self.del_TestList_btn{self.cnt}'].setMaximumWidth(30)
-        globals()[f'self.del_TestList_btn{self.cnt}'].clicked.connect(partial(
-            self.del_TestList_btn_clicked, layout = globals()[f'self.TestList_horizontalLayout{self.cnt}'], cnt = self.cnt))
+        globals()[f'del_TestList_btn{self.cnt}'] = QPushButton("-", self.TestList_scrollAreaWidgetContents)
+        globals()[f'del_TestList_btn{self.cnt}'].setMaximumWidth(30)
+        globals()[f'del_TestList_btn{self.cnt}'].clicked.connect(partial(
+            self.del_TestList_btn_clicked, layout = globals()[f'TestList_horizontalLayout{self.cnt}']))
         
         # 내용 입력
-        globals()[f'self.Test_lineEdit{self.cnt}'] = QLineEdit(self.TestList_scrollAreaWidgetContents)
-        globals()[f'self.Test_lineEdit{self.cnt}'].setMaximumWidth(300)
+        globals()[f'Test_lineEdit{self.cnt}'] = QLineEdit(self.TestList_scrollAreaWidgetContents)
+        globals()[f'Test_lineEdit{self.cnt}'].setMaximumWidth(300)
+        
+        if (val != ""):
 
-        globals()[f'self.TestList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.del_TestList_btn{self.cnt}'])
-        globals()[f'self.TestList_horizontalLayout{self.cnt}'].addWidget(globals()[f'self.Test_lineEdit{self.cnt}'])
+            globals()[f'Test_lineEdit{self.cnt}'].setText(val)
+        else:
+            globals()[f'Test_lineEdit{self.cnt}'].setText("")
 
-        self.TestListScroll_verticalLayout.addLayout(globals()[f'self.TestList_horizontalLayout{self.cnt}'])
+        print(f"globals()[f'Test_lineEdit{self.cnt}'].text() : {globals()[f'Test_lineEdit{self.cnt}'].text()}")
+            
+        globals()[f'TestList_horizontalLayout{self.cnt}'].addWidget(globals()[f'del_TestList_btn{self.cnt}'])
+        globals()[f'TestList_horizontalLayout{self.cnt}'].addWidget(globals()[f'Test_lineEdit{self.cnt}'])
+
+        self.TestListScroll_verticalLayout.addLayout(globals()[f'TestList_horizontalLayout{self.cnt}'])
 
         self.cnt += 1
-
-        print("호출당한 횟수ㅣ%s", self.cnt)
         
         self.TestList_scrollArea.setWidget(self.TestList_scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.TestList_scrollArea)
 
-
-    def del_TestList_btn_clicked(self, layout, cnt):
+    def del_TestList_btn_clicked(self, layout):
         """라인 삭제 함수
 
         Args:
             cnt: 변수명
         """
-        print(f"결과 : {globals()[f'self.Test_lineEdit{cnt}'].text()}")
+
+        self.Bool_quit = True # 0719
 
         for i in range(layout.count()):
             layout.itemAt(i).widget().deleteLater()
@@ -189,16 +172,20 @@ class Ui_Test_List(QWidget, DBManager):
         # 빈칸 및 중복 언어 체크
         for i in range(self.cnt):
             try:
-                if globals()[f'self.Test_lineEdit{i}'].text() == "":
+                if (globals()[f'Test_lineEdit{i}'].text() == ""):
                     QMessageBox.about(self, '주의', '빈칸이 있습니다. \n 확인해 주세요.')
                     return
             except RuntimeError:
                 continue
 
-            if (globals()[f'self.Test_lineEdit{i}'].text() not in checkOverlap):
-                checkOverlap.append(globals()[f'self.Test_lineEdit{i}'].text())
+            if (globals()[f'Test_lineEdit{i}'].text() not in checkOverlap):
+                checkOverlap.append(globals()[f'Test_lineEdit{i}'].text())
             else:
                 QMessageBox.about(self, '주의', f'{i+1}번째 라인이 중복으로 입력되었습니다.')
+                return
+
+            if (len(globals()[f'Test_lineEdit{i}'].text()) > 15):
+                QMessageBox.about(self, '주의', f'{i+1}번째 라인에서 15자 입력이 초과 하였습니다.')
                 return
 
         # DB에 저장
@@ -206,20 +193,45 @@ class Ui_Test_List(QWidget, DBManager):
         for i in range(self.cnt):
             try:
                 self.dbConn.execute(f"INSERT INTO Test_List VALUES (?)", 
-                        (globals()[f'self.Test_lineEdit{i}'].text(),))
+                        (globals()[f'Test_lineEdit{i}'].text(),))
                 self.dbConn.commit()
             except RuntimeError:
                 continue
-        
-        self.mainwin.setEnabled(True)
+
         self.mainwin.setWidget_func()
-        
         self.close()
 
     def cancel_Button_clicked(self):
 
-        self.mainwin.setEnabled(True)
         self.close()
+
+    def closeEvent(self, event) -> None:
+        self.c.execute('SELECT * FROM Test_List')
+        dataList = self.c.fetchall()
+        temp_cnt = 1
+
+        dbList = [data[0] for data in dataList]
+        lineList = [globals()[f'Test_lineEdit{i}'].text() for i in range(self.cnt)]
+
+        if dbList != lineList:
+            reply = QMessageBox.question(self, '알림', '변경사항이 있습니다.\n취소하시겠습니까?',
+                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.Yes:
+                for i in range(self.cnt):
+                    globals()[f'Test_lineEdit{i}'].setText("")
+
+                if len(dataList) > 0:
+                    for data in dataList:
+                        globals()[f'Test_lineEdit{temp_cnt-1}'].setText(data[0])
+                        temp_cnt += 1
+                event.accept()
+            else:
+                event.ignore()
+
+        self.mainwin.setDisabled(False)
+
+            
 
 if __name__ == "__main__":
     import sys
