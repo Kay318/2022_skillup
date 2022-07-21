@@ -36,6 +36,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.widget = QWidget()
         self.resize(1472, 900)
         self.setWindowTitle("다국어 자동화")
+        self.setWindowIcon(QIcon("web-removebg-preview.png"))
 
         # 전체 화면 배치
         self.horizontalLayout = QHBoxLayout(self.widget)
@@ -225,7 +226,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionCreateExcel)
         self.menu.addAction(self.actionClose)
-
+        self.actionClose.triggered.connect(self.closeEvent) # close이벤트
     def save_result(self):
         pass
 
