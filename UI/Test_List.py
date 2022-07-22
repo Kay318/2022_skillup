@@ -211,7 +211,12 @@ class Ui_Test_List(QWidget, DBManager):
         temp_cnt = 1
 
         dbList = [data[0] for data in dataList]
-        lineList = [globals()[f'Test_lineEdit{i}'].text() for i in range(self.cnt)]
+        lineList = []
+        for i in range(self.cnt):
+            try:
+                lineList.append(globals()[f'Test_lineEdit{i}'].text())
+            except RuntimeError:
+                continue
 
         if dbList != lineList:
             reply = QMessageBox.question(self, '알림', '변경사항이 있습니다.\n취소하시겠습니까?',
