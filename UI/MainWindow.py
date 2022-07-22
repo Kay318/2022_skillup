@@ -96,11 +96,11 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.all_groupbox = QGroupBox("ALL")
         self.all_groupbox.setFixedHeight(200)
         self.testAll_VBoxLayout = QVBoxLayout()
-        self.allPass_RadioButton = QRadioButton("ALL PASS")
-        self.allFail_RadioButton = QRadioButton("ALL FAIL")
-        self.allNT_RadioButton = QRadioButton("ALL N/T")
-        self.allNA_RadioButton = QRadioButton("ALL N/A")
-        self.allNull_RadioButton = QRadioButton("ALL NULL")
+        self.allPass_RadioButton = QPushButton("ALL PASS")
+        self.allFail_RadioButton = QPushButton("ALL FAIL")
+        self.allNT_RadioButton = QPushButton("ALL N/T")
+        self.allNA_RadioButton = QPushButton("ALL N/A")
+        self.allNull_RadioButton = QPushButton("ALL NULL")
         self.testAll_VBoxLayout.addWidget(self.allPass_RadioButton)
         self.testAll_VBoxLayout.addSpacing(5)
         self.testAll_VBoxLayout.addWidget(self.allFail_RadioButton)
@@ -126,7 +126,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.version_VBoxLayout = QVBoxLayout()
         self.version_textEdit = QTextEdit()
         self.version_VBoxLayout.addWidget(self.version_textEdit)
-        self.version = self.version_textEdit.toPlainText()
+        # self.version = self.version_textEdit.toPlainText()
         self.version_groupbox.setLayout(self.version_VBoxLayout)
         self.bottom_HBoxLayout.addWidget(self.version_groupbox)
 
@@ -215,27 +215,28 @@ class Ui_MainWindow(QMainWindow, DBManager):
             for i in range(self.testList_Layout.count()):
                 self.testList_Layout.itemAt(i).widget().deleteLater()
 
-            for val in self.testList:
+            for i,val in enumerate(self.testList):
 
                 val = str(val)
-                globals()[f'testList_groupbox_{val}'] = QGroupBox(val)
-                globals()[f'testList_groupbox_{val}'].setMinimumSize(80, 125)
+                globals()[f'testList_groupbox_{i}'] = QGroupBox(val)
+                globals()[f'testList_groupbox_{i}'].setMinimumSize(80, 125)
 
                 testList_lay = QVBoxLayout()
 
-                globals()[f'gb{val}_pass'] = QRadioButton("PASS")
-                globals()[f'gb{val}_fail'] = QRadioButton("FAIL")
-                globals()[f'gb{val}_nt'] = QRadioButton("N/T")
-                globals()[f'gb{val}_na'] = QRadioButton("N/A")
-                globals()[f'gb{val}_nl'] = QRadioButton("NULL")
+                globals()[f'gb{i}_pass'] = QRadioButton("PASS")
+                globals()[f'gb{i}_fail'] = QRadioButton("FAIL")
+                globals()[f'gb{i}_nt'] = QRadioButton("N/T")
+                globals()[f'gb{i}_na'] = QRadioButton("N/A")
+                globals()[f'gb{i}_nl'] = QRadioButton("NULL")
+                globals()[f'gb{i}_nl'].setChecked(True)
 
-                results = [globals()[f'gb{val}_pass'], globals()[f'gb{val}_fail'], globals()[f'gb{val}_nt'], globals()[f'gb{val}_na'], globals()[f'gb{val}_nl']]
+                results = [globals()[f'gb{i}_pass'], globals()[f'gb{i}_fail'], globals()[f'gb{i}_nt'], globals()[f'gb{i}_na'], globals()[f'gb{i}_nl']]
 
-                self.pass_RadioList.append(globals()[f'gb{val}_pass'])
-                self.fail_RadioList.append(globals()[f'gb{val}_fail'])
-                self.nt_RadioList.append(globals()[f'gb{val}_nt'])
-                self.na_RadioList.append(globals()[f'gb{val}_na'])
-                self.nl_RadioList.append(globals()[f'gb{val}_nl'])
+                self.pass_RadioList.append(globals()[f'gb{i}_pass'])
+                self.fail_RadioList.append(globals()[f'gb{i}_fail'])
+                self.nt_RadioList.append(globals()[f'gb{i}_nt'])
+                self.na_RadioList.append(globals()[f'gb{i}_na'])
+                self.nl_RadioList.append(globals()[f'gb{i}_nl'])
                 self.all_RadioList = self.pass_RadioList + self.fail_RadioList\
                                    + self.nt_RadioList + self.na_RadioList + self.nl_RadioList
 
@@ -243,9 +244,9 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 for result in results:
                     testList_lay.addWidget(result)
 
-                globals()[f'testList_groupbox_{val}'].setLayout(testList_lay)
+                globals()[f'testList_groupbox_{i}'].setLayout(testList_lay)
 
-                self.testList_Layout.addWidget(globals()[f'testList_groupbox_{val}'])
+                self.testList_Layout.addWidget(globals()[f'testList_groupbox_{i}'])
                 self.testList_Layout.setAlignment(Qt.AlignLeft)
 
     def update_open_menu(self):
@@ -301,39 +302,49 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         # 다른 이미지 버튼 누를 때 액션
         if self.pre_idx != idx and self.pre_idx != "":
-            # self.result[self.pre_idx] = []
+            result_data = []
 
             # self.result에 값 저장하고 기존 데이타 삭제하기
             for i,field in enumerate(self.fieldList):
                 field_data = {field[0]:globals()[f'desc_LineEdit{i}'].text()}
-                self.result[self.pre_idx].append(field_data)
+                result_data.append(field_data)
                 globals()[f'desc_LineEdit{i}'].clear()
 
-            for val in self.testList:
-                if globals()[f'gb{val}_pass'].isChecked():
+            for i,val in enumerate(self.testList):
+                if globals()[f'gb{i}_pass'].isChecked():
                     radio_data = {val:"PASS"}
-                    globals()[f'gb{val}_pass'].setChecked(False)
-                    print(globals()[f'gb{val}_pass'].isChecked())
-                elif globals()[f'gb{val}_fail'].isChecked():
+                elif globals()[f'gb{i}_fail'].isChecked():
                     radio_data = {val:"FAIL"}
-                    globals()[f'gb{val}_fail'].setChecked(False)
-                elif globals()[f'gb{val}_nt'].isChecked():
+                elif globals()[f'gb{i}_nt'].isChecked():
                     radio_data = {val:"N/T"}
-                    globals()[f'gb{val}_nt'].setChecked(False)
-                elif globals()[f'gb{val}_na'].isChecked():
+                elif globals()[f'gb{i}_na'].isChecked():
                     radio_data = {val:"N/A"}
-                    globals()[f'gb{val}_na'].setChecked(False)
                 else:
                     radio_data = {val:""}
-                    globals()[f'gb{val}_nl'].setChecked(False)
-                
-                self.result[self.pre_idx].append(radio_data)
 
+                globals()[f'gb{i}_nl'].setChecked(True)
+                result_data.append(radio_data)
+
+            result_data.append({"버전 정보":self.version_textEdit.toPlainText()})
+            self.result[self.pre_idx] = result_data
                 
-            # self.result에 기존 평가 data가 있으면 해당 data 세팅
+            # self.result에 기존 평가 data로 세팅
             for i,data in enumerate(self.result[idx][:len(self.fieldList)]):
-                globals()[f'desc_LineEdit{i}'].setText(data.get(globals()[f'field_Label{i}'].text()))
-        
+                globals()[f'desc_LineEdit{i}'].setText(*data.values())
+
+            for i,data in enumerate(self.result[idx][len(self.fieldList):-1]):
+                if [*data.values()][0] == 'PASS':
+                    globals()[f'gb{i}_pass'].setChecked(True)
+                elif [*data.values()][0] == 'FAIL':
+                    globals()[f'gb{i}_fail'].setChecked(True)
+                elif [*data.values()][0] == 'N/T':
+                    globals()[f'gb{i}_nt'].setChecked(True)
+                elif [*data.values()][0] == 'N/A':
+                    globals()[f'gb{i}_na'].setChecked(True)
+                else:
+                    globals()[f'gb{i}_nl'].setChecked(True)
+
+
         print(self.result)
 
         self.pre_idx = idx
