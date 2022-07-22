@@ -28,13 +28,14 @@ print(os.getcwd())
 class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
-        self.cnt = 0
         self.all_RadioList = []
         self.pass_RadioList = []
         self.fail_RadioList = []
         self.nt_RadioList = []
         self.na_RadioList = []
         self.nl_RadioList = []
+        self.pre_idx = ""
+        self.result = {}
         self.setupUi()
         self.cliced_lang = None
 
@@ -50,7 +51,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         # 좌측 이미지 리스트
         self.img_scrollArea = QScrollArea()
         self.img_scrollArea.setWidgetResizable(True)
-        self.img_scrollArea.setMaximumWidth(88)
+        self.img_scrollArea.setFixedWidth(90)
     
         self.img_scrollAreaWidgetContents = QWidget()
         self.img_VBoxLayout = QVBoxLayout(self.img_scrollAreaWidgetContents)
@@ -75,7 +76,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         # 필드 세팅
         self.field_gridLayout = QGridLayout()
         self.set_field()
-        self.cnt = 0
 
         self.right_VBoxLayout.addLayout(self.field_gridLayout)
 
@@ -83,7 +83,8 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.bottom_HBoxLayout = QHBoxLayout()
 
         self.Tgroupbox = QGroupBox("평가 목록")
-        self.Tgroupbox.setMinimumSize(1141, 200)
+        self.Tgroupbox.setMinimumWidth(1000)
+        self.Tgroupbox.setFixedHeight(200)
         self.testList_Layout = QHBoxLayout()
         self.Tgroupbox.setLayout(self.testList_Layout)
 
@@ -93,6 +94,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         # ALL PASS, ALL FAIL, ALL N/T, ALL N/A
         self.all_groupbox = QGroupBox("ALL")
+        self.all_groupbox.setFixedHeight(200)
         self.testAll_VBoxLayout = QVBoxLayout()
         self.allPass_RadioButton = QRadioButton("ALL PASS")
         self.allFail_RadioButton = QRadioButton("ALL FAIL")
@@ -120,15 +122,16 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.version_groupbox = QGroupBox("버전 정보")
         self.version_groupbox.setMinimumWidth(200)
+        self.version_groupbox.setFixedHeight(200)
         self.version_VBoxLayout = QVBoxLayout()
         self.version_textEdit = QTextEdit()
-        # self.version_textEdit.setMinimumWidth(200)
         self.version_VBoxLayout.addWidget(self.version_textEdit)
         self.version = self.version_textEdit.toPlainText()
         self.version_groupbox.setLayout(self.version_VBoxLayout)
         self.bottom_HBoxLayout.addWidget(self.version_groupbox)
 
         self.result_groupbox = QGroupBox("진행 상황")
+        self.result_groupbox.setFixedHeight(200)
         self.result_Layout = QVBoxLayout()
         self.null_lbl = QLabel("미평가:")
         self.pass_lbl = QLabel("PASS:")
@@ -205,14 +208,14 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
     def setWidget_func(self):
 
-        dataList = list(self.DBManager_Test_List())
+        self.testList = list(self.DBManager_Test_List())
 
-        if len(dataList) != 0:
+        if len(self.testList) != 0:
             
             for i in range(self.testList_Layout.count()):
                 self.testList_Layout.itemAt(i).widget().deleteLater()
 
-            for val in dataList:
+            for val in self.testList:
 
                 val = str(val)
                 globals()[f'testList_groupbox_{val}'] = QGroupBox(val)
@@ -296,16 +299,62 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.img_Label.mouseDoubleClickEvent = partial(self.double_click_img, img_dir)
 
-        
+        # 다른 이미지 버튼 누를 때 액션
+        if self.pre_idx != idx and self.pre_idx != "":
+            # self.result[self.pre_idx] = []
 
+            # self.result에 값 저장하고 기존 데이타 삭제하기
+            for i,field in enumerate(self.fieldList):
+                field_data = {field[0]:globals()[f'desc_LineEdit{i}'].text()}
+                self.result[self.pre_idx].append(field_data)
+                globals()[f'desc_LineEdit{i}'].clear()
+
+            for val in self.testList:
+                if globals()[f'gb{val}_pass'].isChecked():
+                    radio_data = {val:"PASS"}
+                    globals()[f'gb{val}_pass'].setChecked(False)
+                    print(globals()[f'gb{val}_pass'].isChecked())
+                elif globals()[f'gb{val}_fail'].isChecked():
+                    radio_data = {val:"FAIL"}
+                    globals()[f'gb{val}_fail'].setChecked(False)
+                elif globals()[f'gb{val}_nt'].isChecked():
+                    radio_data = {val:"N/T"}
+                    globals()[f'gb{val}_nt'].setChecked(False)
+                elif globals()[f'gb{val}_na'].isChecked():
+                    radio_data = {val:"N/A"}
+                    globals()[f'gb{val}_na'].setChecked(False)
+                else:
+                    radio_data = {val:""}
+                    globals()[f'gb{val}_nl'].setChecked(False)
+                
+                self.result[self.pre_idx].append(radio_data)
+
+                
+            # self.result에 기존 평가 data가 있으면 해당 data 세팅
+            for i,data in enumerate(self.result[idx][:len(self.fieldList)]):
+                globals()[f'desc_LineEdit{i}'].setText(data.get(globals()[f'field_Label{i}'].text()))
+        
+        print(self.result)
+
+        self.pre_idx = idx
 
     def double_click_img(self, img_dir, e):
         self.viewer = ImageViewer(img_dir)
         self.viewer.show()
 
     def show_imgList(self, lang):
-
+        # 선택한 언어 기억
         self.cliced_lang = lang[0]
+
+        # 평가결과 기록 삭제
+        self.result.clear()
+
+        # 레이블 초기화
+        # for i,field in enumerate(self.fieldList):
+        #         field_data = {field[0]:globals()[f'desc_LineEdit{i}'].text()}
+        #         self.result[self.pre_idx].append(field_data)
+        #         globals()[f'desc_LineEdit{i}'].clear()
+
         # 이미지 리스트 초기화
         for i in range(self.img_VBoxLayout.count()):
             self.img_VBoxLayout.itemAt(i).widget().deleteLater()
@@ -320,6 +369,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.qbuttons = {}
         self.icons = {}
         for index, filename in enumerate(self.imgList):
+            self.result[index] = []
             pixmap = QPixmap(self.img_dir[0] + '\\' + filename)
             pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
             icon = QIcon()
@@ -334,25 +384,25 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.img_VBoxLayout.addWidget(button)
             self.qbuttons[index] = button
 
+        self.qbuttons[0].click()
         self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
     def set_field(self):
         self.c.execute('SELECT * FROM Setup_Field')
-        fieldList = self.c.fetchall()
+        self.fieldList = self.c.fetchall()
 
-        for i,field in enumerate(fieldList):
+        for i,field in enumerate(self.fieldList):
             if i%2==0:
-                globals()[f'field_Label{self.cnt}'] = QLabel(field[0])
-                self.field_gridLayout.addWidget(globals()[f'field_Label{self.cnt}'], 0,i)
-                globals()[f'desc_LineEdit{self.cnt}'] = QLineEdit()
-                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{self.cnt}'], 0,i+1)
+                globals()[f'field_Label{i}'] = QLabel(field[0])
+                self.field_gridLayout.addWidget(globals()[f'field_Label{i}'], 0,i)
+                globals()[f'desc_LineEdit{i}'] = QLineEdit()
+                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 0,i+1)
             else:
-                globals()[f'field_Label{self.cnt}'] = QLabel(field[0])
-                self.field_gridLayout.addWidget(globals()[f'field_Label{self.cnt}'], 1,i-1)
-                globals()[f'desc_LineEdit{self.cnt}'] = QLineEdit()
-                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{self.cnt}'], 1,i)
+                globals()[f'field_Label{i}'] = QLabel(field[0])
+                self.field_gridLayout.addWidget(globals()[f'field_Label{i}'], 1,i-1)
+                globals()[f'desc_LineEdit{i}'] = QLineEdit()
+                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 1,i)
             
-            self.cnt += 1
         
     def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         sys.exit()
