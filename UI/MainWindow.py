@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import *
 from functools import partial
 from PIL import Image
 from UI.ImageView import ImageViewer
+from UI.exsel_create import Ui_exsel_create
 import sys
 import time
 import math
@@ -35,7 +36,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.na_RadioList = []
         self.nl_RadioList = []
         self.pre_idx = ""
+        self.idx = ""
+        self.button = ""
         self.result = {}
+        self.EC = Ui_exsel_create()
         self.setupUi()
         self.cliced_lang = None
 
@@ -126,7 +130,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.version_VBoxLayout = QVBoxLayout()
         self.version_textEdit = QTextEdit()
         self.version_VBoxLayout.addWidget(self.version_textEdit)
-        # self.version = self.version_textEdit.toPlainText()
         self.version_groupbox.setLayout(self.version_VBoxLayout)
         self.bottom_HBoxLayout.addWidget(self.version_groupbox)
 
@@ -272,7 +275,9 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.actionSave = QAction("Save", self)
         self.actionSave.setShortcut("Ctrl+S")
         self.actionSave.triggered.connect(self.save_result)
+
         self.actionCreateExcel = QAction("Create Excel", self)
+        self.actionCreateExcel.triggered.connect(self.exsel_setiing_show)
         self.actionClose = QAction("Close", self)
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionCreateExcel)
@@ -280,9 +285,12 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.actionClose.triggered.connect(self.closeEvent) # close이벤트
 
     def save_result(self):
-        pass
+        print(self.result)
 
     def qbutton_clicked(self, state, idx, button):
+        self.idx = idx
+        self.button = button
+
         img_dir = self.img_dir[0] + '\\' + self.imgList[idx]
         pixmap = QPixmap(img_dir)
         self.img = Image.open(img_dir)
@@ -414,7 +422,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 globals()[f'desc_LineEdit{i}'] = QLineEdit()
                 self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 1,i)
             
-        
+    def exsel_setiing_show(self):
+        self.EC.setupUi()
+        self.EC.show()    
+
     def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         sys.exit()
 
