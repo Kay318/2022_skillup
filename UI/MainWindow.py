@@ -210,6 +210,12 @@ class Ui_MainWindow(QMainWindow, DBManager):
         return result
 
     def setWidget_func(self):
+        self.pass_RadioList.clear()
+        self.fail_RadioList.clear()
+        self.nt_RadioList.clear()
+        self.na_RadioList.clear()
+        self.nl_RadioList.clear()
+        self.all_RadioList.clear()
 
         self.testList = list(self.DBManager_Test_List())
 
