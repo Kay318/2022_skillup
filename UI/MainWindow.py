@@ -69,6 +69,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.img_Label = QLabel()
         self.img_Label.setMinimumSize(1350, 600)
+        print(self.img_Label.width(), self.img_Label.height())
         self.img_Label.setStyleSheet("color: gray;"
                              "border-style: solid;"
                              "border-width: 1px;"
@@ -301,14 +302,13 @@ class Ui_MainWindow(QMainWindow, DBManager):
         pixmap = QPixmap(img_dir)
         self.img = Image.open(img_dir)
 
-        self.img_Label.resize(self.img.width, self.img.height)
-
         if self.img.width < self.img_Label.width() and self.img.height < self.img_Label.height():
             pass
         elif self.img.width/self.img.height < self.img_Label.width()/self.img_Label.height():
             pixmap = pixmap.scaledToHeight(self.img_Label.height())
         else:
-            pixmap = pixmap.scaledToHeight(self.img_Label.width())
+            pixmap = pixmap.scaledToWidth(self.img_Label.width())
+
         self.img_Label.setPixmap(QPixmap(pixmap))
         self.img_Label.setAlignment(Qt.AlignCenter)
 
