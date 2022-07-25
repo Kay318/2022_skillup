@@ -387,30 +387,38 @@ class Ui_MainWindow(QMainWindow, DBManager):
         # 이미지 경로 불러옴
         self.c.execute("SELECT 경로 FROM Setup_Language WHERE 언어=?", (lang[0],))
         self.img_dir = self.c.fetchone()
-        self.imgList = [fn for fn in os.listdir(self.img_dir[0])
-                if (fn.endswith('.png') or fn.endswith('.jpg'))]
 
-        # 이미지 버튼 추가
-        self.qbuttons = {}
-        self.icons = {}
-        for index, filename in enumerate(self.imgList):
-            self.result[index] = []
-            pixmap = QPixmap(self.img_dir[0] + '\\' + filename)
-            pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
-            icon = QIcon()
-            icon.addPixmap(pixmap)
-            self.icons[index] = icon
+        try:
+            self.imgList = [fn for fn in os.listdir(self.img_dir[0])
+                    if (fn.endswith('.png') or fn.endswith('.jpg'))]
+        except FileNotFoundError:
+            QMessageBox.warning(self, "주의", "존재하지 않는 경로입니다.")
+            return
 
-        for index, icon in self.icons.items():
-            button = QPushButtonIcon()
-            button.setIcon(icon)
-            button.clicked.connect(lambda state, button = button, idx = index :
-                        self.qbutton_clicked(state, idx, button))
-            self.img_VBoxLayout.addWidget(button)
-            self.qbuttons[index] = button
+        if self.imgList == []:
+            QMessageBox.warning(self, "주의", "선택하신 경로에 이미지 파일이 없습니다.")
+        else:
+            # 이미지 버튼 추가
+            self.qbuttons = {}
+            self.icons = {}
+            for index, filename in enumerate(self.imgList):
+                self.result[index] = []
+                pixmap = QPixmap(self.img_dir[0] + '\\' + filename)
+                pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
+                icon = QIcon()
+                icon.addPixmap(pixmap)
+                self.icons[index] = icon
 
-        self.qbuttons[0].click()
-        self.horizontalLayout.addLayout(self.img_VBoxLayout)
+            for index, icon in self.icons.items():
+                button = QPushButtonIcon()
+                button.setIcon(icon)
+                button.clicked.connect(lambda state, button = button, idx = index :
+                            self.qbutton_clicked(state, idx, button))
+                self.img_VBoxLayout.addWidget(button)
+                self.qbuttons[index] = button
+
+            self.qbuttons[0].click()
+            self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
     def set_field(self):
         self.c.execute('SELECT * FROM Setup_Field')
