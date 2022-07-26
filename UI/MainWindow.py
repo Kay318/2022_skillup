@@ -41,7 +41,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.result = {}
         self.EC = Ui_exsel_create()
         self.setupUi()
-        self.cliced_lang = None
+        self.clicked_lang = None
 
     def setupUi(self):
         self.widget = QWidget()
@@ -270,7 +270,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
             subMenu.triggered.connect(partial(self.show_imgList, lang))
             
             subMenu.setCheckable(True)
-            if (self.cliced_lang == subMenu.text()):
+            if (self.clicked_lang == subMenu.text()):
                 subMenu.setChecked(True)
             else:
                 subMenu.setChecked(False)
@@ -292,6 +292,24 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.actionClose.triggered.connect(self.closeEvent) # close이벤트
 
     def save_result(self):
+        # self.result에 값 저장하고 기존 데이타 삭제하기
+        result_data = self.insert_result()
+        self.result[self.idx] = result_data
+
+        # self.c.execute("SELECT * FROM Test_List")
+        # img_dir = self.c.fetchall()
+        # tmp = self.testList
+        # # tmp.append(self.clicked_lang)
+        # tmp = tuple(tmp)
+        tmp = "프랑스어"
+        data = f"""
+            CREATE TABLE IF NOT EXISTS "{tmp}" (
+                "언어" TEXT
+            );
+            """
+        self.c.execute(data)
+                
+            
         print(self.result)
 
     def qbutton_clicked(self, state, idx, button):
@@ -316,37 +334,13 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         # 다른 이미지 버튼 누를 때 액션
         if self.pre_idx != idx and self.pre_idx != "":
-            result_data = []
-
             # self.result에 값 저장하고 기존 데이타 삭제하기
-            for i,field in enumerate(self.fieldList):
-                field_data = {field[0]:globals()[f'desc_LineEdit{i}'].text()}
-                result_data.append(field_data)
-                globals()[f'desc_LineEdit{i}'].clear()
-
-            for i,val in enumerate(self.testList):
-                if globals()[f'gb{i}_pass'].isChecked():
-                    radio_data = {val:"PASS"}
-                elif globals()[f'gb{i}_fail'].isChecked():
-                    radio_data = {val:"FAIL"}
-                elif globals()[f'gb{i}_nt'].isChecked():
-                    radio_data = {val:"N/T"}
-                elif globals()[f'gb{i}_na'].isChecked():
-                    radio_data = {val:"N/A"}
-                else:
-                    radio_data = {val:""}
-
-                globals()[f'gb{i}_nl'].setChecked(True)
-                result_data.append(radio_data)
-
-            result_data.append({"버전 정보":self.version_textEdit.toPlainText()})
+            result_data = self.insert_result(option=True)
             self.result[self.pre_idx] = result_data
-                
+            
+            print(self.result)
             # self.result에 기존 평가 data로 세팅
-            for i,data in enumerate(self.result[idx][:len(self.fieldList)]):
-                globals()[f'desc_LineEdit{i}'].setText(*data.values())
-
-            for i,data in enumerate(self.result[idx][len(self.fieldList):-1]):
+            for i,data in enumerate(self.result[idx][:len(self.testList)]):
                 if [*data.values()][0] == 'PASS':
                     globals()[f'gb{i}_pass'].setChecked(True)
                 elif [*data.values()][0] == 'FAIL':
@@ -358,10 +352,46 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 else:
                     globals()[f'gb{i}_nl'].setChecked(True)
 
-
-        print(self.result)
+            for i,data in enumerate(self.result[idx][len(self.testList):-1]):
+                globals()[f'desc_LineEdit{i}'].setText(*data.values())
 
         self.pre_idx = idx
+
+    def insert_result(self, option=None):
+        """dict에 평가결과 저장하는 함수
+
+        Args:
+            option : True 선택 시 화면에 입력되어 있는 데이터 clear
+
+        Returns:
+            result_data: 현재 화면에 입력되어 있는 데이터 반환
+        """
+        result_data = []
+
+        for i,val in enumerate(self.testList):
+            if globals()[f'gb{i}_pass'].isChecked():
+                radio_data = {val:"PASS"}
+            elif globals()[f'gb{i}_fail'].isChecked():
+                radio_data = {val:"FAIL"}
+            elif globals()[f'gb{i}_nt'].isChecked():
+                radio_data = {val:"N/T"}
+            elif globals()[f'gb{i}_na'].isChecked():
+                radio_data = {val:"N/A"}
+            else:
+                radio_data = {val:""}
+
+            result_data.append(radio_data)
+            if option is True:
+                globals()[f'gb{i}_nl'].setChecked(True)
+
+        for i,field in enumerate(self.fieldList):
+            field_data = {field[0]:globals()[f'desc_LineEdit{i}'].text()}
+            result_data.append(field_data)
+            if option is True:
+                globals()[f'desc_LineEdit{i}'].clear()
+
+        result_data.append({"버전 정보":self.version_textEdit.toPlainText()})
+        return result_data
 
     def double_click_img(self, img_dir, e):
         self.viewer = ImageViewer(img_dir)
@@ -369,7 +399,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
     def show_imgList(self, lang):
         # 선택한 언어 기억
-        self.cliced_lang = lang[0]
+        self.clicked_lang = lang[0]
 
         # 평가결과 기록 삭제
         self.result.clear()
