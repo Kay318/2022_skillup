@@ -29,15 +29,16 @@ print(os.getcwd())
 class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
         super().__init__()
-        self.all_RadioList = []
-        self.pass_RadioList = []
-        self.fail_RadioList = []
-        self.nt_RadioList = []
-        self.na_RadioList = []
-        self.nl_RadioList = []
-        self.pre_idx = ""
-        self.idx = ""
-        self.button = ""
+        self.all_RadioList = []     # 모든 라디오 버튼
+        self.pass_RadioList = []    # 모든 pass 버튼
+        self.fail_RadioList = []    # 모든 fail 버튼
+        self.nt_RadioList = []      # 모든 N/T 버튼
+        self.na_RadioList = []      # 모든 N/A 버튼
+        self.nl_RadioList = []      # 모든 NULL 버튼
+        self.pre_idx = ""           # 전에 선택했던 버튼 index
+        self.idx = ""               # 좌측 이미지 버튼 index
+        self.button = ""            # 좌측 이미지 버튼
+        self.img_dir = ""           # 이미지 경로
         self.result = {}
         self.EC = Ui_exsel_create()
         self.setupUi()
@@ -297,7 +298,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         cols = self.testList + self.fieldList
 
-        query = f'CREATE TABLE IF NOT EXISTS "{self.clicked_lang}" ('
+        query = f"CREATE TABLE IF NOT EXISTS '{self.clicked_lang}' ('이미지' TEXT,"
         for i, col in enumerate(cols):
             if i != len(cols) - 1:
                 query += f"'{col}' TEXT,"
@@ -305,16 +306,21 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 query += f"'{col}' TEXT)"
         
         self.c.execute(query)
-    
+
+        # for li in self.result.values():
+        #     for val in li:
+        #         i = val.values()
+        #         print(i)
+
         print(self.result)
 
     def qbutton_clicked(self, state, idx, button):
         self.idx = idx
         self.button = button
 
-        img_dir = self.img_dir[0] + '\\' + self.imgList[idx]
-        pixmap = QPixmap(img_dir)
-        self.img = Image.open(img_dir)
+        self.img_dir = self.img_dirList[0] + '\\' + self.imgList[idx]
+        pixmap = QPixmap(self.img_dir)
+        self.img = Image.open(self.img_dir)
 
         if self.img.width < self.img_Label.width() and self.img.height < self.img_Label.height():
             pass
@@ -326,7 +332,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.img_Label.setPixmap(QPixmap(pixmap))
         self.img_Label.setAlignment(Qt.AlignCenter)
 
-        self.img_Label.mouseDoubleClickEvent = partial(self.double_click_img, img_dir)
+        self.img_Label.mouseDoubleClickEvent = partial(self.double_click_img, self.img_dir)
 
         # 다른 이미지 버튼 누를 때 액션
         if self.pre_idx != idx and self.pre_idx != "":
@@ -363,6 +369,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
             result_data: 현재 화면에 입력되어 있는 데이터 반환
         """
         result_data = []
+        result_data.append({"이미지":self.img_dir})
 
         for i,val in enumerate(self.testList):
             if globals()[f'gb{i}_pass'].isChecked():
@@ -412,10 +419,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         # 이미지 경로 불러옴
         self.c.execute("SELECT 경로 FROM Setup_Language WHERE 언어=?", (lang[0],))
-        self.img_dir = self.c.fetchone()
+        self.img_dirList = self.c.fetchone()
 
         try:
-            self.imgList = [fn for fn in os.listdir(self.img_dir[0])
+            self.imgList = [fn for fn in os.listdir(self.img_dirList[0])
                     if (fn.endswith('.png') or fn.endswith('.jpg'))]
         except FileNotFoundError:
             QMessageBox.warning(self, "주의", "존재하지 않는 경로입니다.")
@@ -429,7 +436,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.icons = {}
             for index, filename in enumerate(self.imgList):
                 self.result[index] = []
-                pixmap = QPixmap(self.img_dir[0] + '\\' + filename)
+                pixmap = QPixmap(self.img_dirList[0] + '\\' + filename)
                 pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
                 icon = QIcon()
                 icon.addPixmap(pixmap)
