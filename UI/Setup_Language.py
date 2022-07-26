@@ -203,6 +203,8 @@ class UI_Setup_Language(QWidget, DBManager):
             except RuntimeError:
                 continue
         
+        self.mainwin.show()
+
         self.close()
 
     def closeEvent(self, event) -> None:
@@ -220,8 +222,7 @@ class UI_Setup_Language(QWidget, DBManager):
             except RuntimeError:
                 continue
 
-        if len(langList) > 0:
-            lineList = [i for i in zip(langList, dirList)]
+        lineList = [i for i in zip(langList, dirList)]
         
 
         if dbList != lineList:

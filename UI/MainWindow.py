@@ -195,11 +195,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
         for nl_radio in self.nl_RadioList:
             nl_radio.setChecked(True)
 
-    def DBManager_Test_List(self):
+    def get_db_setting(self, table, column):
 
-        self.c.execute(f"SELECT 평가목록 FROM Test_List")
+        self.c.execute(f"SELECT {column} FROM {table}")
         List = self.c.fetchall()
-        List = list(set(List))
 
         result = []
         for i in List:
@@ -218,7 +217,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.nl_RadioList.clear()
         self.all_RadioList.clear()
 
-        self.testList = list(self.DBManager_Test_List())
+        self.testList = list(self.get_db_setting("Test_List", "평가목록"))
 
         if len(self.testList) != 0:
             
@@ -296,20 +295,17 @@ class Ui_MainWindow(QMainWindow, DBManager):
         result_data = self.insert_result()
         self.result[self.idx] = result_data
 
-        # self.c.execute("SELECT * FROM Test_List")
-        # img_dir = self.c.fetchall()
-        # tmp = self.testList
-        # # tmp.append(self.clicked_lang)
-        # tmp = tuple(tmp)
-        tmp = "프랑스어"
-        data = f"""
-            CREATE TABLE IF NOT EXISTS "{tmp}" (
-                "언어" TEXT
-            );
-            """
-        self.c.execute(data)
-                
-            
+        cols = self.testList + self.fieldList
+
+        query = f'CREATE TABLE IF NOT EXISTS "{self.clicked_lang}" ('
+        for i, col in enumerate(cols):
+            if i != len(cols) - 1:
+                query += f"'{col}' TEXT,"
+            else:
+                query += f"'{col}' TEXT)"
+        
+        self.c.execute(query)
+    
         print(self.result)
 
     def qbutton_clicked(self, state, idx, button):
@@ -385,7 +381,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 globals()[f'gb{i}_nl'].setChecked(True)
 
         for i,field in enumerate(self.fieldList):
-            field_data = {field[0]:globals()[f'desc_LineEdit{i}'].text()}
+            field_data = {field:globals()[f'desc_LineEdit{i}'].text()}
             result_data.append(field_data)
             if option is True:
                 globals()[f'desc_LineEdit{i}'].clear()
@@ -451,20 +447,22 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
     def set_field(self):
-        self.c.execute('SELECT * FROM Setup_Field')
-        self.fieldList = self.c.fetchall()
+        try:
+            self.fieldList = list(self.get_db_setting("Setup_Field", "Excel_Field"))
 
-        for i,field in enumerate(self.fieldList):
-            if i%2==0:
-                globals()[f'field_Label{i}'] = QLabel(field[0])
-                self.field_gridLayout.addWidget(globals()[f'field_Label{i}'], 0,i)
-                globals()[f'desc_LineEdit{i}'] = QLineEdit()
-                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 0,i+1)
-            else:
-                globals()[f'field_Label{i}'] = QLabel(field[0])
-                self.field_gridLayout.addWidget(globals()[f'field_Label{i}'], 1,i-1)
-                globals()[f'desc_LineEdit{i}'] = QLineEdit()
-                self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 1,i)
+            for i,field in enumerate(self.fieldList):
+                if i%2==0:
+                    globals()[f'field_Label{i}'] = QLabel(field)
+                    self.field_gridLayout.addWidget(globals()[f'field_Label{i}'], 0,i)
+                    globals()[f'desc_LineEdit{i}'] = QLineEdit()
+                    self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 0,i+1)
+                else:
+                    globals()[f'field_Label{i}'] = QLabel(field)
+                    self.field_gridLayout.addWidget(globals()[f'field_Label{i}'], 1,i-1)
+                    globals()[f'desc_LineEdit{i}'] = QLineEdit()
+                    self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 1,i)
+        except:
+            pass
             
     def exsel_setiing_show(self):
         self.EC.setupUi()

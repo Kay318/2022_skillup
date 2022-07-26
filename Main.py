@@ -17,6 +17,7 @@ class Main(QMainWindow):
         global MAINWINDOW, SL, TL, SF
         super().__init__()
         MAINWINDOW = Ui_MainWindow()
+        SL = UI_Setup_Language(MAINWINDOW)
         SF = UI_Setup_Field(MAINWINDOW)
         TL = Ui_Test_List(MAINWINDOW)
         self._set_slot()
@@ -28,7 +29,6 @@ class Main(QMainWindow):
         MAINWINDOW.actionTest_List.triggered.connect(self._tl_ui)
 
     def _sl_ui(self):
-        SL = UI_Setup_Language(MAINWINDOW)
         SL.setupUi_Language()
         MAINWINDOW.setDisabled(True)
         SL.show()

@@ -20,7 +20,7 @@ class DBManager:
                     );
 
                 CREATE TABLE IF NOT EXISTS "Setup_Field" (
-                    "엑셀 필드" TEXT
+                    "Excel_Field" TEXT
                     );
 
                 CREATE TABLE IF NOT EXISTS "Test_List" (
