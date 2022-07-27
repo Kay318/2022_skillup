@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import *
 from functools import partial
 from PIL import Image
 from UI.ImageView import ImageViewer
-from UI.exsel_create import Ui_exsel_create
+from UI.excel_create import Ui_excel_create
 import sys
 import time
 import math
@@ -40,7 +40,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.button = ""            # 좌측 이미지 버튼
         self.img_dir = ""           # 이미지 경로
         self.result = {}
-        self.EC = Ui_exsel_create()
         self.setupUi()
         self.clicked_lang = None
 
@@ -68,16 +67,32 @@ class Ui_MainWindow(QMainWindow, DBManager):
         # 우측 큰 이미지
         self.right_VBoxLayout = QVBoxLayout()
 
+        img_hbox = QHBoxLayout(self)
+
+        # 0725 {
+        self.left_imgBtn = QPushButtonIcon()
+        self.left_imgBtn.setText("<")
+        self.left_imgBtn.setMaximumSize(50, 600)
+        self.left_imgBtn.clicked.connect(partial(self.btn_onClicked, target_bool = False))
+
+        
+        self.right_imgBtn = QPushButtonIcon()
+        self.right_imgBtn.setText(">")
+        self.right_imgBtn.setMaximumSize(50, 600)
+        self.right_imgBtn.clicked.connect(partial(self.btn_onClicked, target_bool = True))
+
         self.img_Label = QLabel()
         self.img_Label.setMinimumSize(1350, 600)
-        print(self.img_Label.width(), self.img_Label.height())
         self.img_Label.setStyleSheet("color: gray;"
-                             "border-style: solid;"
-                             "border-width: 1px;"
-                             "border-color: #747474;"
-                             "border-radius: 1px")
+                                "border-style: solid;"
+                                "border-width: 1px;"
+                                "border-color: #747474;"
+                                "border-radius: 1px")
 
-        self.right_VBoxLayout.addWidget(self.img_Label)
+        img_hbox.addWidget(self.left_imgBtn)
+        img_hbox.addWidget(self.img_Label)
+        img_hbox.addWidget(self.right_imgBtn)
+        self.right_VBoxLayout.addLayout(img_hbox) # }
 
         # 필드 세팅
         self.field_gridLayout = QGridLayout()
@@ -158,6 +173,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         # 메뉴바
         self.menubar = self.menuBar()
         self.menu = self.menubar.addMenu("Menu")
+        self.actionCreateExcel = QAction("Create Excel", self) # 0726
         self.menu.aboutToShow.connect(self.update_open_menu)
 
         self.setup = self.menubar.addMenu("Setup")
@@ -173,6 +189,8 @@ class Ui_MainWindow(QMainWindow, DBManager):
         # 상태바
         self.statusbar = QStatusBar()
         self.setStatusBar(self.statusbar)
+        self.statusbar_label = QLabel()
+        self.statusbar.addPermanentWidget(self.statusbar_label)
 
         self.setCentralWidget(self.widget)
 
@@ -210,6 +228,19 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         return result
 
+    def DBManager_Test_List(self):
+
+        self.c.execute(f"SELECT 평가목록 FROM Test_List")
+        List = self.c.fetchall()
+
+        result = []
+        for i in List:
+            name = str(i)
+            name = name[2 : name.find(",")- 1]
+            result.append(name)
+
+        return result
+
     def setWidget_func(self):
         self.pass_RadioList.clear()
         self.fail_RadioList.clear()
@@ -218,7 +249,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.nl_RadioList.clear()
         self.all_RadioList.clear()
 
-        self.testList = list(self.get_db_setting("Test_List", "평가목록"))
+        self.testList = list(self.DBManager_Test_List())
 
         if len(self.testList) != 0:
             
@@ -283,8 +314,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.actionSave.setShortcut("Ctrl+S")
         self.actionSave.triggered.connect(self.save_result)
 
-        self.actionCreateExcel = QAction("Create Excel", self)
-        self.actionCreateExcel.triggered.connect(self.exsel_setiing_show)
         self.actionClose = QAction("Close", self)
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionCreateExcel)
@@ -307,28 +336,108 @@ class Ui_MainWindow(QMainWindow, DBManager):
         
         self.c.execute(query)
 
-        # for li in self.result.values():
-        #     for val in li:
-        #         i = val.values()
-        #         print(i)
-
         print(self.result)
 
+    # 0726
     def qbutton_clicked(self, state, idx, button):
+
+        def click_color():
+            # 0725
+            self.c.execute(f"SELECT 평가목록 FROM Test_List")
+            List = self.c.fetchall()
+            count = len(List)
+
+            for btn in self.qbuttons.keys():
+                
+                result = []
+
+                if len(self.result.get(btn)) != 0: # 결과값이 0이 아닐시
+                    
+                    for map in self.result.get(btn): # map 초기화
+                        map = str(map)
+                        
+                        for key in ["PASS", "FAIL", "N/A", "N/T"]:
+                            
+                            try:
+                                map.index(key)
+                                result.append(key)
+                            except Exception as e:
+                                null = 0
+
+                if self.qbuttons.get(btn) == button:
+
+                    result_color = """border-style: solid;
+                        border-width: 3px;
+                        border-color: #9370DB;
+                        border-radius: 3px
+                        """
+
+                    self.qbuttons.get(btn).setStyleSheet(
+                       result_color)
+
+                    if count == result.count("PASS"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #0000FF;"+ result_color) # 블루
+
+                    elif count == result.count("FAIL"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #FF0000;"+ result_color) # 레드
+
+                    elif count == result.count("N/A"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #808080;"+ result_color) # 그레이
+
+                    elif count == result.count("N/T"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #7FFFD4;"+ result_color) # 민트
+
+                    elif count == result.count("NULL"):
+                        self.qbuttons.get(btn).setStyleSheet("") # 초기화
+
+                    elif result.count("PASS") > 0 or result.count("FAIL") or result.count("N/A") > 0 or result.count("N/T") > 0:
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #FFFF00;" + result_color) # 노랑
+
+                else:
+                    result_color = """border-style: solid;
+                        border-width: 1px;
+                        border-color: #C0C0C0;
+                        border-radius: 1px
+                        """
+                    if count == result.count("PASS"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #0000FF") # 블루
+
+                    elif count == result.count("FAIL"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #FF0000") # 레드
+
+                    elif count == result.count("N/A"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #808080") # 그레이
+
+                    elif count == result.count("N/T"):
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #7FFFD4") # 민트
+
+                    elif count == result.count("NULL") or len(result) == 0:
+                        self.qbuttons.get(btn).setStyleSheet("result_color") # 초기화
+
+                    elif result.count("PASS") > 0 or result.count("FAIL") or result.count("N/A") > 0 or result.count("N/T") > 0:
+                        self.qbuttons.get(btn).setStyleSheet("background-color: #FFFF00") # 노랑
+
+                result.clear()        
+
+
         self.idx = idx
         self.button = button
 
+        self.statusbar_label.setText(self.imgList[idx])
+
+        print(f"self.img_dir[0] : {self.img_dir}")
         self.img_dir = self.img_dirList[0] + '\\' + self.imgList[idx]
         pixmap = QPixmap(self.img_dir)
         self.img = Image.open(self.img_dir)
+
+        self.img_Label.resize(self.img.width, self.img.height)
 
         if self.img.width < self.img_Label.width() and self.img.height < self.img_Label.height():
             pass
         elif self.img.width/self.img.height < self.img_Label.width()/self.img_Label.height():
             pixmap = pixmap.scaledToHeight(self.img_Label.height())
         else:
-            pixmap = pixmap.scaledToWidth(self.img_Label.width())
-
+            pixmap = pixmap.scaledToHeight(self.img_Label.width())
         self.img_Label.setPixmap(QPixmap(pixmap))
         self.img_Label.setAlignment(Qt.AlignCenter)
 
@@ -354,10 +463,12 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 else:
                     globals()[f'gb{i}_nl'].setChecked(True)
 
-            for i,data in enumerate(self.result[idx][len(self.testList):-1]):
+            for i,data in enumerate(self.result[idx][len(self.testList)+1:-1]):
                 globals()[f'desc_LineEdit{i}'].setText(*data.values())
 
         self.pre_idx = idx
+
+        click_color()
 
     def insert_result(self, option=None):
         """dict에 평가결과 저장하는 함수
@@ -470,10 +581,24 @@ class Ui_MainWindow(QMainWindow, DBManager):
                     self.field_gridLayout.addWidget(globals()[f'desc_LineEdit{i}'], 1,i)
         except:
             pass
-            
-    def exsel_setiing_show(self):
-        self.EC.setupUi()
-        self.EC.show()    
+    
+    def btn_onClicked(self, target_bool):
+        
+        self.left_imgBtn.setEnabled(True)
+        self.right_imgBtn.setEnabled(True)
+        print(f"x : {self.idx}")
+        if (target_bool):
+            self.idx = self.idx + 1
+        else:
+            self.idx = self.idx - 1
+        if (self.idx <= 0):
+            self.idx = 0
+            self.left_imgBtn.setEnabled(False)
+        elif (self.idx >= len(self.qbuttons) - 1):
+            self.idx = len(self.qbuttons) - 1
+            self.right_imgBtn.setEnabled(False)
+        print(f"y : {self.idx}")
+        self.qbutton_clicked(state=None, idx = self.idx, button=self.qbuttons.get(self.idx))
 
     def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         sys.exit()

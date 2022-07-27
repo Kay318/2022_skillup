@@ -1,5 +1,6 @@
 from asyncio.windows_events import NULL
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtGui import QKeyEvent
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QCoreApplication, Qt, pyqtSlot
 from functools import partial
@@ -9,7 +10,6 @@ from UI import MainWindow
 class Ui_Test_List(QWidget, DBManager):
     def __init__(self, mainwindow):
         super().__init__()
-        DBManager().__init__()
 
         self.save_List = []
         self.key = []
@@ -103,9 +103,12 @@ class Ui_Test_List(QWidget, DBManager):
             print(item_list)
             for i in item_list:
 
-                globals()[f'TestList_horizontalLayout{i}'].itemAt(0).widget().deleteLater() 
-                globals()[f'TestList_horizontalLayout{i}'].itemAt(1).widget().deleteLater() 
-                    
+                try:
+                    globals()[f'TestList_horizontalLayout{i}'].itemAt(0).widget().deleteLater() 
+                    globals()[f'TestList_horizontalLayout{i}'].itemAt(1).widget().deleteLater() 
+                except Exception as e:
+                    continue
+
                 item = self.TestListScroll_verticalLayout.itemAt(i)
                 self.TestListScroll_verticalLayout.removeItem(item)
                 if item.widget():
@@ -135,11 +138,17 @@ class Ui_Test_List(QWidget, DBManager):
         globals()[f'Test_lineEdit{self.cnt}'] = QLineEdit(self.TestList_scrollAreaWidgetContents)
         globals()[f'Test_lineEdit{self.cnt}'].setMaximumWidth(300)
         
-        if (val != ""):
+        if (val != None):
 
             globals()[f'Test_lineEdit{self.cnt}'].setText(val)
         else:
             globals()[f'Test_lineEdit{self.cnt}'].setText("")
+            
+            for val in range(self.cnt + 1):
+
+                if globals()[f'Test_lineEdit{val}'].text() == "":
+                    globals()[f'Test_lineEdit{val}'].setFocus()
+                    break
 
         print(f"globals()[f'Test_lineEdit{self.cnt}'].text() : {globals()[f'Test_lineEdit{self.cnt}'].text()}")
             
@@ -236,7 +245,13 @@ class Ui_Test_List(QWidget, DBManager):
 
         self.mainwin.setDisabled(False)
 
-            
+    def keyPressEvent(self, a0: QKeyEvent) -> None:
+        
+        KEY_ENTER = 16777220
+
+        print (f"a0.key() : {a0.key()}")
+        if a0.key() == KEY_ENTER:
+            self.ok_Button_clicked()
 
 if __name__ == "__main__":
     import sys
