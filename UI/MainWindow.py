@@ -77,7 +77,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.left_imgBtn.setMaximumSize(50, 600)
         self.left_imgBtn.clicked.connect(partial(self.btn_onClicked, target_bool = False))
 
-        
         self.right_imgBtn = QPushButtonIcon()
         self.right_imgBtn.setText(">")
         self.right_imgBtn.setMaximumSize(50, 600)

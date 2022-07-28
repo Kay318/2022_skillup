@@ -179,10 +179,16 @@ class Ui_Test_List(QWidget, DBManager):
         for i in range(layout.count()):
             layout.itemAt(i).widget().deleteLater()
 
-        item = self.TestListScroll_verticalLayout.itemAt(cnt)
-        self.TestListScroll_verticalLayout.removeItem(item)
+        item_list = list(range(self.TestListScroll_verticalLayout.count()))
+        item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
 
-        print(f'new_self.TestListScroll_verticalLayout.count() : {self.TestListScroll_verticalLayout.count()}')
+        for i in item_list:
+
+            item = self.TestListScroll_verticalLayout.itemAt(i)
+
+            if (layout == item):
+                print("PASS")
+                self.TestListScroll_verticalLayout.removeItem(item)
 
     def ok_Button_clicked(self):
 

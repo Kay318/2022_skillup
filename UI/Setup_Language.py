@@ -159,13 +159,24 @@ class UI_Setup_Language(QWidget, DBManager):
         """라인 삭제 함수
 
         Args:
-            layout: 삭제할 레이아웃
+            cnt: 변수명
         """
+
+        self.Bool_quit = True # 0719
+
         for i in range(layout.count()):
             layout.itemAt(i).widget().deleteLater()
 
-        item = self.langListScroll_verticalLayout.itemAt(cnt)
-        self.langListScroll_verticalLayout.removeItem(item)
+        item_list = list(range(self.langListScroll_verticalLayout.count()))
+        item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
+
+        for i in item_list:
+
+            item = self.langListScroll_verticalLayout.itemAt(i)
+
+            if (layout == item):
+                print("PASS")
+                self.langListScroll_verticalLayout.removeItem(item)
 
     def langList_toolButton_clicked(self, lineEdit):
         """폴더 경로 불러오기
