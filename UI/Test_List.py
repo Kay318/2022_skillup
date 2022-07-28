@@ -10,6 +10,7 @@ from UI import MainWindow
 class Ui_Test_List(QWidget, DBManager):
     def __init__(self, mainwindow):
         super().__init__()
+        DBManager().__init__()
 
         self.save_List = []
         self.key = []
@@ -120,6 +121,9 @@ class Ui_Test_List(QWidget, DBManager):
             val = str(val)
             val = val[2 : val.find(",")- 1]
             self.addTest_Button_clicked(val= val)
+        
+        self.setup_Button_lenght = self.verticalLayout.count()
+        print(f"self.setup_Button_lenght : {self.setup_Button_lenght}")
 
     def addTest_Button_clicked(self, val):
 
@@ -132,7 +136,7 @@ class Ui_Test_List(QWidget, DBManager):
         globals()[f'del_TestList_btn{self.cnt}'] = QPushButton("-", self.TestList_scrollAreaWidgetContents)
         globals()[f'del_TestList_btn{self.cnt}'].setMaximumWidth(30)
         globals()[f'del_TestList_btn{self.cnt}'].clicked.connect(partial(
-            self.del_TestList_btn_clicked, layout = globals()[f'TestList_horizontalLayout{self.cnt}']))
+            self.del_TestList_btn_clicked, layout = globals()[f'TestList_horizontalLayout{self.cnt}'], cnt = self.cnt))
         
         # 내용 입력
         globals()[f'Test_lineEdit{self.cnt}'] = QLineEdit(self.TestList_scrollAreaWidgetContents)
@@ -162,17 +166,23 @@ class Ui_Test_List(QWidget, DBManager):
         self.TestList_scrollArea.setWidget(self.TestList_scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.TestList_scrollArea)
 
-    def del_TestList_btn_clicked(self, layout):
+    def del_TestList_btn_clicked(self, layout, cnt):
         """라인 삭제 함수
 
         Args:
             cnt: 변수명
         """
 
+        print(f'set_self.TestListScroll_verticalLayout.count() : {self.TestListScroll_verticalLayout.count()}')
         self.Bool_quit = True # 0719
 
         for i in range(layout.count()):
             layout.itemAt(i).widget().deleteLater()
+
+        item = self.TestListScroll_verticalLayout.itemAt(cnt)
+        self.TestListScroll_verticalLayout.removeItem(item)
+
+        print(f'new_self.TestListScroll_verticalLayout.count() : {self.TestListScroll_verticalLayout.count()}')
 
     def ok_Button_clicked(self):
 
@@ -199,14 +209,18 @@ class Ui_Test_List(QWidget, DBManager):
 
         # DB에 저장
         self.c.execute(f"DELETE FROM Test_List")
-        for i in range(self.cnt):
-            try:
-                self.dbConn.execute(f"INSERT INTO Test_List VALUES (?)", 
-                        (globals()[f'Test_lineEdit{i}'].text(),))
-                self.dbConn.commit()
-            except RuntimeError:
-                continue
-
+        
+        if (self.TestListScroll_verticalLayout.count() != 0) :
+            for i in range(self.cnt):
+                try:
+                    self.dbConn.execute(f"INSERT INTO Test_List VALUES (?)", 
+                            (globals()[f'Test_lineEdit{i}'].text(),))
+                    
+                except RuntimeError:
+                    continue
+        
+        self.dbConn.commit()
+    
         self.mainwin.setWidget_func()
         self.close()
 

@@ -41,6 +41,7 @@ class Main(QMainWindow):
 
     def _sl_ui(self):
         MAINWINDOW.setDisabled(True)
+        SL.setLang_Button() # 0728
         SL.show()
 
     def _sf_ui(self):

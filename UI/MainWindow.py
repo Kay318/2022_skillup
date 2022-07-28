@@ -36,7 +36,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.na_RadioList = []      # 모든 N/A 버튼
         self.nl_RadioList = []      # 모든 NULL 버튼
         self.imgList = []           # 선택된 경로의 이미지 리스트
-        self.pre_idx = 0          # 전에 선택했던 버튼 index
+        self.pre_idx = 0            # 전에 선택했던 버튼 index
         self.idx = ""               # 좌측 이미지 버튼 index
         self.button = ""            # 좌측 이미지 버튼
         self.img_dir = ""           # 이미지 경로
@@ -331,8 +331,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
         result_data = self.insert_result()
         self.result[self.idx] = result_data
 
-        # self.setupList = self.testList + self.fieldList
-
         query = f"CREATE TABLE IF NOT EXISTS '{self.clicked_lang}' ('이미지' TEXT,"
         for i, col in enumerate(self.setupList):
             if i != len(self.setupList) - 1:
@@ -341,6 +339,15 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 query += f"'{col}' TEXT)"
         
         self.c.execute(query)
+
+        self.c.execute(f"DELETE FROM {self.clicked_lang}")
+        for i in self.result:
+            try:
+                self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
+                        (globals()[f'lang_lineEdit{i}'].text(), globals()[f'dir_lineEdit{i}'].text()))
+                self.dbConn.commit()
+            except RuntimeError:
+                continue
 
         print(self.result)
 
@@ -587,21 +594,22 @@ class Ui_MainWindow(QMainWindow, DBManager):
     
     def btn_onClicked(self, target_bool):
         
-        self.left_imgBtn.setEnabled(True)
-        self.right_imgBtn.setEnabled(True)
-        print(f"x : {self.idx}")
-        if (target_bool):
-            self.idx = self.idx + 1
-        else:
-            self.idx = self.idx - 1
-        if (self.idx <= 0):
-            self.idx = 0
-            self.left_imgBtn.setEnabled(False)
-        elif (self.idx >= len(self.qbuttons) - 1):
-            self.idx = len(self.qbuttons) - 1
-            self.right_imgBtn.setEnabled(False)
-        print(f"y : {self.idx}")
-        self.qbutton_clicked(state=None, idx = self.idx, button=self.qbuttons.get(self.idx))
+        if (len(self.imgList) != 0) :
+            self.left_imgBtn.setEnabled(True)
+            self.right_imgBtn.setEnabled(True)
+            print(f"x : {self.idx}")
+            if (target_bool):
+                self.idx = self.idx + 1
+            else:
+                self.idx = self.idx - 1
+            if (self.idx <= 0):
+                self.idx = 0
+                self.left_imgBtn.setEnabled(False)
+            elif (self.idx >= len(self.qbuttons) - 1):
+                self.idx = len(self.qbuttons) - 1
+                self.right_imgBtn.setEnabled(False)
+            print(f"y : {self.idx}")
+            self.qbutton_clicked(state=None, idx = self.idx, button=self.qbuttons.get(self.idx))
 
     def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         sys.exit()

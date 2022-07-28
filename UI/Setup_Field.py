@@ -26,45 +26,48 @@ class UI_Setup_Field(QWidget, DBManager):
         super().__init__()
         self.cnt = 0
         self.mainwin = mainwindow
+        self.start = True
 
     def setupUi_Field(self):
         # 언어별 경로 설정 메인 창
-        self.resize(600, 400)
-        self.setWindowTitle("엑셀에 추가할 필드 설정")
+        if self.start:
+            self.resize(600, 400)
+            self.setWindowTitle("엑셀에 추가할 필드 설정")
 
-        # 전체 화면 배치
-        self.verticalLayout = QVBoxLayout(self)
+            # 전체 화면 배치
+            self.verticalLayout = QVBoxLayout(self)
 
-        # DB에서 언어 설정 불러옴
-        self.c.execute('SELECT * FROM Setup_Field')
-        dataList = self.c.fetchall()
+            # DB에서 언어 설정 불러옴
+            self.c.execute('SELECT * FROM Setup_Field')
+            dataList = self.c.fetchall()
 
-        if len(dataList) > 0:
-            for data in dataList:
-                self.set_data()
-                globals()[f'lineEdit{self.cnt-1}'].setText(data[0])
+            if len(dataList) > 0:
+                for data in dataList:
+                    self.set_data()
+                    globals()[f'lineEdit{self.cnt-1}'].setText(data[0])
 
-            if len(dataList) < 6:
-                for _ in range(6-len(dataList)):
+                if len(dataList) < 6:
+                    for _ in range(6-len(dataList)):
+                        self.set_data()
+
+            else:
+                for _ in range(6):
                     self.set_data()
 
-        else:
-            for _ in range(6):
-                self.set_data()
+            # [확인], [취소] 버튼
+            self.ok_horizontalLayout = QHBoxLayout()
+            self.ok_horizontalLayout.setAlignment(Qt.AlignRight)
+            
+            self.ok_Button = QPushButton("확인", self)
+            self.ok_horizontalLayout.addWidget(self.ok_Button)
+            self.cancel_Button = QPushButton("취소", self)
+            self.ok_horizontalLayout.addWidget(self.cancel_Button)
+            self.verticalLayout.addLayout(self.ok_horizontalLayout)
 
-        # [확인], [취소] 버튼
-        self.ok_horizontalLayout = QHBoxLayout()
-        self.ok_horizontalLayout.setAlignment(Qt.AlignRight)
-        
-        self.ok_Button = QPushButton("확인", self)
-        self.ok_horizontalLayout.addWidget(self.ok_Button)
-        self.cancel_Button = QPushButton("취소", self)
-        self.ok_horizontalLayout.addWidget(self.cancel_Button)
-        self.verticalLayout.addLayout(self.ok_horizontalLayout)
+            # 버튼 이벤트 함수
+            self.sl_set_slot()
 
-        # 버튼 이벤트 함수
-        self.sl_set_slot()
-
+        self.start = False
 
     def set_data(self):
         globals()[f'horizontalLayout{self.cnt}'] = QHBoxLayout()
@@ -104,16 +107,20 @@ class UI_Setup_Field(QWidget, DBManager):
                     return
 
         # DB에 저장
+        # 0728
         self.c.execute(f"DELETE FROM Setup_Field")
+
         for i in range(self.cnt):
             if globals()[f'lineEdit{i}'].text() != "":
                 try:
                     self.dbConn.execute(f"INSERT INTO Setup_Field VALUES (?)", 
                             ((globals()[f'lineEdit{i}'].text(),)))
-                    self.dbConn.commit()
+                    
                 except RuntimeError:
                     continue
         
+        self.dbConn.commit()
+
         for i in range(self.mainwin.field_gridLayout.count()):
             self.mainwin.field_gridLayout.itemAt(i).widget().deleteLater()
         self.mainwin.set_field()
