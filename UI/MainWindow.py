@@ -35,10 +35,12 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.nt_RadioList = []      # 모든 N/T 버튼
         self.na_RadioList = []      # 모든 N/A 버튼
         self.nl_RadioList = []      # 모든 NULL 버튼
-        self.pre_idx = ""           # 전에 선택했던 버튼 index
+        self.imgList = []           # 선택된 경로의 이미지 리스트
+        self.pre_idx = 0          # 전에 선택했던 버튼 index
         self.idx = ""               # 좌측 이미지 버튼 index
         self.button = ""            # 좌측 이미지 버튼
         self.img_dir = ""           # 이미지 경로
+        self.setupList = []         # 필드와 평가결과에 들어가는 모든 항목
         self.result = {}
         self.setupUi()
         self.clicked_lang = None
@@ -312,6 +314,10 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.actionSave = QAction("Save", self)
         self.actionSave.setShortcut("Ctrl+S")
+        # if self.imgList == []:
+        #     self.actionSave.setEnable(False)
+        # else:
+        #     self.actionSave.setEnable(True)
         self.actionSave.triggered.connect(self.save_result)
 
         self.actionClose = QAction("Close", self)
@@ -325,11 +331,11 @@ class Ui_MainWindow(QMainWindow, DBManager):
         result_data = self.insert_result()
         self.result[self.idx] = result_data
 
-        cols = self.testList + self.fieldList
+        # self.setupList = self.testList + self.fieldList
 
         query = f"CREATE TABLE IF NOT EXISTS '{self.clicked_lang}' ('이미지' TEXT,"
-        for i, col in enumerate(cols):
-            if i != len(cols) - 1:
+        for i, col in enumerate(self.setupList):
+            if i != len(self.setupList) - 1:
                 query += f"'{col}' TEXT,"
             else:
                 query += f"'{col}' TEXT)"
@@ -341,84 +347,68 @@ class Ui_MainWindow(QMainWindow, DBManager):
     # 0726
     def qbutton_clicked(self, state, idx, button):
 
-        def click_color():
-            # 0725
-            self.c.execute(f"SELECT 평가목록 FROM Test_List")
-            List = self.c.fetchall()
-            count = len(List)
+        def set_color():
+            clear_result_color = """border-style: solid;
+                    border-width: 1px;
+                    border-color: #C0C0C0;
+                    border-radius: 1px
+                    """
 
-            for btn in self.qbuttons.keys():
-                
-                result = []
+            result_color = """border-style: solid;
+                border-width: 3px;
+                border-color: #9370DB;
+                border-radius: 3px
+                """
 
-                if len(self.result.get(btn)) != 0: # 결과값이 0이 아닐시
-                    
-                    for map in self.result.get(btn): # map 초기화
-                        map = str(map)
-                        
-                        for key in ["PASS", "FAIL", "N/A", "N/T"]:
-                            
-                            try:
-                                map.index(key)
-                                result.append(key)
-                            except Exception as e:
-                                null = 0
+            self.qbuttons[self.pre_idx].setStyleSheet(
+                clear_result_color)
+            button.setStyleSheet(result_color)    
 
-                if self.qbuttons.get(btn) == button:
+            result_count = {
+                'pre_idx':[],
+                'idx':[]
+            }
+            # 이전 버튼에 대한 색상 처리
+            for i in self.testList:
+                result_count['pre_idx'].append(self.result[self.pre_idx][i])
+                result_count['idx'].append(self.result[self.idx][i])
 
-                    result_color = """border-style: solid;
-                        border-width: 3px;
-                        border-color: #9370DB;
-                        border-radius: 3px
-                        """
+            if len(self.testList) == result_count['pre_idx'].count('PASS'):
+                self.qbuttons[self.pre_idx].setStyleSheet("background-color: #0000FF") # 블루
 
-                    self.qbuttons.get(btn).setStyleSheet(
-                       result_color)
+            elif len(self.testList) == result_count['pre_idx'].count('FAIL'):
+                self.qbuttons[self.pre_idx].setStyleSheet("background-color: #FF0000") # 레드
 
-                    if count == result.count("PASS"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #0000FF;"+ result_color) # 블루
+            elif len(self.testList) == result_count['pre_idx'].count('N/A'):
+                self.qbuttons[self.pre_idx].setStyleSheet("background-color: #808080") # 그레이
 
-                    elif count == result.count("FAIL"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #FF0000;"+ result_color) # 레드
+            elif len(self.testList) == result_count['pre_idx'].count('N/T'):
+                self.qbuttons[self.pre_idx].setStyleSheet("background-color: #7FFFD4") # 민트
 
-                    elif count == result.count("N/A"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #808080;"+ result_color) # 그레이
+            elif len(self.testList) == str(self.result[self.pre_idx]).count('NULL'):
+                self.qbuttons[self.pre_idx].setStyleSheet("") # 초기화
 
-                    elif count == result.count("N/T"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #7FFFD4;"+ result_color) # 민트
+            elif result_count['pre_idx'].count('PASS') > 0 or result_count['pre_idx'].count('FAIL') or result_count['pre_idx'].count('N/T') > 0 or result_count['pre_idx'].count('N/A') > 0:
+                self.qbuttons[self.pre_idx].setStyleSheet("background-color: #FFFF00") # 노랑
 
-                    elif count == result.count("NULL"):
-                        self.qbuttons.get(btn).setStyleSheet("") # 초기화
+            # 현재 버튼에 대한 색상 처리
+            if len(self.testList) == result_count['idx'].count('PASS'):
+                button.setStyleSheet("background-color: #0000FF;" + result_color) # 블루
 
-                    elif result.count("PASS") > 0 or result.count("FAIL") or result.count("N/A") > 0 or result.count("N/T") > 0:
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #FFFF00;" + result_color) # 노랑
+            elif len(self.testList) == result_count['idx'].count('FAIL'):
+                button.setStyleSheet("background-color: #FF0000;" + result_color) # 레드
 
-                else:
-                    result_color = """border-style: solid;
-                        border-width: 1px;
-                        border-color: #C0C0C0;
-                        border-radius: 1px
-                        """
-                    if count == result.count("PASS"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #0000FF") # 블루
+            elif len(self.testList) == result_count['idx'].count('N/A'):
+                button.setStyleSheet("background-color: #808080;" + result_color) # 그레이
 
-                    elif count == result.count("FAIL"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #FF0000") # 레드
+            elif len(self.testList) == result_count['idx'].count('N/T'):
+                button.setStyleSheet("background-color: #7FFFD4;" + result_color) # 민트
 
-                    elif count == result.count("N/A"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #808080") # 그레이
+            elif len(self.testList) == result_count['idx'].count('NULL'):
+                button.setStyleSheet("") # 초기화
 
-                    elif count == result.count("N/T"):
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #7FFFD4") # 민트
-
-                    elif count == result.count("NULL") or len(result) == 0:
-                        self.qbuttons.get(btn).setStyleSheet("result_color") # 초기화
-
-                    elif result.count("PASS") > 0 or result.count("FAIL") or result.count("N/A") > 0 or result.count("N/T") > 0:
-                        self.qbuttons.get(btn).setStyleSheet("background-color: #FFFF00") # 노랑
-
-                result.clear()        
-
+            elif result_count['idx'].count('PASS') > 0 or result_count['idx'].count('FAIL') or result_count['idx'].count('N/T') > 0 or result_count['idx'].count('N/A') > 0:
+                button.setStyleSheet("background-color: #FFFF00;" + result_color) # 노랑
 
         self.idx = idx
         self.button = button
@@ -437,38 +427,38 @@ class Ui_MainWindow(QMainWindow, DBManager):
         elif self.img.width/self.img.height < self.img_Label.width()/self.img_Label.height():
             pixmap = pixmap.scaledToHeight(self.img_Label.height())
         else:
-            pixmap = pixmap.scaledToHeight(self.img_Label.width())
+            pixmap = pixmap.scaledToWidth(self.img_Label.width())
         self.img_Label.setPixmap(QPixmap(pixmap))
         self.img_Label.setAlignment(Qt.AlignCenter)
 
         self.img_Label.mouseDoubleClickEvent = partial(self.double_click_img, self.img_dir)
 
         # 다른 이미지 버튼 누를 때 액션
-        if self.pre_idx != idx and self.pre_idx != "":
+        if self.pre_idx != idx:
             # self.result에 값 저장하고 기존 데이타 삭제하기
             result_data = self.insert_result(option=True)
             self.result[self.pre_idx] = result_data
             
             print(self.result)
             # self.result에 기존 평가 data로 세팅
-            for i,data in enumerate(self.result[idx][:len(self.testList)]):
-                if [*data.values()][0] == 'PASS':
+            for i,data in enumerate(self.testList):
+                if self.result[idx][data] == 'PASS':
                     globals()[f'gb{i}_pass'].setChecked(True)
-                elif [*data.values()][0] == 'FAIL':
+                elif self.result[idx][data] == 'FAIL':
                     globals()[f'gb{i}_fail'].setChecked(True)
-                elif [*data.values()][0] == 'N/T':
+                elif self.result[idx][data] == 'N/T':
                     globals()[f'gb{i}_nt'].setChecked(True)
-                elif [*data.values()][0] == 'N/A':
+                elif self.result[idx][data] == 'N/A':
                     globals()[f'gb{i}_na'].setChecked(True)
                 else:
                     globals()[f'gb{i}_nl'].setChecked(True)
 
-            for i,data in enumerate(self.result[idx][len(self.testList)+1:-1]):
-                globals()[f'desc_LineEdit{i}'].setText(*data.values())
+            for i,data in enumerate(self.fieldList):
+                globals()[f'desc_LineEdit{i}'].setText(self.result[idx][data])
 
+        set_color()
+        
         self.pre_idx = idx
-
-        click_color()
 
     def insert_result(self, option=None):
         """dict에 평가결과 저장하는 함수
@@ -479,32 +469,31 @@ class Ui_MainWindow(QMainWindow, DBManager):
         Returns:
             result_data: 현재 화면에 입력되어 있는 데이터 반환
         """
-        result_data = []
-        result_data.append({"이미지":self.img_dir})
+        result_data = {}
+        result_data["이미지"] = self.img_dir
 
         for i,val in enumerate(self.testList):
             if globals()[f'gb{i}_pass'].isChecked():
-                radio_data = {val:"PASS"}
+                result_data[val] = "PASS"
             elif globals()[f'gb{i}_fail'].isChecked():
-                radio_data = {val:"FAIL"}
+                result_data[val] = "FAIL"
             elif globals()[f'gb{i}_nt'].isChecked():
-                radio_data = {val:"N/T"}
+                result_data[val] = "N/T"
             elif globals()[f'gb{i}_na'].isChecked():
-                radio_data = {val:"N/A"}
+                result_data[val] = "N/A"
             else:
-                radio_data = {val:""}
+                result_data[val] = ""
 
-            result_data.append(radio_data)
             if option is True:
                 globals()[f'gb{i}_nl'].setChecked(True)
 
         for i,field in enumerate(self.fieldList):
-            field_data = {field:globals()[f'desc_LineEdit{i}'].text()}
-            result_data.append(field_data)
+            result_data[field] = globals()[f'desc_LineEdit{i}'].text()
+            # result_data.append(field_data)
             if option is True:
                 globals()[f'desc_LineEdit{i}'].clear()
 
-        result_data.append({"버전 정보":self.version_textEdit.toPlainText()})
+        result_data["버전 정보"] = self.version_textEdit.toPlainText()
         return result_data
 
     def double_click_img(self, img_dir, e):
@@ -512,11 +501,18 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.viewer.show()
 
     def show_imgList(self, lang):
+        """좌측에 표출할 이미지버튼들을 세팅할 함수
+
+        Args:
+            lang : 현재 선택된 언어
+        """
         # 선택한 언어 기억
         self.clicked_lang = lang[0]
 
         # 평가결과 기록 삭제
         self.result.clear()
+
+        self.setupList = self.testList + self.fieldList
 
         # 레이블 초기화
         # for i,field in enumerate(self.fieldList):
@@ -546,7 +542,13 @@ class Ui_MainWindow(QMainWindow, DBManager):
             self.qbuttons = {}
             self.icons = {}
             for index, filename in enumerate(self.imgList):
-                self.result[index] = []
+                # 평가결과를 저장할 dictionary: self.result 세팅
+                self.result[index] = {}
+                self.result[index]['이미지'] = ""
+                for i in self.setupList:
+                    self.result[index][i] = ""
+                self.result[index]['버전 정보'] = ""
+
                 pixmap = QPixmap(self.img_dirList[0] + '\\' + filename)
                 pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
                 icon = QIcon()
@@ -561,6 +563,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 self.img_VBoxLayout.addWidget(button)
                 self.qbuttons[index] = button
 
+            print(self.result)
             self.qbuttons[0].click()
             self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
