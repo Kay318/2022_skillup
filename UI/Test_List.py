@@ -6,6 +6,7 @@ from PyQt5.QtCore import QCoreApplication, Qt, pyqtSlot
 from functools import partial
 from Database.DB import DBManager
 from UI import MainWindow
+import pyautogui
 
 class Ui_Test_List(QWidget, DBManager):
     def __init__(self, mainwindow):
@@ -265,11 +266,10 @@ class Ui_Test_List(QWidget, DBManager):
 
         self.mainwin.setDisabled(False)
 
-    def keyPressEvent(self, a0: QKeyEvent) -> None:
+    def keyReleaseEvent(self, a0: QKeyEvent) -> None:
         
         KEY_ENTER = 16777220
 
-        print (f"a0.key() : {a0.key()}")
         if a0.key() == KEY_ENTER:
             self.ok_Button_clicked()
 

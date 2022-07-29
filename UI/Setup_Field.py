@@ -154,7 +154,7 @@ class UI_Setup_Field(QWidget, DBManager):
         self.mainwin.setDisabled(False)
 
     # 0725
-    def keyPressEvent(self, a0: QKeyEvent) -> None:
+    def keyReleaseEvent(self, a0: QKeyEvent) -> None:
         
         KEY_ENTER = 16777220
 

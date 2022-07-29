@@ -88,14 +88,26 @@ class UI_Setup_Language(QWidget, DBManager):
         if dataList != None and len(self.langListScroll_verticalLayout) != 0:
 
                 item_list = list(range(self.langListScroll_verticalLayout.count()))
-                item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
+                item_list.reverse()#  Reverse delete , Avoid affecting the layout order
 
                 for i in item_list:
 
+                    try:
+                        for i in range(0,3):
+                            horizontal_list = list(range(globals()[f'langList_horizontalLayout{i}'].count()))
+                            horizontal_list.reverse()#  Reverse delete , Avoid affecting the layout order
+
+                            for j in horizontal_list:
+
+                                horizontal_item = globals()[f'langList_horizontalLayout{i}'].itemAt(j)
+                                globals()[f'langList_horizontalLayout{i}'].removeItem(horizontal_item)
+                                if horizontal_item.widget():
+                                    horizontal_item.widget().deleteLater()
+                    except Exception as e:
+                        continue
+
                     item = self.langListScroll_verticalLayout.itemAt(i)
                     self.langListScroll_verticalLayout.removeItem(item)
-                    if item.widget():
-                        item.widget().deleteLater()
 
         for data in dataList:
 
@@ -140,12 +152,6 @@ class UI_Setup_Language(QWidget, DBManager):
         globals()[f'langList_toolButton{self.cnt}'].setText("...")
         globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'langList_toolButton{self.cnt}'])
         globals()[f'langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'dir_lineEdit{self.cnt}']))
-
-        for val in range(self.cnt + 1):
-
-            if globals()[f'lang_lineEdit{val}'].text() == "":
-                globals()[f'lang_lineEdit{val}'].setFocus()
-                break
             
         self.langListScroll_verticalLayout.addLayout(globals()[f'langList_horizontalLayout{self.cnt}'])
 
@@ -154,6 +160,15 @@ class UI_Setup_Language(QWidget, DBManager):
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
 
+        if (self.langListScroll_verticalLayout.count() != 0):
+            for val in range(self.cnt):
+                try:
+                    if globals()[f'lang_lineEdit{val}'].text() == "":
+                        globals()[f'lang_lineEdit{val}'].setFocus()
+                        break
+                except RuntimeError:
+                    continue
+
     # 0728
     def del_langList_button_clicked(self, layout, cnt):
         """라인 삭제 함수
@@ -161,11 +176,6 @@ class UI_Setup_Language(QWidget, DBManager):
         Args:
             cnt: 변수명
         """
-
-        self.Bool_quit = True # 0719
-
-        for i in range(layout.count()):
-            layout.itemAt(i).widget().deleteLater()
 
         item_list = list(range(self.langListScroll_verticalLayout.count()))
         item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
@@ -177,6 +187,20 @@ class UI_Setup_Language(QWidget, DBManager):
             if (layout == item):
                 print("PASS")
                 self.langListScroll_verticalLayout.removeItem(item)
+
+                try:
+                    for i in range(0,3):
+                        horizontal_list = list(range(layout.count()))
+                        horizontal_list.reverse()#  Reverse delete , Avoid affecting the layout order
+
+                        for j in horizontal_list:
+
+                            horizontal_item = layout.itemAt(j)
+                            layout.removeItem(horizontal_item)
+                            if horizontal_item.widget():
+                                horizontal_item.widget().deleteLater()
+                except Exception as e:
+                    continue
 
     def langList_toolButton_clicked(self, lineEdit):
         """폴더 경로 불러오기
@@ -199,6 +223,8 @@ class UI_Setup_Language(QWidget, DBManager):
             except RuntimeError:
                 continue
 
+            print(f"globals()[f'lang_lineEdit{i}'].text() not in checkOverlap : {globals()[f'lang_lineEdit{i}'].text() not in checkOverlap}")
+            print(f"globals()[f'dir_lineEdit{i}'].text() not in checkOverlap : {globals()[f'dir_lineEdit{i}'].text() not in checkOverlap}")
             if (globals()[f'lang_lineEdit{i}'].text() not in checkOverlap and
                 globals()[f'dir_lineEdit{i}'].text() not in checkOverlap):
                 checkOverlap.append(globals()[f'lang_lineEdit{i}'].text())
@@ -253,7 +279,7 @@ class UI_Setup_Language(QWidget, DBManager):
         langList.clear()
         self.mainwin.setDisabled(False)
 
-    def keyPressEvent(self, a0: QKeyEvent) -> None:
+    def keyReleaseEvent(self, a0: QKeyEvent) -> None:
         
         KEY_ENTER = 16777220
 

@@ -252,10 +252,14 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         self.testList = list(self.DBManager_Test_List())
 
-        if len(self.testList) != 0:
-            
+        try:
             for i in range(self.testList_Layout.count()):
                 self.testList_Layout.itemAt(i).widget().deleteLater()
+        except Exception as e:
+            pass
+
+
+        if len(self.testList) != 0:
 
             for i,val in enumerate(self.testList):
 
@@ -291,26 +295,33 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 self.testList_Layout.addWidget(globals()[f'testList_groupbox_{i}'])
                 self.testList_Layout.setAlignment(Qt.AlignLeft)
 
+    # 0728
     def update_open_menu(self):
         self.menu.clear()
         self.menuOpen = self.menu.addMenu("Open")
-        self.c.execute('SELECT * FROM Setup_Language')
-        langList = self.c.fetchall()
-    
-        for lang in langList:
-            subMenu = QAction(lang[0], self)
-            subMenu.triggered.connect(partial(self.show_imgList, lang))
-            
-            subMenu.setCheckable(True)
-            if (self.clicked_lang == subMenu.text()):
-                subMenu.setChecked(True)
-            else:
-                subMenu.setChecked(False)
 
-            self.menuOpen.addAction(subMenu)
+        if (self.constraints()) :
+            self.menuOpen.setEnabled(True)
+            self.c.execute('SELECT * FROM Setup_Language')
+            langList = self.c.fetchall()
+        
+            for lang in langList:
+                subMenu = QAction(lang[0], self)
+                subMenu.triggered.connect(partial(self.show_imgList, lang, True))
                 
-        self.menu.addMenu(self.menuOpen)
+                subMenu.setCheckable(True)
+                if (self.clicked_lang == subMenu.text()):
+                    subMenu.setChecked(True)
+                else:
+                    subMenu.setChecked(False)
 
+                self.menuOpen.addAction(subMenu)
+        else:
+            self.show_imgList(None, False)
+            self.img_Label.clear()
+            self.menuOpen.setEnabled(False)
+
+        self.menu.addMenu(self.menuOpen)
         self.actionSave = QAction("Save", self)
         self.actionSave.setShortcut("Ctrl+S")
         # if self.imgList == []:
@@ -506,14 +517,13 @@ class Ui_MainWindow(QMainWindow, DBManager):
         self.viewer = ImageViewer(img_dir)
         self.viewer.show()
 
-    def show_imgList(self, lang):
+    # 0728
+    def show_imgList(self, lang, bool):
         """좌측에 표출할 이미지버튼들을 세팅할 함수
 
         Args:
             lang : 현재 선택된 언어
         """
-        # 선택한 언어 기억
-        self.clicked_lang = lang[0]
 
         # 평가결과 기록 삭제
         self.result.clear()
@@ -530,48 +540,52 @@ class Ui_MainWindow(QMainWindow, DBManager):
         for i in range(self.img_VBoxLayout.count()):
             self.img_VBoxLayout.itemAt(i).widget().deleteLater()
 
-        # 이미지 경로 불러옴
-        self.c.execute("SELECT 경로 FROM Setup_Language WHERE 언어=?", (lang[0],))
-        self.img_dirList = self.c.fetchone()
+        if (bool):
+            # 선택한 언어 기억
+            self.clicked_lang = lang[0]
 
-        try:
-            self.imgList = [fn for fn in os.listdir(self.img_dirList[0])
-                    if (fn.endswith('.png') or fn.endswith('.jpg'))]
-        except FileNotFoundError:
-            QMessageBox.warning(self, "주의", "존재하지 않는 경로입니다.")
-            return
+            # 이미지 경로 불러옴
+            self.c.execute("SELECT 경로 FROM Setup_Language WHERE 언어=?", (lang[0],))
+            self.img_dirList = self.c.fetchone()
 
-        if self.imgList == []:
-            QMessageBox.warning(self, "주의", "선택하신 경로에 이미지 파일이 없습니다.")
-        else:
-            # 이미지 버튼 추가
-            self.qbuttons = {}
-            self.icons = {}
-            for index, filename in enumerate(self.imgList):
-                # 평가결과를 저장할 dictionary: self.result 세팅
-                self.result[index] = {}
-                self.result[index]['이미지'] = ""
-                for i in self.setupList:
-                    self.result[index][i] = ""
-                self.result[index]['버전 정보'] = ""
+            try:
+                self.imgList = [fn for fn in os.listdir(self.img_dirList[0])
+                        if (fn.endswith('.png') or fn.endswith('.jpg'))]
+            except FileNotFoundError:
+                QMessageBox.warning(self, "주의", "존재하지 않는 경로입니다.")
+                return
 
-                pixmap = QPixmap(self.img_dirList[0] + '\\' + filename)
-                pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
-                icon = QIcon()
-                icon.addPixmap(pixmap)
-                self.icons[index] = icon
+            if self.imgList == []:
+                QMessageBox.warning(self, "주의", "선택하신 경로에 이미지 파일이 없습니다.")
+            else:
+                # 이미지 버튼 추가
+                self.qbuttons = {}
+                self.icons = {}
+                for index, filename in enumerate(self.imgList):
+                    # 평가결과를 저장할 dictionary: self.result 세팅
+                    self.result[index] = {}
+                    self.result[index]['이미지'] = ""
+                    for i in self.setupList:
+                        self.result[index][i] = ""
+                    self.result[index]['버전 정보'] = ""
 
-            for index, icon in self.icons.items():
-                button = QPushButtonIcon()
-                button.setIcon(icon)
-                button.clicked.connect(lambda state, button = button, idx = index :
-                            self.qbutton_clicked(state, idx, button))
-                self.img_VBoxLayout.addWidget(button)
-                self.qbuttons[index] = button
+                    pixmap = QPixmap(self.img_dirList[0] + '\\' + filename)
+                    pixmap = pixmap.scaled(40, 40, Qt.IgnoreAspectRatio)
+                    icon = QIcon()
+                    icon.addPixmap(pixmap)
+                    self.icons[index] = icon
 
-            print(self.result)
-            self.qbuttons[0].click()
-            self.horizontalLayout.addLayout(self.img_VBoxLayout)
+                for index, icon in self.icons.items():
+                    button = QPushButtonIcon()
+                    button.setIcon(icon)
+                    button.clicked.connect(lambda state, button = button, idx = index :
+                                self.qbutton_clicked(state, idx, button))
+                    self.img_VBoxLayout.addWidget(button)
+                    self.qbuttons[index] = button
+
+                print(self.result)
+                self.qbuttons[0].click()
+                self.horizontalLayout.addLayout(self.img_VBoxLayout)
 
     def set_field(self):
         try:
@@ -610,8 +624,43 @@ class Ui_MainWindow(QMainWindow, DBManager):
             print(f"y : {self.idx}")
             self.qbutton_clicked(state=None, idx = self.idx, button=self.qbuttons.get(self.idx))
 
+    # 0728
+    def constraints(self):
+
+        result  = True
+        self.c.execute('SELECT * FROM Setup_Language')
+        setup_Language_db = self.c.fetchall()
+
+        self.c.execute(f"SELECT 평가목록 FROM Test_List")
+        testList_db = self.c.fetchall()
+
+        if len(setup_Language_db) == 0:
+            # QMessageBox.warning(self, "주의", "언어 설정이 비어있습니다.")
+            result = False
+        elif len(testList_db) == 0:
+            # QMessageBox.warning(self, "주의", "평가 목록이 비어있습니다.")
+            result = False
+        elif len(setup_Language_db) == 0 and len(testList_db) == 0:
+            # QMessageBox.warning(self, "주의", "언어 설정과 평가 목록이 비어있습니다.")
+            result = False
+
+
+        return result
+
     def closeEvent(self, event) -> None: # a0: QtGui.QCloseEvent
         sys.exit()
+
+    # 0728
+    # 키보드 설정
+    def keyReleaseEvent(self, a0: QKeyEvent) -> None:
+
+        VERVUAL_NATIVE_LEFTKEY = 37
+        VERVUAL_NATIVE_RIGHTKEY = 39
+        
+        if a0.nativeVirtualKey() == VERVUAL_NATIVE_LEFTKEY:
+            self.btn_onClicked(False)
+        elif a0.nativeVirtualKey() == VERVUAL_NATIVE_RIGHTKEY:
+            self.btn_onClicked(True)
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
