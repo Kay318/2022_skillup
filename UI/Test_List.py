@@ -269,9 +269,14 @@ class Ui_Test_List(QWidget, DBManager):
     def keyReleaseEvent(self, a0: QKeyEvent) -> None:
         
         KEY_ENTER = 16777220
+        KEY_SUB_ENTER = 16777221
+        KEY_ENTER = 16777216
 
-        if a0.key() == KEY_ENTER:
+        print (f"a0.key() : {a0.key()}")
+        if a0.key() == KEY_ENTER or a0.key() == KEY_SUB_ENTER:
             self.ok_Button_clicked()
+        elif a0.key == KEY_ENTER:
+            self.cancel_Button_clicked()
 
 if __name__ == "__main__":
     import sys

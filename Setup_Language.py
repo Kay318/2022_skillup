@@ -279,7 +279,7 @@ class UI_Setup_Language(QWidget, DBManager):
         langList.clear()
         self.mainwin.setDisabled(False)
 
-    def keyReleaseEvent(self, a0: QKeyEvent) -> None:
+    def keyPressEvent(self, a0: QKeyEvent) -> None:
         
         KEY_ENTER = 16777220
         KEY_SUB_ENTER = 16777221

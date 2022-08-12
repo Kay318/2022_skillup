@@ -1,10 +1,10 @@
-from regex import E
 from UI.MainWindow import Ui_MainWindow
 from UI.Setup_Field import UI_Setup_Field
 from UI.Setup_Language import UI_Setup_Language
 from UI.Test_List import Ui_Test_List
 from UI.excel_create import Ui_excel_create
 from PyQt5.QtWidgets import QApplication, QMainWindow
+import debug
 import sys
 
 MAINWINDOW = None

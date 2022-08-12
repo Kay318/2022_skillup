@@ -4,6 +4,9 @@
 2. 분리된 레이아웃중 하나는 새로만드는것
 3. 2번쟤꺼는 기존에 레이아웃에 추가하는것
 """
+
+import debug
+from UI.excel_control import excelModul
 from msilib.schema import RadioButton
 from tabnanny import check
 from tkinter import Label
@@ -21,7 +24,8 @@ class Ui_excel_create(QWidget, DBManager):
     def __init__(self, mainwindow):
         super().__init__()
         self.mainwin = mainwindow
-        
+        self.new_excel_path = ""
+        self.set_excel_path = ""
 
     def setupUi(self):
 
@@ -122,10 +126,6 @@ class Ui_excel_create(QWidget, DBManager):
             item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
 
             for i in item_list:
-                # try:
-                #     globals()[f'TestList_horizontalLayout{i}'].deleteLater()
-                # except Exception as e:
-                #     continue
 
                 item = self.lang_data_vbox.itemAt(i)
                 self.lang_data_vbox.removeItem(item)
@@ -152,6 +152,7 @@ class Ui_excel_create(QWidget, DBManager):
             if (the_check.isChecked() == True):
                 for val in dataList:
                     globals()[f'checkBox_{val[0]}'].setChecked(True)
+                    self.lang_choice_list.append(val[0])
             elif (the_check.isChecked() == False):
                 for val in dataList:
                     globals()[f'checkBox_{val[0]}'].setChecked(False)
@@ -184,7 +185,7 @@ class Ui_excel_create(QWidget, DBManager):
         path_btn.setMaximumWidth(30)
         path_btn.setText("...")
 
-        path_btn.clicked.connect(partial(self.langList_toolButton_clicked, edit = edit_path))
+        path_btn.clicked.connect(partial(self.folder_toolButton_clicked, edit = edit_path))
         path_hbox.addWidget(edit_path)
         path_hbox.addWidget(path_btn)
 
@@ -213,11 +214,36 @@ class Ui_excel_create(QWidget, DBManager):
         Args:
             cnt: 변수명
         """
+        folderPath = QFileDialog(self)
+        folderPath.setFileMode(QFileDialog.FileMode.ExistingFile)
+        folderPath.setNameFilter(self.tr("Data Files (*.csv *.xls *.xlsx);; All Files(*.*)"))
+        folderPath.setViewMode(QFileDialog.ViewMode.Detail)
+        if folderPath.exec_():
+            fileNames = folderPath.selectedFiles()
+            fileNames = str(fileNames)
+            print(f"fileNames : {fileNames[2 : len(fileNames) - 2]}")
+            fileNames = fileNames[2 : len(fileNames) - 2]
+
+        print(f"folderPath : {folderPath}")
+
+        edit.setText(str(fileNames))
+
+        self.set_excel_path = fileNames
+
+    def folder_toolButton_clicked(self, edit):
+        """폴더 경로 불러오기
+
+        Args:
+            cnt: 변수명
+        """
+
         folderPath = QFileDialog.getExistingDirectory(self, 'Find Folder')
 
         print(f"folderPath : {folderPath}")
 
         edit.setText(str(folderPath))
+
+        self.new_excel_path = folderPath
 
 
     def func_new_excel_groupBox(self):
@@ -239,6 +265,24 @@ class Ui_excel_create(QWidget, DBManager):
             self.new_excel_groupBox.setChecked(True)
 
     def func_check(self):
+
+        self.c.execute('SELECT * FROM Setup_Language')
+        dataList = self.c.fetchall()
+
+        lang_choice_list = []
+
+        for val in dataList:
+            if (globals()[f'checkBox_{val[0]}'].isChecked() == True):
+                lang_choice_list.append(val[0])
+
+        if (self.new_excel_groupBox.isChecked() == True):
+
+            excelModul(self.new_excel_path, lang_choice_list, True)
+        else:
+            excelModul(self.set_excel_path, lang_choice_list, False)
+
+        lang_choice_list.clear()
+
         self.close()
 
     def func_cencel(self):

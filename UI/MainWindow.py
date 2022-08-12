@@ -19,12 +19,12 @@ import sys
 import time
 import math
 import os
+import debug
 
 from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
 from Database.DB import DBManager
 
-print(os.getcwd())
 
 class Ui_MainWindow(QMainWindow, DBManager):
     def __init__(self):
@@ -93,7 +93,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
         img_hbox.addWidget(self.left_imgBtn)
         img_hbox.addWidget(self.img_Label)
         img_hbox.addWidget(self.right_imgBtn)
-        self.right_VBoxLayout.addLayout(img_hbox) # }
+        self.right_VBoxLayout.addLayout(img_hbox)
 
         # 필드 세팅
         self.field_gridLayout = QGridLayout()
@@ -103,7 +103,6 @@ class Ui_MainWindow(QMainWindow, DBManager):
 
         # 평가 목록, all pass, fail
         self.bottom_HBoxLayout = QHBoxLayout()
-
         self.Tgroupbox = QGroupBox("평가 목록")
         self.Tgroupbox.setMinimumWidth(1000)
         self.Tgroupbox.setFixedHeight(200)
@@ -341,20 +340,26 @@ class Ui_MainWindow(QMainWindow, DBManager):
         result_data = self.insert_result()
         self.result[self.idx] = result_data
 
-        query = f"CREATE TABLE IF NOT EXISTS '{self.clicked_lang}' ('이미지' TEXT,"
-        for i, col in enumerate(self.setupList):
-            if i != len(self.setupList) - 1:
+        # 선택한 언어에 대한 테이블 만들기
+        query = f"CREATE TABLE IF NOT EXISTS '{self.clicked_lang}' ("
+        for i, col in enumerate(result_data.keys()):
+            if i != len(self.result[0].keys()) - 1:
                 query += f"'{col}' TEXT,"
             else:
                 query += f"'{col}' TEXT)"
-        
+        print(query)
         self.c.execute(query)
 
+        # 선택한 언어에 대한 기존 데이타 삭제
         self.c.execute(f"DELETE FROM {self.clicked_lang}")
-        for i in self.result:
+
+        # 현재 결과값을 삽입
+        question_marks = ", ".join(['?' for _ in range(len(result_data.keys()))])
+        print(type(question_marks))
+        for i in self.result.values():
             try:
-                self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
-                        (globals()[f'lang_lineEdit{i}'].text(), globals()[f'dir_lineEdit{i}'].text()))
+                self.dbConn.execute(f"INSERT INTO {self.clicked_lang} VALUES ({question_marks})", 
+                        (tuple(i.values())))
                 self.dbConn.commit()
             except RuntimeError:
                 continue
@@ -437,14 +442,15 @@ class Ui_MainWindow(QMainWindow, DBManager):
         pixmap = QPixmap(self.img_dir)
         self.img = Image.open(self.img_dir)
 
-        self.img_Label.resize(self.img.width, self.img.height)
+        width = self.img_Label.width()-self.left_imgBtn.width()*2
 
-        if self.img.width < self.img_Label.width() and self.img.height < self.img_Label.height():
+        if self.img.width < width and self.img.height < self.img_Label.height():
             pass
-        elif self.img.width/self.img.height < self.img_Label.width()/self.img_Label.height():
+        elif self.img.width/self.img.height < width/self.img_Label.height():
             pixmap = pixmap.scaledToHeight(self.img_Label.height())
         else:
-            pixmap = pixmap.scaledToWidth(self.img_Label.width())
+            pixmap = pixmap.scaledToWidth(width)
+        print(self.img_Label.width())
         self.img_Label.setPixmap(QPixmap(pixmap))
         self.img_Label.setAlignment(Qt.AlignCenter)
 
@@ -510,7 +516,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
             if option is True:
                 globals()[f'desc_LineEdit{i}'].clear()
 
-        result_data["버전 정보"] = self.version_textEdit.toPlainText()
+        result_data["버전 정보"] = self.version_textEdit.toPlainText().replace("\n", "&CHAR(10)&")
         return result_data
 
     def double_click_img(self, img_dir, e):
@@ -564,7 +570,7 @@ class Ui_MainWindow(QMainWindow, DBManager):
                 for index, filename in enumerate(self.imgList):
                     # 평가결과를 저장할 dictionary: self.result 세팅
                     self.result[index] = {}
-                    self.result[index]['이미지'] = ""
+                    self.result[index]['이미지'] = f"{self.img_dirList[0]}\\{filename}"
                     for i in self.setupList:
                         self.result[index][i] = ""
                     self.result[index]['버전 정보'] = ""
@@ -654,13 +660,24 @@ class Ui_MainWindow(QMainWindow, DBManager):
     # 키보드 설정
     def keyReleaseEvent(self, a0: QKeyEvent) -> None:
 
+        def test():
+            for i in int("dkfk"):
+                print(i)
         VERVUAL_NATIVE_LEFTKEY = 37
         VERVUAL_NATIVE_RIGHTKEY = 39
-        
+
         if a0.nativeVirtualKey() == VERVUAL_NATIVE_LEFTKEY:
-            self.btn_onClicked(False)
+                self.btn_onClicked(False)
+            
         elif a0.nativeVirtualKey() == VERVUAL_NATIVE_RIGHTKEY:
             self.btn_onClicked(True)
+
+        else:
+            try:
+                raise debug.Interupt
+            except debug.Interupt as di:
+                print(di)
+        
 
 class QPushButtonIcon(QPushButton):
     def __init__(self, parent = None):
