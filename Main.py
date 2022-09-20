@@ -1,64 +1,72 @@
-from UI.MainWindow import Ui_MainWindow
-from UI.Setup_Field import UI_Setup_Field
-from UI.Setup_Language import UI_Setup_Language
-from UI.Test_List import Ui_Test_List
-from UI.excel_create import Ui_excel_create
 from PyQt5.QtWidgets import QApplication, QMainWindow
-import debug
 import sys
+
+from Log import LogManager
+from Screen import *
+from Helper import *
 
 MAINWINDOW = None
 SL = None
 SF = None
 TL = None
-EC = None
-
+CE = None
+    
 class Main(QMainWindow):
     def __init__(self) -> None:
-        global MAINWINDOW, SL, TL, SF, EC
+        global MAINWINDOW, SL, TL, SF, CE
         super().__init__()
-        MAINWINDOW = Ui_MainWindow()
+        MAINWINDOW = MainWindow()
         SL = UI_Setup_Language(MAINWINDOW)
         SF = UI_Setup_Field(MAINWINDOW)
-        TL = Ui_Test_List(MAINWINDOW)
-        EC = Ui_excel_create(MAINWINDOW)
-        self._set_slot()
-        self.wigets_setupUi()
+        TL = UI_TestList(MAINWINDOW)
+        CE = UI_CreateExcel(MAINWINDOW)
+        self.__set_slot()
+        self.__wigets_setupUi()
         MAINWINDOW.show()
 
-    def _set_slot(self):
-        MAINWINDOW.actionLanguage.triggered.connect(self._sl_ui)
-        MAINWINDOW.actionField.triggered.connect(self._sf_ui)
-        MAINWINDOW.actionTest_List.triggered.connect(self._tl_ui)
-        MAINWINDOW.actionCreateExcel.triggered.connect(self._excel_setiing_show)
+    @AutomationFunctionDecorator
+    def __set_slot(self):
+        MAINWINDOW.actionLanguage.triggered.connect(self.__sl_ui)
+        MAINWINDOW.actionField.triggered.connect(self.__sf_ui)
+        MAINWINDOW.actionTest_List.triggered.connect(self.__tl_ui)
+        MAINWINDOW.actionCreateExcel.triggered.connect(self.__ce_ui)
 
     # 0726
-    def wigets_setupUi(self):
-        SL.setupUi_Language()
-        EC.setupUi()
-        SF.setupUi_Field()
-        TL.setupUi_Test()
+    @AutomationFunctionDecorator
+    def __wigets_setupUi(self):
+        SL.setupUI_Language()
+        CE.setupUI_CreateExcel()
+        SF.setupUI_Field()
+        TL.setupUI_TestList()
 
-    def _sl_ui(self):
+    @AutomationFunctionDecorator
+    def __sl_ui(self):
         MAINWINDOW.setDisabled(True)
         SL.setLang_Button() # 0728
         SL.show()
 
-    def _sf_ui(self):
+    @AutomationFunctionDecorator
+    def __sf_ui(self):
         MAINWINDOW.setDisabled(True)
         SF.show()
-        
-    def _tl_ui(self):
+    
+    @AutomationFunctionDecorator
+    def __tl_ui(self):
         MAINWINDOW.setDisabled(True)
         TL.setTest_Button()
         TL.show()       
 
-    def _excel_setiing_show(self):
+    @AutomationFunctionDecorator
+    def __ce_ui(self):
         MAINWINDOW.setDisabled(True)
-        EC.langSetting()
-        EC.show()
-        
+        CE.langSetting()
+        CE.show()
+
+def Init():
+    LogManager.Init()
+
 if __name__ == "__main__":
+    Init()
     app = QApplication(sys.argv)
     myWindow = Main()
     app.exec_()
