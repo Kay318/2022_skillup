@@ -1,0 +1,12 @@
+[2022-09-23 12:24:12.717][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-09-23 12:24:12.730][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setupUi 실행 시작
+[2022-09-23 12:24:12.730][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 12:24:12.746][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : set_field 실행 시작
+[2022-09-23 12:24:12.747][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 12:24:12.760][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : set_field 실행 종료
+[2022-09-23 12:24:12.761][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setWidget_func 실행 시작
+[2022-09-23 12:24:12.761][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 12:24:12.762][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : setWidget_func 실행 종료
+[2022-09-23 12:24:12.766][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : setupUi 실행 종료
+[2022-09-23 12:24:12.774][I][AutoBaseFunction.py(wrapper):7] __main__ : __set_slot 실행 시작
+[2022-09-23 12:24:12.775][I][AutoBaseFunction.py(wrapper):8] Parameter : 

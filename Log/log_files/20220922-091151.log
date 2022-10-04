@@ -1,0 +1,71 @@
+[2022-09-22 09:11:51.084][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-09-22 09:11:51.097][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setupUi 실행 시작
+[2022-09-22 09:11:51.098][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.118][W][LogManager.py(set_warn):86] : Traceback (most recent call last):
+  File "D:\test\TestList_CSV\2022_skillup\Helper\AutoBaseFunction.py", line 13, in wrapper
+    func(self, *args)
+  File "D:\test\TestList_CSV\2022_skillup\Screen\MainWindow.py", line 78, in setupUi
+    self.left_imgBtn.setSizePolicy(QSizePolicy.Policy.Expanding)
+TypeError: arguments did not match any overloaded call:
+  setSizePolicy(self, QSizePolicy): argument 1 has unexpected type 'Policy'
+  setSizePolicy(self, QSizePolicy.Policy, QSizePolicy.Policy): not enough arguments
+
+[2022-09-22 09:11:51.132][I][AutoBaseFunction.py(wrapper):7] __main__ : __set_slot 실행 시작
+[2022-09-22 09:11:51.132][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.135][W][LogManager.py(set_warn):86] : Traceback (most recent call last):
+  File "D:\test\TestList_CSV\2022_skillup\Helper\AutoBaseFunction.py", line 13, in wrapper
+    func(self, *args)
+  File "Main.py", line 29, in __set_slot
+    MAINWINDOW.actionLanguage.triggered.connect(self.__sl_ui)
+AttributeError: 'MainWindow' object has no attribute 'actionLanguage'
+
+[2022-09-22 09:11:51.136][I][AutoBaseFunction.py(wrapper):7] __main__ : __wigets_setupUi 실행 시작
+[2022-09-22 09:11:51.136][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.136][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Language : setupUI_Language 실행 시작
+[2022-09-22 09:11:51.137][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.137][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Language : sl_set_slot 실행 시작
+[2022-09-22 09:11:51.138][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.138][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Language : sl_set_slot 실행 종료
+[2022-09-22 09:11:51.139][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Language : setupUI_Language 실행 종료
+[2022-09-22 09:11:51.139][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-09-22 09:11:51.140][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.168][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-09-22 09:11:51.169][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.169][I][AutoBaseFunction.py(wrapper):14] Screen.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-09-22 09:11:51.170][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-09-22 09:11:51.170][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.170][I][AutoBaseFunction.py(wrapper):14] Screen.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-09-22 09:11:51.171][I][AutoBaseFunction.py(wrapper):14] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-09-22 09:11:51.171][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : setupUI_Field 실행 시작
+[2022-09-22 09:11:51.171][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.172][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-22 09:11:51.172][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.172][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-09-22 09:11:51.407][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-22 09:11:51.407][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.407][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-09-22 09:11:51.408][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-22 09:11:51.408][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.408][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-09-22 09:11:51.409][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-22 09:11:51.409][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.409][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-09-22 09:11:51.410][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-22 09:11:51.410][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.410][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-09-22 09:11:51.411][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-22 09:11:51.411][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.411][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-09-22 09:11:51.412][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : sl_set_slot 실행 시작
+[2022-09-22 09:11:51.412][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.412][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : sl_set_slot 실행 종료
+[2022-09-22 09:11:51.412][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : setupUI_Field 실행 종료
+[2022-09-22 09:11:51.412][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_TestList : setupUI_TestList 실행 시작
+[2022-09-22 09:11:51.413][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.414][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_TestList : btn_set_slot 실행 시작
+[2022-09-22 09:11:51.414][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-22 09:11:51.414][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_TestList : btn_set_slot 실행 종료
+[2022-09-22 09:11:51.414][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_TestList : setupUI_TestList 실행 종료
+[2022-09-22 09:11:51.415][I][AutoBaseFunction.py(wrapper):14] __main__ : __wigets_setupUi 실행 종료
+[2022-09-22 09:11:54.871][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : closeEvent 실행 시작
+[2022-09-22 09:11:54.871][I][AutoBaseFunction.py(wrapper):8] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x000002533F25F678>

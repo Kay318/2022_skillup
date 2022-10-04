@@ -17,6 +17,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
 from Database.DB import DBManager
 from Helper import *
+from Settings import Setup as sp
 
 
 class UI_Setup_Language(QWidget, DBManager):
@@ -76,8 +77,8 @@ class UI_Setup_Language(QWidget, DBManager):
     @AutomationFunctionDecorator
     def sl_set_slot(self):
         self.addLang_Button.clicked.connect(partial(self.addLang_Button_clicked, btn_data = None))
-        self.ok_Button.clicked.connect(self.ok_Button_clicked)
-        self.cancel_Button.clicked.connect(self.close)
+        self.ok_Button.clicked.connect(partial(self.ok_Button_clicked))
+        self.cancel_Button.clicked.connect(partial(self.close))
 
     # 0728
     @AutomationFunctionDecorator
@@ -86,10 +87,22 @@ class UI_Setup_Language(QWidget, DBManager):
         self.cnt = 0
 
         # DB에서 언어 설정 불러옴
-        self.c.execute('SELECT * FROM Setup_Language')
-        dataList = self.c.fetchall()
+        # self.c.execute('SELECT * FROM Setup_Language')
+        # dataList = self.c.fetchall()
+        
+        # 여기수정 /*
+        result_val, resultval2 = self.sp.read_ini__test(table = "Language")
 
-        if dataList != None and len(self.langListScroll_verticalLayout) != 0:
+        dataList = {}
+        for i in range(0, len(result_val)):
+            dataList.setdefault(result_val[i], resultval2[i])
+
+        print(f'dataList {dataList}')
+        print(f'len(self.langListScroll_verticalLayout) {len(self.langListScroll_verticalLayout)}')
+
+        # 여기수정 */
+        # if dataList != None and len(self.langListScroll_verticalLayout) != 0:
+        if dataList != None: # 여기수정
 
             item_list = list(range(self.langListScroll_verticalLayout.count()))
             item_list.reverse()#  Reverse delete , Avoid affecting the layout order
@@ -113,21 +126,23 @@ class UI_Setup_Language(QWidget, DBManager):
                 item = self.langListScroll_verticalLayout.itemAt(i)
                 self.langListScroll_verticalLayout.removeItem(item)
 
-        for data in dataList:
+            for data in dataList: # 여기수정
 
-            self.addLang_Button_clicked(data)
+                print(f"data = {data}")
+                self.addLang_Button_clicked(data, dataList[data])
 
     # 0728
-    def addLang_Button_clicked(self, btn_data):
+    def addLang_Button_clicked(self, btn_data, btn_value):
 
         lang_line_text = ""
         dir_line_text = ""
         self.langList_scrollArea.setWidget(self.langList_scrollAreaWidgetContents)
         self.top_verticalLayout.addWidget(self.langList_scrollArea)
         
+        # 여기수정
         if btn_data != None :
-            lang_line_text = btn_data[0]
-            dir_line_text = btn_data[1]
+            lang_line_text = btn_data
+            dir_line_text = btn_value
 
         globals()[f'langList_horizontalLayout{self.cnt}'] = QHBoxLayout()
 
@@ -155,7 +170,7 @@ class UI_Setup_Language(QWidget, DBManager):
         globals()[f'langList_toolButton{self.cnt}'] = QToolButton(self.langList_scrollAreaWidgetContents)
         globals()[f'langList_toolButton{self.cnt}'].setText("...")
         globals()[f'langList_horizontalLayout{self.cnt}'].addWidget(globals()[f'langList_toolButton{self.cnt}'])
-        globals()[f'langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, globals()[f'dir_lineEdit{self.cnt}']))
+        globals()[f'langList_toolButton{self.cnt}'].clicked.connect(partial(self.langList_toolButton_clicked, lineEdit = globals()[f'dir_lineEdit{self.cnt}']))
             
         self.langListScroll_verticalLayout.addLayout(globals()[f'langList_horizontalLayout{self.cnt}'])
 
@@ -207,7 +222,6 @@ class UI_Setup_Language(QWidget, DBManager):
                 except Exception as e:
                     continue
 
-    @AutomationFunctionDecorator
     def langList_toolButton_clicked(self, lineEdit):
         """폴더 경로 불러오기
 
@@ -218,7 +232,7 @@ class UI_Setup_Language(QWidget, DBManager):
         lineEdit.setText(folderPath)
 
     @AutomationFunctionDecorator
-    def ok_Button_clicked(self):
+    def ok_Button_clicked(self, litter):
         checkOverlap = []
 
         # 빈칸 및 중복 언어 체크
@@ -244,12 +258,21 @@ class UI_Setup_Language(QWidget, DBManager):
         self.c.execute(f"DELETE FROM Setup_Language")
 
         if self.langListScroll_verticalLayout.count() != 0:
+
+            self.sp.config["Language"] = {}
             for i in range(self.cnt):
                 try:
+                    # 여기수정
+                    self.test = self.sp.with_ini_test(table = "Language", 
+                        count=i, 
+                        val=globals()[f'lang_lineEdit{i}'].text(), 
+                        val2=globals()[f'dir_lineEdit{i}'].text())
                     self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
                             (globals()[f'lang_lineEdit{i}'].text(), globals()[f'dir_lineEdit{i}'].text()))
                 except RuntimeError:
                     continue
+
+            self.sp.save_ini(self.test) # 여기수정
 
         self.dbConn.commit()
         

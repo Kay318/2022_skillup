@@ -6,6 +6,7 @@ from PyQt5.QtCore import QCoreApplication, Qt, pyqtSlot
 from functools import partial
 from Database.DB import DBManager
 from Helper import *
+from Settings import Setup as sp
 
 class UI_TestList(QWidget, DBManager):
     def __init__(self, mainwindow):
@@ -14,6 +15,7 @@ class UI_TestList(QWidget, DBManager):
         
         self.key = []
         self.mainwin = mainwindow
+        self.sp = sp.Settings()
 
     @AutomationFunctionDecorator
     def setupUI_TestList(self):
@@ -83,23 +85,25 @@ class UI_TestList(QWidget, DBManager):
     @AutomationFunctionDecorator
     def btn_set_slot(self):
         self.addTest_Button.clicked.connect(partial(self.addTest_Button_clicked, val = None)) # 0719
-        self.ok_Button.clicked.connect(self.ok_Button_clicked)
-        self.cancel_Button.clicked.connect(self.cancel_Button_clicked)
+        self.ok_Button.clicked.connect(partial(self.ok_Button_clicked))
+        self.cancel_Button.clicked.connect(partial(self.cancel_Button_clicked))
 
     @AutomationFunctionDecorator
     def setTest_Button(self):
 
         self.cnt = 0
+        List = []
         # 중복제거 중간점검
-        self.c.execute(f"SELECT 평가목록 FROM Test_List")
-        List = self.c.fetchall()
+        result_val, result_val2 = self.sp.read_ini__test(table = "Test_List")
+        
+        for i in result_val:
+            List.append(i)
 
         if List != NULL and len(self.TestListScroll_verticalLayout) != 0:
 
             item_list = list(range(self.TestListScroll_verticalLayout.count()))
             item_list.reverse()#  Reverse delete , Avoid affecting the layout order 
 
-            print(item_list)
             for i in item_list:
 
                 try:
@@ -113,11 +117,8 @@ class UI_TestList(QWidget, DBManager):
                 if item.widget():
                     item.widget().deleteLater()
 
-        print(List)
         for val in List:
-
-            val = str(val)
-            val = val[2 : val.find(",")- 1]
+            print(f'val {val}')
             self.addTest_Button_clicked(val= val)
         
         self.setup_Button_lenght = self.verticalLayout.count()
@@ -190,7 +191,7 @@ class UI_TestList(QWidget, DBManager):
                 self.TestListScroll_verticalLayout.removeItem(item)
 
     @AutomationFunctionDecorator
-    def ok_Button_clicked(self):
+    def ok_Button_clicked(self, litter):
 
         checkOverlap = []
 
@@ -215,23 +216,27 @@ class UI_TestList(QWidget, DBManager):
 
         # DB에 저장
         self.c.execute(f"DELETE FROM Test_List")
-        
+        self.sp.create_table(table="Test_List")
         if (self.TestListScroll_verticalLayout.count() != 0) :
             for i in range(self.cnt):
                 try:
+                    self.test = self.sp.with_ini_test(table = "Test_List", 
+                        count=i, 
+                        val=globals()[f'Test_lineEdit{i}'].text(),
+                        val2=None)
                     self.dbConn.execute(f"INSERT INTO Test_List VALUES (?)", 
                             (globals()[f'Test_lineEdit{i}'].text(),))
                     
                 except RuntimeError:
                     continue
-        
+        self.sp.save_ini(self.test) # 여기수정
         self.dbConn.commit()
     
         self.mainwin.setWidget_func()
         self.close()
 
     @AutomationFunctionDecorator
-    def cancel_Button_clicked(self):
+    def cancel_Button_clicked(self, litter):
 
         self.close()
 
@@ -283,6 +288,6 @@ class UI_TestList(QWidget, DBManager):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    w = Ui_Test_List()
+    w = UI_TestList()
     w.setupUi_Test()
     sys.exit(app.exec_())

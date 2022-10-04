@@ -20,7 +20,8 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
 from Database.DB import DBManager
 from Helper import *
-
+from Settings import Setup as sp
+        
 
 class UI_Setup_Field(QWidget, DBManager):
     def __init__(self, mainwindow):
@@ -28,6 +29,7 @@ class UI_Setup_Field(QWidget, DBManager):
         self.cnt = 0
         self.mainwin = mainwindow
         self.start = True
+        self.sp = sp.Settings()
 
     @AutomationFunctionDecorator
     def setupUI_Field(self):
@@ -40,13 +42,19 @@ class UI_Setup_Field(QWidget, DBManager):
             self.verticalLayout = QVBoxLayout(self)
 
             # DB에서 언어 설정 불러옴
-            self.c.execute('SELECT * FROM Setup_Field')
-            dataList = self.c.fetchall()
+            result_val, result_val2 = self.sp.read_ini__test(table = "Field")
+
+            dataList = [] # 인자 1개만 필요할시 List 출력
+            print(len(result_val))
+            for i in result_val:
+                dataList.append(i)
 
             if len(dataList) > 0:
                 for data in dataList:
                     self.set_data()
-                    globals()[f'lineEdit{self.cnt-1}'].setText(data[0])
+                    print(f'cnt : {self.cnt}')
+                    print(f'data : {data}')
+                    globals()[f'lineEdit{self.cnt-1}'].setText(data)
 
                 if len(dataList) < 6:
                     for _ in range(6-len(dataList)):
@@ -95,11 +103,11 @@ class UI_Setup_Field(QWidget, DBManager):
 
     @AutomationFunctionDecorator
     def sl_set_slot(self):
-        self.ok_Button.clicked.connect(self.ok_Button_clicked)
+        self.ok_Button.clicked.connect(partial(self.ok_Button_clicked))
         self.cancel_Button.clicked.connect(self.close)
 
     @AutomationFunctionDecorator
-    def ok_Button_clicked(self):
+    def ok_Button_clicked(self, litter):
         checkOverlap = []
 
         # 중복 체크
@@ -114,16 +122,21 @@ class UI_Setup_Field(QWidget, DBManager):
         # DB에 저장
         # 0728
         self.c.execute(f"DELETE FROM Setup_Field")
-
+        self.sp.create_table(table="Field")
         for i in range(self.cnt):
             if globals()[f'lineEdit{i}'].text() != "":
                 try:
+                    self.test = self.sp.with_ini_test(table = "Field", 
+                        count=i, 
+                        val=globals()[f'lineEdit{i}'].text(),
+                        val2=None)
                     self.dbConn.execute(f"INSERT INTO Setup_Field VALUES (?)", 
                             ((globals()[f'lineEdit{i}'].text(),)))
                     
                 except RuntimeError:
                     continue
-        
+
+        self.sp.save_ini(self.test) # 여기수정
         self.dbConn.commit()
 
         for i in range(self.mainwin.field_gridLayout.count()):

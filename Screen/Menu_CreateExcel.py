@@ -182,7 +182,7 @@ class UI_CreateExcel(QWidget, DBManager):
         path_btn.setMaximumWidth(30)
         path_btn.setText("...")
 
-        path_btn.clicked.connect(partial(self.folder_toolButton_clicked, edit = edit_path))
+        path_btn.clicked.connect(partial(self.folder_toolButton_clicked, edit_path))
         path_hbox.addWidget(edit_path)
         path_hbox.addWidget(path_btn)
 
@@ -199,7 +199,7 @@ class UI_CreateExcel(QWidget, DBManager):
         path_btn.setMaximumWidth(30)
         path_btn.setText("...")
         
-        path_btn.clicked.connect(partial(self.langList_toolButton_clicked, edit = edit_path))
+        path_btn.clicked.connect(partial(self.langList_toolButton_clicked, edit_path))
 
         path_hbox.addWidget(edit_path)
         path_hbox.addWidget(path_btn)
@@ -207,7 +207,7 @@ class UI_CreateExcel(QWidget, DBManager):
         self.radio_vbox.addWidget(self.set_excel_groupBox)
 
     @AutomationFunctionDecorator
-    def langList_toolButton_clicked(self, edit):
+    def langList_toolButton_clicked(self, edit, litter):
         """폴더 경로 불러오기
 
         Args:
@@ -230,7 +230,7 @@ class UI_CreateExcel(QWidget, DBManager):
         self.set_excel_path = fileNames
 
     @AutomationFunctionDecorator
-    def folder_toolButton_clicked(self, edit):
+    def folder_toolButton_clicked(self, edit, litter):
         """폴더 경로 불러오기
 
         Args:
@@ -266,7 +266,7 @@ class UI_CreateExcel(QWidget, DBManager):
             self.new_excel_groupBox.setChecked(True)
 
     @AutomationFunctionDecorator
-    def func_check(self):
+    def func_check(self, litter):
 
         self.c.execute('SELECT * FROM Setup_Language')
         dataList = self.c.fetchall()
@@ -288,11 +288,11 @@ class UI_CreateExcel(QWidget, DBManager):
         self.close()
 
     @AutomationFunctionDecorator
-    def func_cencel(self):
+    def func_cencel(self, litter):
         self.close()
 
     # 0726
-    def closeEvent(self, event) -> None:
+    def closeEvent(self, litter) -> None:
         self.mainwin.setDisabled(False)
 
     # 0725
@@ -307,5 +307,4 @@ class UI_CreateExcel(QWidget, DBManager):
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
-    ex = Ui_excel_create()
     sys.exit(app.exec_())

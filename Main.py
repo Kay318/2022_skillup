@@ -4,6 +4,7 @@ import sys
 from Log import LogManager
 from Screen import *
 from Helper import *
+from functools import partial
 
 MAINWINDOW = None
 SL = None
@@ -26,10 +27,14 @@ class Main(QMainWindow):
 
     @AutomationFunctionDecorator
     def __set_slot(self):
-        MAINWINDOW.actionLanguage.triggered.connect(self.__sl_ui)
-        MAINWINDOW.actionField.triggered.connect(self.__sf_ui)
-        MAINWINDOW.actionTest_List.triggered.connect(self.__tl_ui)
-        MAINWINDOW.actionCreateExcel.triggered.connect(self.__ce_ui)
+        
+        """
+        Action.triggered.connect = 신호제어를 받기 위해 그 확인 여부로 False 기본값인 Bool 값을 가지고있다, 해당 값은 트리거가 정확한 동작을 수행시 True로 반환
+        """
+        MAINWINDOW.actionLanguage.triggered.connect(partial(self.__sl_ui))
+        MAINWINDOW.actionField.triggered.connect(partial(self.__sf_ui))
+        MAINWINDOW.actionTest_List.triggered.connect(partial(self.__tl_ui))
+        MAINWINDOW.actionCreateExcel.triggered.connect(partial(self.__ce_ui))
 
     # 0726
     @AutomationFunctionDecorator
@@ -40,24 +45,24 @@ class Main(QMainWindow):
         TL.setupUI_TestList()
 
     @AutomationFunctionDecorator
-    def __sl_ui(self):
+    def __sl_ui(self, litter):
         MAINWINDOW.setDisabled(True)
         SL.setLang_Button() # 0728
         SL.show()
 
     @AutomationFunctionDecorator
-    def __sf_ui(self):
+    def __sf_ui(self, litter):
         MAINWINDOW.setDisabled(True)
         SF.show()
     
     @AutomationFunctionDecorator
-    def __tl_ui(self):
+    def __tl_ui(self, litter):
         MAINWINDOW.setDisabled(True)
         TL.setTest_Button()
         TL.show()       
 
     @AutomationFunctionDecorator
-    def __ce_ui(self):
+    def __ce_ui(self, litter):
         MAINWINDOW.setDisabled(True)
         CE.langSetting()
         CE.show()

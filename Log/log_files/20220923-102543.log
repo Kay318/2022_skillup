@@ -1,0 +1,66 @@
+[2022-09-23 10:25:43.733][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-09-23 10:25:43.746][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setupUi 실행 시작
+[2022-09-23 10:25:43.746][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.762][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : set_field 실행 시작
+[2022-09-23 10:25:43.762][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.790][I][AutoBaseFunction.py(wrapper):15] Screen.MainWindow : set_field 실행 종료
+[2022-09-23 10:25:43.791][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setWidget_func 실행 시작
+[2022-09-23 10:25:43.791][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.793][I][AutoBaseFunction.py(wrapper):15] Screen.MainWindow : setWidget_func 실행 종료
+[2022-09-23 10:25:43.795][I][AutoBaseFunction.py(wrapper):15] Screen.MainWindow : setupUi 실행 종료
+[2022-09-23 10:25:43.802][I][AutoBaseFunction.py(wrapper):7] __main__ : __set_slot 실행 시작
+[2022-09-23 10:25:43.803][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.803][I][AutoBaseFunction.py(wrapper):15] __main__ : __set_slot 실행 종료
+[2022-09-23 10:25:43.804][I][AutoBaseFunction.py(wrapper):7] __main__ : __wigets_setupUi 실행 시작
+[2022-09-23 10:25:43.804][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.805][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Language : setupUI_Language 실행 시작
+[2022-09-23 10:25:43.805][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.806][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Language : sl_set_slot 실행 시작
+[2022-09-23 10:25:43.806][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.806][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Language : sl_set_slot 실행 종료
+[2022-09-23 10:25:43.807][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Language : setupUI_Language 실행 종료
+[2022-09-23 10:25:43.807][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-09-23 10:25:43.807][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.808][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-09-23 10:25:43.808][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.809][I][AutoBaseFunction.py(wrapper):15] Screen.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-09-23 10:25:43.809][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-09-23 10:25:43.810][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.810][I][AutoBaseFunction.py(wrapper):15] Screen.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-09-23 10:25:43.811][I][AutoBaseFunction.py(wrapper):15] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-09-23 10:25:43.811][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : setupUI_Field 실행 시작
+[2022-09-23 10:25:43.811][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.812][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-23 10:25:43.812][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:43.813][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : set_data 실행 종료
+[2022-09-23 10:25:44.064][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-23 10:25:44.064][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.064][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : set_data 실행 종료
+[2022-09-23 10:25:44.065][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-23 10:25:44.065][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.066][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : set_data 실행 종료
+[2022-09-23 10:25:44.066][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-23 10:25:44.066][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.067][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : set_data 실행 종료
+[2022-09-23 10:25:44.067][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-23 10:25:44.067][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.068][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : set_data 실행 종료
+[2022-09-23 10:25:44.068][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-09-23 10:25:44.068][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.069][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : set_data 실행 종료
+[2022-09-23 10:25:44.069][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : sl_set_slot 실행 시작
+[2022-09-23 10:25:44.069][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.069][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : sl_set_slot 실행 종료
+[2022-09-23 10:25:44.070][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_Field : setupUI_Field 실행 종료
+[2022-09-23 10:25:44.070][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_TestList : setupUI_TestList 실행 시작
+[2022-09-23 10:25:44.070][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.071][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_TestList : btn_set_slot 실행 시작
+[2022-09-23 10:25:44.071][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.071][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_TestList : btn_set_slot 실행 종료
+[2022-09-23 10:25:44.072][I][AutoBaseFunction.py(wrapper):15] Screen.Setup_TestList : setupUI_TestList 실행 종료
+[2022-09-23 10:25:44.072][I][AutoBaseFunction.py(wrapper):15] __main__ : __wigets_setupUi 실행 종료
+[2022-09-23 10:25:44.905][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : update_open_menu 실행 시작
+[2022-09-23 10:25:44.906][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-09-23 10:25:44.907][I][AutoBaseFunction.py(wrapper):15] Screen.MainWindow : update_open_menu 실행 종료
+[2022-09-23 10:25:46.016][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : show_imgList 실행 시작
+[2022-09-23 10:25:46.016][I][AutoBaseFunction.py(wrapper):8] Parameter : ('한국어', 'D:/test/TestList_CSV/2022_skillup'), True, True
