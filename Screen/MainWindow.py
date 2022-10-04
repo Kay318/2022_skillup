@@ -47,12 +47,18 @@ class MainWindow(QMainWindow, DBManager):
     def setupUi(self):
         
         self.widget = QWidget()
-        self.win_setWidth = GetSystemMetrics(0) - 300
-        self.win_setHeight = GetSystemMetrics(1) - 200
+
+        # 해상도 받아옴
+        screen = QDesktopWidget().screenGeometry()
+
+        # 해상도에 따라 창 크기 설정
+        main_width = screen.width() / 1.5
+        main_height = screen.height() / 1.5
+        main_left = (screen.width() - main_width) / 2
+        main_top = (screen.height() - main_height) / 2
+        self.setGeometry(main_left, main_top, main_width, main_height)
         
-        self.resize(self.win_setWidth, self.win_setHeight)
         self.setWindowTitle("다국어 자동화")
-        self.setWindowIcon(QIcon("web-removebg-preview.png"))
 
         # 전체 화면 배치
         self.horizontalLayout = QHBoxLayout(self.widget)
@@ -88,8 +94,8 @@ class MainWindow(QMainWindow, DBManager):
         self.right_imgBtn.clicked.connect(partial(self.btn_onClicked, target_bool = True))
 
         self.img_Label = QLabel()
-        self.img_Label_width = self.win_setWidth - self.win_setWidth/5
-        self.img_Label_height = self.win_setHeight - self.win_setHeight/5
+        self.img_Label_width = main_width - main_width/5
+        self.img_Label_height = main_height - main_height/5
 
         self.img_Label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.img_Label.setMinimumWidth(self.img_Label_width)
@@ -357,7 +363,7 @@ class MainWindow(QMainWindow, DBManager):
         self.menu.addAction(self.actionClose)
         self.actionClose.triggered.connect(self.closeEvent) # close이벤트
 
-    @AutomationFunctionDecorator
+    # @AutomationFunctionDecorator
     def save_result(self, litter):
         # self.result에 값 저장하고 기존 데이타 삭제하기
         """
@@ -368,18 +374,18 @@ class MainWindow(QMainWindow, DBManager):
 
         query = f"CREATE TABLE IF NOT EXISTS '{self.clicked_lang}' ('이미지' TEXT,"
         for i, col in enumerate(self.setupList):
-            if i != len(self.setupList) - 1:
-                query += f"'{col}' TEXT,"
-            else:
-                query += f"'{col}' TEXT)"
+            query += f"'{col}' TEXT,"
+        query += "'버전정보' TEXT)"
         
         self.c.execute(query)
 
         self.c.execute(f"DELETE FROM {self.clicked_lang}")
-        for i in self.result:
+        question_marks = ", ".join(['?' for _ in range(len(result_data.keys()))])
+        print(type(question_marks))
+        for i in self.result.values():
             try:
-                self.dbConn.execute(f"INSERT INTO Setup_Language VALUES (?, ?)", 
-                        (globals()[f'lang_lineEdit{i}'].text(), globals()[f'dir_lineEdit{i}'].text()))
+                self.dbConn.execute(f"INSERT INTO {self.clicked_lang} VALUES ({question_marks})", 
+                        (tuple(i.values())))
                 self.dbConn.commit()
             except RuntimeError:
                 continue
@@ -535,7 +541,7 @@ class MainWindow(QMainWindow, DBManager):
             if option is True:
                 globals()[f'desc_LineEdit{i}'].clear()
 
-        result_data["버전 정보"] = self.version_textEdit.toPlainText()
+        result_data["버전 정보"] = self.version_textEdit.toPlainText().replace("\n", "&CHAR(10)&")
         return result_data
 
     @AutomationFunctionDecorator

@@ -24,6 +24,7 @@ class UI_Setup_Language(QWidget, DBManager):
     def __init__(self, mainwindow):
         super().__init__()
         self.start = True
+        self.sp = sp.Settings()
         self.mainwin = mainwindow
 
     @AutomationFunctionDecorator

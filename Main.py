@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtGui import QIcon
 import sys
 
 from Log import LogManager
@@ -73,5 +74,6 @@ def Init():
 if __name__ == "__main__":
     Init()
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon("modim1.png"))
     myWindow = Main()
     app.exec_()
