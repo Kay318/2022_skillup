@@ -363,7 +363,6 @@ class MainWindow(QMainWindow, DBManager):
         self.menu.addAction(self.actionClose)
         self.actionClose.triggered.connect(self.closeEvent) # close이벤트
 
-    # @AutomationFunctionDecorator
     def save_result(self, litter):
         # self.result에 값 저장하고 기존 데이타 삭제하기
         """
@@ -392,7 +391,6 @@ class MainWindow(QMainWindow, DBManager):
 
         print(self.result)
 
-    @AutomationFunctionDecorator
     def qbutton_clicked(self, state, idx, button, litter):
 
         def set_color():
@@ -640,25 +638,33 @@ class MainWindow(QMainWindow, DBManager):
         except:
             pass
     
-    @AutomationFunctionDecorator
+    # @AutomationFunctionDecorator
     def btn_onClicked(self, target_bool):
         
         if (len(self.imgList) != 0) :
             self.left_imgBtn.setEnabled(True)
             self.right_imgBtn.setEnabled(True)
-            print(f"x : {self.idx}")
+            
+            play = None
+
             if (target_bool):
                 self.idx = self.idx + 1
+                play = True
             else:
                 self.idx = self.idx - 1
-            if (self.idx <= 0):
+                play = True
+
+            if (self.idx < 0):
                 self.idx = 0
                 self.left_imgBtn.setEnabled(False)
-            elif (self.idx >= len(self.qbuttons) - 1):
+                play = False
+            elif (self.idx > len(self.qbuttons) - 1):
                 self.idx = len(self.qbuttons) - 1
                 self.right_imgBtn.setEnabled(False)
-            print(f"y : {self.idx}")
-            self.qbutton_clicked(state=None, idx = self.idx, button=self.qbuttons.get(self.idx))
+                play = False
+            
+            if (play):
+                self.qbutton_clicked(state=None, idx = self.idx, button=self.qbuttons.get(self.idx), litter=None)
 
     # 0728
     
@@ -691,25 +697,17 @@ class MainWindow(QMainWindow, DBManager):
     # # 0728
     # # 키보드 설정
     # 
-    # def keyReleaseEvent(self, a0: QKeyEvent) -> None:
+    @AutomationFunctionDecorator
+    def keyReleaseEvent(self, a0: QKeyEvent) -> None:
 
-    #     def test():
-    #         for i in int("dkfk"):
-    #             print(i)
-    #     VERVUAL_NATIVE_LEFTKEY = 37
-    #     VERVUAL_NATIVE_RIGHTKEY = 39
+        VERVUAL_NATIVE_LEFTKEY = 37
+        VERVUAL_NATIVE_RIGHTKEY = 39
 
-    #     if a0.nativeVirtualKey() == VERVUAL_NATIVE_LEFTKEY:
-    #             self.btn_onClicked(False)
+        if a0.nativeVirtualKey() == VERVUAL_NATIVE_LEFTKEY:
+                self.btn_onClicked(False)
             
-    #     elif a0.nativeVirtualKey() == VERVUAL_NATIVE_RIGHTKEY:
-    #         self.btn_onClicked(True)
-
-    #     else:
-    #         try:
-    #             raise getLog.Interupt
-    #         except getLog.Interupt as di:
-    #             print(di)
+        elif a0.nativeVirtualKey() == VERVUAL_NATIVE_RIGHTKEY:
+            self.btn_onClicked(True)
                 
 class QPushButtonIcon(QPushButton):
     

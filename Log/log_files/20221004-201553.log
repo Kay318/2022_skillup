@@ -1,0 +1,354 @@
+[2022-10-04 20:15:53.214][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-10-04 20:15:53.240][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : setupUi 실행 시작
+[2022-10-04 20:15:53.240][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.244][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : set_field 실행 시작
+[2022-10-04 20:15:53.244][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.306][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : set_field 실행 종료
+[2022-10-04 20:15:53.307][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : setWidget_func 실행 시작
+[2022-10-04 20:15:53.307][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.309][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : setWidget_func 실행 종료
+[2022-10-04 20:15:53.312][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : setupUi 실행 종료
+[2022-10-04 20:15:53.328][I][AutoBaseFunction.py(wrapper):10] __main__ : __set_slot 실행 시작
+[2022-10-04 20:15:53.328][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.329][I][AutoBaseFunction.py(wrapper):17] __main__ : __set_slot 실행 종료
+[2022-10-04 20:15:53.329][I][AutoBaseFunction.py(wrapper):10] __main__ : __wigets_setupUi 실행 시작
+[2022-10-04 20:15:53.329][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.330][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Language : setupUI_Language 실행 시작
+[2022-10-04 20:15:53.330][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.331][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Language : sl_set_slot 실행 시작
+[2022-10-04 20:15:53.331][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.331][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Language : sl_set_slot 실행 종료
+[2022-10-04 20:15:53.331][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Language : setupUI_Language 실행 종료
+[2022-10-04 20:15:53.332][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-10-04 20:15:53.332][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.333][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-10-04 20:15:53.333][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.333][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-10-04 20:15:53.333][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-10-04 20:15:53.334][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.334][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-10-04 20:15:53.334][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-10-04 20:15:53.335][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : setupUI_Field 실행 시작
+[2022-10-04 20:15:53.335][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.336][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 20:15:53.337][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.337][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 20:15:53.583][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 20:15:53.583][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.584][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 20:15:53.584][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 20:15:53.584][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.585][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 20:15:53.585][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 20:15:53.586][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.586][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 20:15:53.586][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 20:15:53.587][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.587][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 20:15:53.587][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 20:15:53.588][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.588][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 20:15:53.588][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : sl_set_slot 실행 시작
+[2022-10-04 20:15:53.589][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.589][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : sl_set_slot 실행 종료
+[2022-10-04 20:15:53.589][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : setupUI_Field 실행 종료
+[2022-10-04 20:15:53.589][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_TestList : setupUI_TestList 실행 시작
+[2022-10-04 20:15:53.590][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.591][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_TestList : btn_set_slot 실행 시작
+[2022-10-04 20:15:53.591][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:15:53.591][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_TestList : btn_set_slot 실행 종료
+[2022-10-04 20:15:53.592][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_TestList : setupUI_TestList 실행 종료
+[2022-10-04 20:15:53.592][I][AutoBaseFunction.py(wrapper):17] __main__ : __wigets_setupUi 실행 종료
+[2022-10-04 20:16:09.652][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : update_open_menu 실행 시작
+[2022-10-04 20:16:09.653][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:16:09.656][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : update_open_menu 실행 종료
+[2022-10-04 20:16:11.427][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : show_imgList 실행 시작
+[2022-10-04 20:16:11.428][I][AutoBaseFunction.py(wrapper):11] Parameter : ('한국어', 'D:/test/TestList_CSV/2022_skillup-master'), True, True
+[2022-10-04 20:16:11.517][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : show_imgList 실행 종료
+[2022-10-04 20:16:12.843][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : allPass_clicked 실행 시작
+[2022-10-04 20:16:12.843][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-04 20:16:12.843][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : allPass_clicked 실행 종료
+[2022-10-04 20:16:14.921][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:14.921][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:14.922][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:14.969][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:14.970][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:14.970][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:15.001][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:15.002][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:15.002][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:18.298][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:18.299][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:18.299][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:18.506][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:18.506][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:18.507][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:18.682][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:18.682][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:18.683][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:18.746][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:18.747][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:18.747][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:19.113][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:19.113][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:19.113][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:19.689][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:19.689][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:19.690][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:19.881][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:19.881][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:19.882][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:20.042][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:20.042][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:20.043][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:20.138][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:20.138][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:20.139][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:20.282][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:20.282][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:20.283][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:20.745][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:20.745][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:20.745][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:20.955][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:20.955][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:20.956][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:21.081][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:21.081][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:21.081][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:21.145][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:21.146][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:21.146][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:21.418][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:21.418][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:21.418][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:23.785][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:23.785][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:23.788][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:25.193][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : allFail_clicked 실행 시작
+[2022-10-04 20:16:25.194][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-04 20:16:25.194][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : allFail_clicked 실행 종료
+[2022-10-04 20:16:26.618][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:26.618][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:26.618][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:26.825][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:26.825][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:26.825][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:27.067][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:27.067][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:27.067][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:27.177][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:27.178][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:27.178][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:27.738][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:27.738][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:27.739][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:29.337][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:29.338][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:29.338][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:29.529][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:29.529][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:29.530][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:29.706][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:29.707][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:29.707][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:29.800][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:29.801][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:29.801][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:30.154][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:30.155][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:30.155][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:30.714][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:30.714][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:30.714][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:30.905][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:30.905][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:30.906][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:31.081][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:31.081][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:31.082][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:31.209][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:31.210][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:31.210][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:31.482][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:31.482][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:31.483][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:33.466][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:33.466][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:33.469][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:33.978][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : allNT_clicked 실행 시작
+[2022-10-04 20:16:33.978][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-04 20:16:33.978][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : allNT_clicked 실행 종료
+[2022-10-04 20:16:35.241][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:35.242][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:35.242][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:35.417][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:35.417][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:35.418][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:35.673][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:35.673][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:35.673][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:36.233][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:36.233][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:36.233][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:36.426][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:36.426][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:36.427][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:36.553][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:36.554][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:36.554][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:37.642][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:37.642][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:37.642][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:37.865][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:37.865][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:37.865][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:38.041][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:38.042][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:38.042][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:39.626][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:39.626][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:39.629][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:40.681][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : allNA_clicked 실행 시작
+[2022-10-04 20:16:40.681][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-04 20:16:40.682][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : allNA_clicked 실행 종료
+[2022-10-04 20:16:41.912][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:41.913][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:41.913][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:42.121][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:42.122][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:42.122][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:42.266][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:42.266][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:42.267][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:42.361][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:42.361][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:42.361][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:42.969][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:42.970][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:42.970][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:43.577][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:43.578][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:43.578][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:43.801][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:43.802][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:43.802][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:43.945][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:43.945][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:43.946][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:44.024][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:44.025][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:44.025][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:44.634][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:44.634][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:44.635][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:45.577][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:45.577][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:45.578][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:45.801][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:45.801][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:45.801][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:45.994][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:45.995][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:45.995][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:46.057][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:46.057][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:46.058][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:46.313][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:46.314][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:46.314][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:47.786][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:47.786][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:47.789][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:52.873][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:52.873][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:52.874][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:53.033][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:53.033][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:53.034][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:53.226][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:53.226][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:53.226][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:54.120][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:54.120][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:54.121][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:54.330][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:54.330][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:54.331][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:54.442][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:54.442][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:54.442][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:54.857][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:54.857][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:54.857][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:55.049][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:55.049][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:55.049][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:55.289][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:55.289][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2708>
+[2022-10-04 20:16:55.290][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:57.815][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:57.815][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2D38>
+[2022-10-04 20:16:57.815][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:57.816][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:16:57.816][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F49C2D38>
+[2022-10-04 20:16:57.816][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:16:59.378][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : update_open_menu 실행 시작
+[2022-10-04 20:16:59.378][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-04 20:16:59.380][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : update_open_menu 실행 종료
+[2022-10-04 20:17:00.266][I][AutoBaseFunction.py(wrapper):10] __main__ : __ce_ui 실행 시작
+[2022-10-04 20:17:00.267][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-04 20:17:00.286][I][AutoBaseFunction.py(wrapper):17] __main__ : __ce_ui 실행 종료
+[2022-10-04 20:17:02.251][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : folder_toolButton_clicked 실행 시작
+[2022-10-04 20:17:02.251][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtWidgets.QLineEdit object at 0x00000134F4915438>, False
+[2022-10-04 20:17:04.800][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : folder_toolButton_clicked 실행 종료
+[2022-10-04 20:17:12.674][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : func_check 실행 시작
+[2022-10-04 20:17:12.674][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-04 20:17:12.750][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : func_check 실행 종료
+[2022-10-04 20:18:03.955][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:03.955][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:03.956][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:03.956][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:03.956][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:03.956][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:05.254][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:05.254][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:05.254][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:06.098][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:06.099][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:06.099][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:06.983][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:06.983][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:06.983][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:07.805][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:07.805][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:07.806][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:08.664][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:08.665][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:08.665][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:09.466][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:09.467][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:09.467][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:10.339][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:10.339][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:10.340][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:11.251][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:11.251][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:11.252][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:12.223][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:12.223][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:12.224][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:13.057][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:13.057][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:13.057][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:14.060][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:14.061][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:14.061][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:14.925][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:14.925][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:14.926][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:14.926][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : keyReleaseEvent 실행 시작
+[2022-10-04 20:18:14.926][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QKeyEvent object at 0x00000134F520BE58>
+[2022-10-04 20:18:14.927][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : keyReleaseEvent 실행 종료
+[2022-10-04 20:18:14.927][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : closeEvent 실행 시작
+[2022-10-04 20:18:14.927][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x00000134F520BE58>

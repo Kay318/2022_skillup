@@ -77,7 +77,7 @@ class UI_Setup_Language(QWidget, DBManager):
 
     @AutomationFunctionDecorator
     def sl_set_slot(self):
-        self.addLang_Button.clicked.connect(partial(self.addLang_Button_clicked, btn_data = None))
+        self.addLang_Button.clicked.connect(partial(self.addLang_Button_clicked, btn_data = "", btn_value = None))
         self.ok_Button.clicked.connect(partial(self.ok_Button_clicked))
         self.cancel_Button.clicked.connect(partial(self.close))
 
@@ -130,10 +130,10 @@ class UI_Setup_Language(QWidget, DBManager):
             for data in dataList: # 여기수정
 
                 print(f"data = {data}")
-                self.addLang_Button_clicked(data, dataList[data])
+                self.addLang_Button_clicked(btn_data=data, btn_value=dataList[data], litter=None)
 
     # 0728
-    def addLang_Button_clicked(self, btn_data, btn_value):
+    def addLang_Button_clicked(self, litter, btn_data, btn_value):
 
         lang_line_text = ""
         dir_line_text = ""
@@ -316,11 +316,10 @@ class UI_Setup_Language(QWidget, DBManager):
         
         KEY_ENTER = 16777220
         KEY_SUB_ENTER = 16777221
-        KEY_ENTER = 16777216
 
         print (f"a0.key() : {a0.key()}")
         if a0.key() == KEY_ENTER or a0.key() == KEY_SUB_ENTER:
-            self.ok_Button_clicked()
+            self.ok_Button_clicked(None)
         elif a0.key == KEY_ENTER:
             self.close()
 

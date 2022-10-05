@@ -84,7 +84,7 @@ class UI_TestList(QWidget, DBManager):
 
     @AutomationFunctionDecorator
     def btn_set_slot(self):
-        self.addTest_Button.clicked.connect(partial(self.addTest_Button_clicked, val = None)) # 0719
+        self.addTest_Button.clicked.connect(partial(self.addTest_Button_clicked, val = "", litter = None)) # 0719
         self.ok_Button.clicked.connect(partial(self.ok_Button_clicked))
         self.cancel_Button.clicked.connect(partial(self.cancel_Button_clicked))
 
@@ -119,13 +119,12 @@ class UI_TestList(QWidget, DBManager):
 
         for val in List:
             print(f'val {val}')
-            self.addTest_Button_clicked(val= val)
+            self.addTest_Button_clicked(val= val, litter=None)
         
         self.setup_Button_lenght = self.verticalLayout.count()
         print(f"self.setup_Button_lenght : {self.setup_Button_lenght}")
 
-    # @AutomationFunctionDecorator
-    def addTest_Button_clicked(self, val):
+    def addTest_Button_clicked(self, val, litter):
 
         self.TestList_scrollArea.setWidget(self.TestList_scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.TestList_scrollArea)
@@ -277,11 +276,10 @@ class UI_TestList(QWidget, DBManager):
         
         KEY_ENTER = 16777220
         KEY_SUB_ENTER = 16777221
-        KEY_ENTER = 16777216
 
         print (f"a0.key() : {a0.key()}")
         if a0.key() == KEY_ENTER or a0.key() == KEY_SUB_ENTER:
-            self.ok_Button_clicked()
+            self.ok_Button_clicked(None)
         elif a0.key == KEY_ENTER:
             self.cancel_Button_clicked()
 
