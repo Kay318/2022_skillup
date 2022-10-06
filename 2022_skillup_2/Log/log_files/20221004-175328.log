@@ -1,0 +1,348 @@
+[2022-10-04 17:53:28.972][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-10-04 17:53:28.998][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setupUi 실행 시작
+[2022-10-04 17:53:28.998][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.002][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : set_field 실행 시작
+[2022-10-04 17:53:29.002][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.039][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : set_field 실행 종료
+[2022-10-04 17:53:29.039][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : setWidget_func 실행 시작
+[2022-10-04 17:53:29.040][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.042][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : setWidget_func 실행 종료
+[2022-10-04 17:53:29.044][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : setupUi 실행 종료
+[2022-10-04 17:53:29.051][I][AutoBaseFunction.py(wrapper):7] __main__ : __set_slot 실행 시작
+[2022-10-04 17:53:29.051][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.052][I][AutoBaseFunction.py(wrapper):14] __main__ : __set_slot 실행 종료
+[2022-10-04 17:53:29.052][I][AutoBaseFunction.py(wrapper):7] __main__ : __wigets_setupUi 실행 시작
+[2022-10-04 17:53:29.052][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.053][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Language : setupUI_Language 실행 시작
+[2022-10-04 17:53:29.053][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.053][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Language : sl_set_slot 실행 시작
+[2022-10-04 17:53:29.054][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.054][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Language : sl_set_slot 실행 종료
+[2022-10-04 17:53:29.054][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Language : setupUI_Language 실행 종료
+[2022-10-04 17:53:29.055][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-10-04 17:53:29.055][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.056][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-10-04 17:53:29.056][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.057][I][AutoBaseFunction.py(wrapper):14] Screen.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-10-04 17:53:29.057][I][AutoBaseFunction.py(wrapper):7] Screen.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-10-04 17:53:29.057][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.058][I][AutoBaseFunction.py(wrapper):14] Screen.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-10-04 17:53:29.058][I][AutoBaseFunction.py(wrapper):14] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-10-04 17:53:29.059][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : setupUI_Field 실행 시작
+[2022-10-04 17:53:29.059][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.061][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 17:53:29.061][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.062][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 17:53:29.298][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 17:53:29.298][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.299][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 17:53:29.299][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 17:53:29.299][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.300][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 17:53:29.300][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 17:53:29.300][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.301][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 17:53:29.301][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 17:53:29.301][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.302][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 17:53:29.302][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : set_data 실행 시작
+[2022-10-04 17:53:29.302][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.302][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : set_data 실행 종료
+[2022-10-04 17:53:29.302][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_Field : sl_set_slot 실행 시작
+[2022-10-04 17:53:29.303][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.303][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : sl_set_slot 실행 종료
+[2022-10-04 17:53:29.303][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_Field : setupUI_Field 실행 종료
+[2022-10-04 17:53:29.303][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_TestList : setupUI_TestList 실행 시작
+[2022-10-04 17:53:29.303][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.304][I][AutoBaseFunction.py(wrapper):7] Screen.Setup_TestList : btn_set_slot 실행 시작
+[2022-10-04 17:53:29.305][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:29.305][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_TestList : btn_set_slot 실행 종료
+[2022-10-04 17:53:29.305][I][AutoBaseFunction.py(wrapper):14] Screen.Setup_TestList : setupUI_TestList 실행 종료
+[2022-10-04 17:53:29.306][I][AutoBaseFunction.py(wrapper):14] __main__ : __wigets_setupUi 실행 종료
+[2022-10-04 17:53:30.222][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : update_open_menu 실행 시작
+[2022-10-04 17:53:30.222][I][AutoBaseFunction.py(wrapper):8] Parameter : 
+[2022-10-04 17:53:30.224][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : update_open_menu 실행 종료
+[2022-10-04 17:53:31.181][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : show_imgList 실행 시작
+[2022-10-04 17:53:31.181][I][AutoBaseFunction.py(wrapper):8] Parameter : ('한국어', 'D:/test/TestList_CSV/2022_skillup-master'), True, True
+[2022-10-04 17:53:31.274][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : show_imgList 실행 종료
+[2022-10-04 17:53:32.394][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:32.394][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:32.395][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:32.585][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:32.586][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:32.586][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:32.697][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:32.697][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:32.698][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:32.825][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:32.826][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:32.826][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:32.969][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:32.970][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:32.970][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:33.129][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:33.129][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:33.130][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:33.289][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:33.289][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:33.290][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:33.450][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:33.450][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:33.451][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:33.609][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:33.609][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:33.610][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:33.754][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:33.754][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:33.754][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:33.913][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:33.913][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:33.914][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:34.042][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:34.042][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:34.043][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:34.169][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:34.169][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:34.170][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:34.361][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:34.361][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:34.362][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:34.570][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:34.570][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:34.570][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:35.162][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:35.162][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:35.165][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:35.321][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:35.322][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:35.324][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:35.481][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:35.481][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:35.483][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:35.641][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:35.642][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:35.644][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:35.801][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:35.802][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:35.804][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:35.978][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:35.978][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:35.980][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:36.138][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:36.138][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:36.141][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:36.298][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:36.298][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:36.301][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:36.473][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:36.473][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:36.474][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:36.633][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:36.634][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:36.634][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:36.810][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:36.811][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:36.811][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:36.969][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:36.970][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:36.970][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:37.130][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:37.130][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:37.131][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:37.306][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:37.306][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:37.306][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:37.513][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:37.514][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:37.514][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:37.657][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:37.658][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:37.659][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:37.817][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:37.817][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:37.820][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:37.977][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:37.977][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:37.981][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:38.137][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:38.137][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:38.140][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:38.298][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:38.298][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:38.301][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:38.457][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:38.457][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:38.460][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:38.601][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:38.602][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:38.604][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:38.730][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:38.730][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:38.733][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:38.858][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:38.859][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:38.859][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:39.098][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:39.098][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:39.099][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:39.241][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:39.242][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:39.242][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:39.418][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:39.418][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:39.420][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:39.561][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:39.562][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:39.565][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:39.737][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:39.738][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:39.740][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:39.898][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:39.898][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:39.901][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.042][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.042][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.045][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.185][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.186][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.188][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.329][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.329][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.332][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.473][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.474][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.476][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.617][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.618][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.618][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.778][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.778][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.779][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:40.937][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:40.938][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:40.938][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:41.097][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:41.097][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:41.098][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:41.225][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:41.226][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:41.226][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:41.483][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:41.483][I][AutoBaseFunction.py(wrapper):8] Parameter : True
+[2022-10-04 17:53:41.483][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:41.625][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:41.626][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:41.627][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:41.753][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:41.754][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:41.756][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:41.897][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:41.898][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:41.900][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.057][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.058][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.060][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.201][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.202][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.204][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.361][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.362][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.365][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.505][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.505][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.508][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.681][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.682][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.685][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.841][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.842][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.842][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:42.984][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:42.985][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:42.985][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:43.162][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:43.162][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:43.162][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:43.305][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:43.306][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:43.306][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:43.465][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:43.466][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:43.466][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:43.609][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:43.610][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:43.610][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:43.785][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:43.786][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:43.786][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:43.962][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:43.963][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:43.963][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:44.489][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:44.490][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:44.490][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:44.634][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:44.635][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:44.635][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:44.793][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:44.793][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:44.794][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:44.954][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:44.954][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:44.954][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:45.114][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:45.114][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:45.115][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:45.241][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:45.242][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:45.242][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:45.401][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:45.401][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:45.402][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:45.561][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:45.562][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:45.562][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:45.721][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:45.721][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:45.722][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:45.865][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:45.866][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:45.866][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.009][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.009][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.010][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.169][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.170][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.170][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.313][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.313][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.314][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.457][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.458][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.458][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.603][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.603][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.603][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.745][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.745][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.746][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:46.905][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:46.906][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:46.906][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:47.049][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:47.049][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:47.050][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:47.194][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:47.194][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:47.195][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:47.353][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:47.354][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:47.354][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:47.465][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:47.465][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:47.466][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:47.641][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : btn_onClicked 실행 시작
+[2022-10-04 17:53:47.642][I][AutoBaseFunction.py(wrapper):8] Parameter : False
+[2022-10-04 17:53:47.642][I][AutoBaseFunction.py(wrapper):14] Screen.MainWindow : btn_onClicked 실행 종료
+[2022-10-04 17:53:59.961][I][AutoBaseFunction.py(wrapper):7] Screen.MainWindow : closeEvent 실행 시작
+[2022-10-04 17:53:59.962][I][AutoBaseFunction.py(wrapper):8] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x000002021EA690D8>

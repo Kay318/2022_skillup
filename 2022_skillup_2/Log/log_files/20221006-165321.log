@@ -1,0 +1,6 @@
+[2022-10-06 16:53:21.793][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-10-06 16:53:21.848][I][AutoBaseFunction.py(wrapper):10] __main__ : setupUi 실행 시작
+[2022-10-06 16:53:21.849][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-06 16:53:21.855][I][AutoBaseFunction.py(wrapper):10] __main__ : set_field_gridLayout 실행 시작
+[2022-10-06 16:53:21.856][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-06 16:53:21.903][I][AutoBaseFunction.py(wrapper):17] __main__ : set_field_gridLayout 실행 종료

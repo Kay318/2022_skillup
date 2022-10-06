@@ -1,0 +1,72 @@
+[2022-10-05 11:58:45.223][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-10-05 11:58:45.250][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : setupUi 실행 시작
+[2022-10-05 11:58:45.251][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.256][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : set_field 실행 시작
+[2022-10-05 11:58:45.256][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.283][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : set_field 실행 종료
+[2022-10-05 11:58:45.283][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : setWidget_func 실행 시작
+[2022-10-05 11:58:45.284][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.285][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : setWidget_func 실행 종료
+[2022-10-05 11:58:45.288][I][AutoBaseFunction.py(wrapper):17] Screen.MainWindow : setupUi 실행 종료
+[2022-10-05 11:58:45.295][I][AutoBaseFunction.py(wrapper):10] __main__ : __set_slot 실행 시작
+[2022-10-05 11:58:45.295][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.296][I][AutoBaseFunction.py(wrapper):17] __main__ : __set_slot 실행 종료
+[2022-10-05 11:58:45.296][I][AutoBaseFunction.py(wrapper):10] __main__ : __wigets_setupUi 실행 시작
+[2022-10-05 11:58:45.296][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.297][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Language : setupUI_Language 실행 시작
+[2022-10-05 11:58:45.297][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.298][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Language : sl_set_slot 실행 시작
+[2022-10-05 11:58:45.298][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.299][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Language : sl_set_slot 실행 종료
+[2022-10-05 11:58:45.299][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Language : setupUI_Language 실행 종료
+[2022-10-05 11:58:45.299][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-10-05 11:58:45.299][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.303][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-10-05 11:58:45.303][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.304][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-10-05 11:58:45.304][I][AutoBaseFunction.py(wrapper):10] Screen.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-10-05 11:58:45.304][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.305][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-10-05 11:58:45.305][I][AutoBaseFunction.py(wrapper):17] Screen.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-10-05 11:58:45.305][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : setupUI_Field 실행 시작
+[2022-10-05 11:58:45.306][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.308][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-05 11:58:45.308][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.309][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-05 11:58:45.538][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-05 11:58:45.538][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.539][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-05 11:58:45.540][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-05 11:58:45.540][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.541][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-05 11:58:45.542][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-05 11:58:45.542][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.543][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-05 11:58:45.544][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-05 11:58:45.544][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.545][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-05 11:58:45.545][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : set_data 실행 시작
+[2022-10-05 11:58:45.545][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.546][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : set_data 실행 종료
+[2022-10-05 11:58:45.546][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Field : sl_set_slot 실행 시작
+[2022-10-05 11:58:45.546][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.546][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : sl_set_slot 실행 종료
+[2022-10-05 11:58:45.547][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Field : setupUI_Field 실행 종료
+[2022-10-05 11:58:45.547][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_TestList : setupUI_TestList 실행 시작
+[2022-10-05 11:58:45.547][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.551][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_TestList : btn_set_slot 실행 시작
+[2022-10-05 11:58:45.551][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:45.552][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_TestList : btn_set_slot 실행 종료
+[2022-10-05 11:58:45.552][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_TestList : setupUI_TestList 실행 종료
+[2022-10-05 11:58:45.552][I][AutoBaseFunction.py(wrapper):17] __main__ : __wigets_setupUi 실행 종료
+[2022-10-05 11:58:47.344][I][AutoBaseFunction.py(wrapper):10] __main__ : __sl_ui 실행 시작
+[2022-10-05 11:58:47.344][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-05 11:58:47.345][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Language : setLang_Button 실행 시작
+[2022-10-05 11:58:47.346][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-05 11:58:47.351][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Language : setLang_Button 실행 종료
+[2022-10-05 11:58:47.360][I][AutoBaseFunction.py(wrapper):17] __main__ : __sl_ui 실행 종료
+[2022-10-05 11:58:53.591][I][AutoBaseFunction.py(wrapper):10] Screen.Setup_Language : closeEvent 실행 시작
+[2022-10-05 11:58:53.591][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x000001DF265B2678>
+[2022-10-05 11:58:56.228][I][AutoBaseFunction.py(wrapper):17] Screen.Setup_Language : closeEvent 실행 종료
+[2022-10-05 11:58:57.135][I][AutoBaseFunction.py(wrapper):10] Screen.MainWindow : closeEvent 실행 시작
+[2022-10-05 11:58:57.135][I][AutoBaseFunction.py(wrapper):11] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x000001DF265B2678>

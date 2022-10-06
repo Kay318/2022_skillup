@@ -1,0 +1,25 @@
+[2022-10-06 14:15:35.405][D][LogManager.py(Init):12] LogManager Init function called !!!
+[2022-10-06 14:15:35.459][I][AutoBaseFunction.py(wrapper):10] __main__ : setupUi 실행 시작
+[2022-10-06 14:15:35.460][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-06 14:15:35.465][I][AutoBaseFunction.py(wrapper):10] __main__ : set_field_gridLayout 실행 시작
+[2022-10-06 14:15:35.465][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-06 14:15:35.493][I][AutoBaseFunction.py(wrapper):17] __main__ : set_field_gridLayout 실행 종료
+[2022-10-06 14:15:35.494][I][AutoBaseFunction.py(wrapper):10] __main__ : set_testList_hboxLayout 실행 시작
+[2022-10-06 14:15:35.494][I][AutoBaseFunction.py(wrapper):11] Parameter : 
+[2022-10-06 14:15:35.498][I][AutoBaseFunction.py(wrapper):17] __main__ : set_testList_hboxLayout 실행 종료
+[2022-10-06 14:15:35.499][I][AutoBaseFunction.py(wrapper):17] __main__ : setupUi 실행 종료
+[2022-10-06 14:15:43.579][I][AutoBaseFunction.py(wrapper):10] __main__ : allPass_clicked 실행 시작
+[2022-10-06 14:15:43.579][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-06 14:15:43.580][I][AutoBaseFunction.py(wrapper):17] __main__ : allPass_clicked 실행 종료
+[2022-10-06 14:15:43.938][I][AutoBaseFunction.py(wrapper):10] __main__ : allFail_clicked 실행 시작
+[2022-10-06 14:15:43.939][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-06 14:15:43.939][I][AutoBaseFunction.py(wrapper):17] __main__ : allFail_clicked 실행 종료
+[2022-10-06 14:15:44.489][I][AutoBaseFunction.py(wrapper):10] __main__ : allNT_clicked 실행 시작
+[2022-10-06 14:15:44.490][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-06 14:15:44.491][I][AutoBaseFunction.py(wrapper):17] __main__ : allNT_clicked 실행 종료
+[2022-10-06 14:15:44.930][I][AutoBaseFunction.py(wrapper):10] __main__ : allNA_clicked 실행 시작
+[2022-10-06 14:15:44.931][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-06 14:15:44.932][I][AutoBaseFunction.py(wrapper):17] __main__ : allNA_clicked 실행 종료
+[2022-10-06 14:15:45.281][I][AutoBaseFunction.py(wrapper):10] __main__ : allNull_clicked 실행 시작
+[2022-10-06 14:15:45.282][I][AutoBaseFunction.py(wrapper):11] Parameter : False
+[2022-10-06 14:15:45.282][I][AutoBaseFunction.py(wrapper):17] __main__ : allNull_clicked 실행 종료
