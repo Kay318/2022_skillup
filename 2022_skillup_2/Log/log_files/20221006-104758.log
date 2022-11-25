@@ -1,7 +1,0 @@
-[2022-10-06 10:47:58.183][D][LogManager.py(Init):12] LogManager Init function called !!!
-[2022-10-06 10:47:58.237][I][AutoBaseFunction.py(wrapper):10] __main__ : setupUi 실행 시작
-[2022-10-06 10:47:58.238][I][AutoBaseFunction.py(wrapper):11] Parameter : 
-[2022-10-06 10:47:58.243][I][AutoBaseFunction.py(wrapper):10] __main__ : set_field 실행 시작
-[2022-10-06 10:47:58.243][I][AutoBaseFunction.py(wrapper):11] Parameter : 
-[2022-10-06 10:47:58.244][I][AutoBaseFunction.py(wrapper):17] __main__ : set_field 실행 종료
-[2022-10-06 10:47:58.244][I][AutoBaseFunction.py(wrapper):17] __main__ : setupUi 실행 종료

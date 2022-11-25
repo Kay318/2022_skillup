@@ -1,0 +1,26 @@
+[2022-11-25 16:40:18.221][D][LogManager.py(Init):10] LogManager Init function called !!!
+[2022-11-25 16:40:18.341][I][AutoBaseFunction.py(wrapper):11] __main__ : setupUi 실행 시작
+[2022-11-25 16:40:18.341][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-25 16:40:18.348][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-25 16:40:18.349][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-25 16:40:18.377][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-25 16:40:18.378][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-25 16:40:18.378][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-25 16:40:18.631][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-25 16:40:18.635][I][AutoBaseFunction.py(wrapper):16] __main__ : setupUi 실행 종료
+[2022-11-25 16:40:21.877][I][AutoBaseFunction.py(wrapper):11] __main__ : show_imgList 실행 시작
+[2022-11-25 16:40:21.878][I][AutoBaseFunction.py(wrapper):12] Parameter : 중국어, D:/00.Work/00.Kraken/COM.AUTO.SCRIPT/Tool Project/PAT/Report/20221125-145328/FAIL/TC014.c, <PyQt5.QtWidgets.QAction object at 0x0000016F70CA0D30>, True
+[2022-11-25 16:40:22.743][I][MainWindow.py(show_imgList):777] 이미지 리스트 불러옴, 선택된 언어:중국어, 경로:D:/00.Work/00.Kraken/COM.AUTO.SCRIPT/Tool Project/PAT/Report/20221125-145328/FAIL/TC014.c
+[2022-11-25 16:40:22.763][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-25 16:40:22.763][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-25 16:40:22.763][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-25 16:40:22.764][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-25 16:40:22.764][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-25 16:40:22.765][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-25 16:40:22.766][I][MainWindow.py(show_imgList):870] self.result:{0: {'이미지': 'D:/00.Work/00.Kraken/COM.AUTO.SCRIPT/Tool Project/PAT/Report/20221125-145328/FAIL/TC014.c\\2022-11-25 145331_org.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-25 16:40:22.766][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시2022-11-25 145331_org.png
+[2022-11-25 16:40:22.813][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:D:/00.Work/00.Kraken/COM.AUTO.SCRIPT/Tool Project/PAT/Report/20221125-145328/FAIL/TC014.c\2022-11-25 145331_org.png
+[2022-11-25 16:40:22.813][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-25 16:40:22.814][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-25 16:40:22.814][I][MainWindow.py(show_imgList):876] 이미지 불러온 후 첫번째 버튼 클릭
+[2022-11-25 16:40:22.814][I][AutoBaseFunction.py(wrapper):16] __main__ : show_imgList 실행 종료

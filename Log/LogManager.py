@@ -1,8 +1,6 @@
-import builtins
 import logging
-import traceback
-import atexit
 import os
+import glob
 from pathlib import Path
 from datetime import datetime
 
@@ -40,11 +38,11 @@ def __init_logger():
     streamHandler.setFormatter(formatter)
     logger.addHandler(streamHandler)
     logfile = f"{getTimeStamp()}.log" # 저장할 로그 이름
-    # logpath = f"{Path(__file__).parents[1]}\\log\\kraken" # 저장할 로그 경로
-    logpath =  f"{Path(__file__).parent}\\log_files" # 저장할 로그 경로
+    logpath =  "./Log"  # 저장할 로그 경로
 
     if os.path.isdir(logpath) != True:
         os.makedirs(logpath)
+    removeLog(logpath)      # 로그파일 최대 10개 남김
 
     fileHandler = logging.FileHandler(logpath + '\\' + logfile, encoding='utf-8')
     fileHandler.setFormatter(formatter)
@@ -55,39 +53,46 @@ def __init_logger():
     HLOG = logger
     HLOG.setLevel(logging.DEBUG)
 
-# Try Exception
-class Interupt(Exception):
+def removeLog(logpath):
+    file_list = glob.glob(f"{logpath}/*.log")
+    file_list.sort()
+    if len(file_list) > 9:
+        for file in file_list[:-9]:
+            os.remove(file)
 
-    @atexit.register
-    def __init__(self):
+# # Try Exception
+# class Interupt(Exception):
 
-        self.msg = traceback.format_exc()
-        print(self.msg)
+#     @atexit.register
+#     def __init__(self):
 
-        if self.msg.count("RuntimeError") != 0:
-            self.set_error()
-        elif self.msg.count("RuntimeWarning") != 0:
-            self.set_warning()
-        else:
-            self.set_warn()
+#         self.msg = traceback.format_exc()
+#         print(self.msg)
 
-    @atexit.register
-    def set_error(self):
-        """
-        예외를 발생시키지 않고 에러의 억제를 보고 (가령 장기 실행 서버 프로세스의 에러 처리기)
-        """
-        HLOG.error(f': {self.msg}')
+#         if self.msg.count("RuntimeError") != 0:
+#             self.set_error()
+#         elif self.msg.count("RuntimeWarning") != 0:
+#             self.set_warning()
+#         else:
+#             self.set_warn()
 
-    @atexit.register
-    def set_warn(self):
-        """
-        문제를 피할 수 있고 경고를 제거하기 위해 클라이언트 응용 프로그램이 수정되어야 하는 경우
-        """
-        HLOG.warn(f': {self.msg}')
+#     @atexit.register
+#     def set_error(self):
+#         """
+#         예외를 발생시키지 않고 에러의 억제를 보고 (가령 장기 실행 서버 프로세스의 에러 처리기)
+#         """
+#         HLOG.error(f': {self.msg}')
 
-    @atexit.register
-    def set_warning(self):
-        """
-        클라이언트 응용 프로그램이 할 수 있는 일이 없는 상황이지만 이벤트를 계속 주목해야 하는 경우
-        """
-        HLOG.warning(f': {self.msg}')
+#     @atexit.register
+#     def set_warn(self):
+#         """
+#         문제를 피할 수 있고 경고를 제거하기 위해 클라이언트 응용 프로그램이 수정되어야 하는 경우
+#         """
+#         HLOG.warn(f': {self.msg}')
+
+#     @atexit.register
+#     def set_warning(self):
+#         """
+#         클라이언트 응용 프로그램이 할 수 있는 일이 없는 상황이지만 이벤트를 계속 주목해야 하는 경우
+#         """
+#         HLOG.warning(f': {self.msg}')
