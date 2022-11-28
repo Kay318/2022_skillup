@@ -19,8 +19,6 @@ class UI_CreateExcel(QWidget):
     def __init__(self, mainwindow):
         super().__init__()
         self.mainwin = mainwindow
-        self.new_excel_path = ""
-        self.set_excel_path = ""
 
     @AutomationFunctionDecorator
     def setupUI_CreateExcel(self):
@@ -176,13 +174,13 @@ class UI_CreateExcel(QWidget):
 
         # 엑셀 경로 라벨
         path_hbox = QHBoxLayout()
-        edit_path = QLineEdit()
+        self.new_edit_path = QLineEdit()
         path_btn = QPushButton()
         path_btn.setMaximumWidth(30)
         path_btn.setText("...")
 
-        path_btn.clicked.connect(partial(self.folder_toolButton_clicked, edit_path))
-        path_hbox.addWidget(edit_path)
+        path_btn.clicked.connect(partial(self.folder_toolButton_clicked, self.new_edit_path))
+        path_hbox.addWidget(self.new_edit_path)
         path_hbox.addWidget(path_btn)
 
         self.new_excel_groupBox.setLayout(path_hbox)
@@ -193,14 +191,14 @@ class UI_CreateExcel(QWidget):
 
         # 엑셀 경로 라벨
         path_hbox = QHBoxLayout()
-        edit_path = QLineEdit()
+        self.set_edit_path = QLineEdit()
         path_btn = QPushButton()
         path_btn.setMaximumWidth(30)
         path_btn.setText("...")
         
-        path_btn.clicked.connect(partial(self.langList_toolButton_clicked, edit_path))
+        path_btn.clicked.connect(partial(self.langList_toolButton_clicked, self.set_edit_path))
 
-        path_hbox.addWidget(edit_path)
+        path_hbox.addWidget(self.set_edit_path)
         path_hbox.addWidget(path_btn)
         self.set_excel_groupBox.setLayout(path_hbox)
         self.radio_vbox.addWidget(self.set_excel_groupBox)
@@ -226,8 +224,6 @@ class UI_CreateExcel(QWidget):
 
         edit.setText(str(fileNames))
 
-        self.set_excel_path = fileNames
-
     @AutomationFunctionDecorator
     def folder_toolButton_clicked(self, edit, litter):
         """폴더 경로 불러오기
@@ -237,12 +233,11 @@ class UI_CreateExcel(QWidget):
         """
 
         folderPath = QFileDialog.getExistingDirectory(self, 'Find Folder')
+        path = f'{folderPath}/ExselTest.xlsx'
 
-        print(f"folderPath : {folderPath}")
+        print(f"folderPath : {path}")
 
-        edit.setText(str(folderPath))
-
-        self.new_excel_path = folderPath
+        edit.setText(path)
 
     @AutomationFunctionDecorator
     def func_new_excel_groupBox(self):
@@ -284,12 +279,12 @@ class UI_CreateExcel(QWidget):
                 testBool = True
 
         if testBool:
-            if (self.new_excel_groupBox.isChecked() == True and self.new_excel_path != ""):
-                excelRun(self.new_excel_path, lang_choice_list, True)
+            if (self.new_excel_groupBox.isChecked() == True and self.new_edit_path.text() != ""):
+                excelRun(str(self.new_edit_path.text()), lang_choice_list, True)
                 lang_choice_list.clear()
                 self.close()
-            elif (self.set_excel_groupBox.isChecked() == True and self.set_excel_path != ""):
-                excelRun(self.set_excel_path, lang_choice_list, False)
+            elif (self.set_excel_groupBox.isChecked() == True and self.set_edit_path.text() != ""):
+                excelRun(str(self.set_edit_path.text()), lang_choice_list, False)
                 lang_choice_list.clear()
                 self.close()
             else:

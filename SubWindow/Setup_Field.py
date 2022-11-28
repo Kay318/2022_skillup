@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
 from Helper import *
 from Log import LogManager
-from Database.DB import DBManager
+from DataBase.DB import DBManager
 from Settings import Setup as sp
         
 class Setup_Field(QDialog):

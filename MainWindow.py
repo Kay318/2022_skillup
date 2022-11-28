@@ -22,7 +22,7 @@ from SubWindow.Setup_TestList import Setup_TestList
 from SubWindow.Setup_ExcelSetting import Setup_ExcelSetting
 from SubWindow.Menu_CreateExcel import UI_CreateExcel
 from Helper import *
-from Database.DB import DBManager
+from DataBase.DB import DBManager
 from Log import LogManager
 from Settings import Setup as sp
 
@@ -422,18 +422,7 @@ class MainWindow(QMainWindow):
         self.setEnabled(True)
         LogManager.HLOG.info("평가 목록 설정 팝업 닫힘으로 메인창 활성화")
 
-    def ts_emit(self, testList, newColumns): # updateList
-        if testList != []:
-            if self.result != {}:
-                result_data = self.insert_result()
-                self.result[self.idx] = result_data
-
-            for i in range(self.testList_groupbox_layout.count()):
-                self.testList_groupbox_layout.itemAt(i).widget().deleteLater()
-            if testList != ["OK"]:
-                self.testList = testList
-                LogManager.HLOG.info("엑셀 설정 목록 갱신 완료")
-
+    def ts_emit(self): # updateList
         self.setEnabled(True)
         LogManager.HLOG.info("엑셀 설정 팝업 닫힘으로 메인창 활성화")
         

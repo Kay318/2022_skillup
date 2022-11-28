@@ -9,17 +9,18 @@ import openpyxl as xl
 import win32com.client as win32
 from openpyxl.drawing.image import Image
 from openpyxl.worksheet.worksheet import Worksheet
-from Database.DB import DBManager
+from DataBase.DB import DBManager
 from PIL import Image as IMG
 from Settings import Setup as sp
 import os
 import string
 import time
+from Log import LogManager
 from progressBar import ProgressApp
 from PyQt5.QtCore import QThread, QRunnable, QThreadPool, pyqtSlot, QObject, pyqtSignal, QEventLoop, QTimer
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMessageBox, QWidget
 
-class excelRun(DBManager):
+class excelRun(QWidget ,DBManager):
 
     def __init__(self, save_path, lang_List, new_set_difference) -> None:
         super().__init__()
@@ -27,6 +28,8 @@ class excelRun(DBManager):
         wb = object
         COUNT = 0
         ADD_COUNT = 0
+        self.save_path = save_path
+        print(save_path)
         for lang in lang_List:
             COUNT = COUNT + len(self.imgCellCount(lang= lang))
 
@@ -41,16 +44,48 @@ class excelRun(DBManager):
 
             for i in range(COUNT // 100):
                 COUNT = COUNT + ADD_COUNT
+        
+        if (self.setting_Verification(langList = lang_List)):
+            self.progress_Thread = QThread()
+            self.progress_Thread.start()
+            self.worker = ProgressApp(time=int(COUNT), new_set_difference = new_set_difference, save_path= self.save_path, wb= wb)
+            self.worker.moveToThread(self.progress_Thread)
 
-        self.progress_Thread = QThread()
-        self.progress_Thread.start()
-        self.worker = ProgressApp(time=int(COUNT), new_set_difference = new_set_difference, save_path= save_path, wb= wb)
-        self.worker.moveToThread(self.progress_Thread)
+            self.exModul_Thread = QThread()
+            self.exModul_Thread.start()
+            self.exModuls = excelModul(save_path = self.save_path, lang_List = lang_List, new_set_difference = new_set_difference, wb= wb)
+            self.exModuls.moveToThread(self.exModul_Thread)
 
-        self.exModul_Thread = QThread()
-        self.exModul_Thread.start()
-        self.exModuls = excelModul(save_path = save_path, lang_List = lang_List, new_set_difference = new_set_difference, wb= wb)
-        self.exModuls.moveToThread(self.exModul_Thread)
+    def setting_Verification(self, langList):
+        path = str(os.path.dirname(self.save_path))
+
+        result = False
+        
+        if os.path.isdir(path):
+            result = True
+        else:
+            btnReply = QMessageBox.warning(self, "주의", f"{path} 경로가 존재하지 않습니다.", QMessageBox.Cancel, QMessageBox.Cancel)
+            LogManager.HLOG.info("언어 설정 팝업에서 존재하지 않는 경로 알림 표시")
+            
+            if btnReply == QMessageBox.Cancel:
+                result = False
+                return result
+
+        if result:
+
+            for lang in langList:
+                
+                path = os.path.dirname(self.imgCellCount(lang)[0])
+                if os.path.isdir(path):
+                    result = True
+                else:
+                    btnReply = QMessageBox.warning(self, "주의", f"{self.imgCellCount(lang)[0]} 경로가 존재하지 않습니다.", QMessageBox.Cancel, QMessageBox.Cancel)
+                    LogManager.HLOG.info("언어 설정 팝업에서 존재하지 않는 경로 알림 표시")
+                    if btnReply == QMessageBox.Cancel:
+                        result = False
+                        return result
+    
+        return result
 
     def imgCellCount(self, lang) -> List:
         """
@@ -59,7 +94,7 @@ class excelRun(DBManager):
         3. 이미지 개수를 확인하고 : return 해당경로를 순서대로 List 반환
         """
 
-        self.c.execute(f'SELECT * FROM {lang}')
+        self.c.execute(f"SELECT * FROM '{lang}'")
         dataList = self.c.fetchall()
     
         idx = 0 # "평가결과저장된데이터중 경로위치"
