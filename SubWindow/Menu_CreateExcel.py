@@ -269,21 +269,33 @@ class UI_CreateExcel(QWidget):
 
         dataList, none = self.sp.read_setup(table = "Language")
 
+        testBool = False
+
         lang_choice_list = []
 
         for val in dataList:
             if (globals()[f'checkBox_{val}'].isChecked() == True):
                 lang_choice_list.append(val)
+        
+        
+        for idx in range(len(self.lang_data_vbox)):
+            
+            if self.lang_data_vbox.itemAt(idx).widget().isChecked() == True:
+                testBool = True
 
-        if (self.new_excel_groupBox.isChecked() == True):
-
-            excelRun(self.new_excel_path, lang_choice_list, True)
+        if testBool:
+            if (self.new_excel_groupBox.isChecked() == True and self.new_excel_path != ""):
+                excelRun(self.new_excel_path, lang_choice_list, True)
+                lang_choice_list.clear()
+                self.close()
+            elif (self.set_excel_groupBox.isChecked() == True and self.set_excel_path != ""):
+                excelRun(self.set_excel_path, lang_choice_list, False)
+                lang_choice_list.clear()
+                self.close()
+            else:
+                QMessageBox.warning(self, '주의', '경로를 지정해주세요.')
         else:
-            excelRun(self.set_excel_path, lang_choice_list, False)
-
-        lang_choice_list.clear()
-
-        self.close()
+            QMessageBox.warning(self, '주의', '평가목록을 선택해주세요.')
 
     @AutomationFunctionDecorator
     def func_cencel(self, litter):

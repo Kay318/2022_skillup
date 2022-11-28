@@ -1,0 +1,51 @@
+[2022-11-28 11:08:45.181][D][LogManager.py(Init):10] LogManager Init function called !!!
+[2022-11-28 11:08:45.303][I][AutoBaseFunction.py(wrapper):11] __main__ : setupUi 실행 시작
+[2022-11-28 11:08:45.303][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:45.307][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-28 11:08:45.308][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:45.347][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-28 11:08:45.348][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-28 11:08:45.348][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:45.636][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-28 11:08:45.640][I][AutoBaseFunction.py(wrapper):16] __main__ : setupUi 실행 종료
+[2022-11-28 11:08:48.951][I][AutoBaseFunction.py(wrapper):11] __main__ : __ce_ui 실행 시작
+[2022-11-28 11:08:48.951][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:08:48.952][I][AutoBaseFunction.py(wrapper):11] __main__ : setupUi 실행 시작
+[2022-11-28 11:08:48.952][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:48.953][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-28 11:08:48.953][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:48.954][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-28 11:08:48.954][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-28 11:08:48.954][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:48.955][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-28 11:08:48.957][I][AutoBaseFunction.py(wrapper):16] __main__ : setupUi 실행 종료
+[2022-11-28 11:08:48.957][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-11-28 11:08:48.958][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:48.958][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-11-28 11:08:48.958][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:48.958][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-11-28 11:08:48.959][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-11-28 11:08:48.959][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:08:48.959][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-11-28 11:08:48.959][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-11-28 11:08:48.979][I][AutoBaseFunction.py(wrapper):16] __main__ : __ce_ui 실행 종료
+[2022-11-28 11:08:50.893][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : folder_toolButton_clicked 실행 시작
+[2022-11-28 11:08:50.893][I][AutoBaseFunction.py(wrapper):12] Parameter : <PyQt5.QtWidgets.QLineEdit object at 0x000002A1FE992B00>, False
+[2022-11-28 11:08:54.267][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : folder_toolButton_clicked 실행 종료
+[2022-11-28 11:08:59.180][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : func_check_run 실행 시작
+[2022-11-28 11:08:59.180][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:09:00.204][E][AutoBaseFunction.py(wrapper):19] Traceback (most recent call last):
+  File "d:\Skillup\2022_skillup\Helper\AutoBaseFunction.py", line 15, in wrapper
+    func(self, *args)
+  File "d:\Skillup\2022_skillup\SubWindow\Menu_CreateExcel.py", line 288, in func_check_run
+    excelRun(self.new_excel_path, lang_choice_list, True)
+  File "d:\Skillup\2022_skillup\SubWindow\excel_control.py", line 52, in __init__
+    self.exModuls = excelModul(save_path = save_path, lang_List = lang_List, new_set_difference = new_set_difference, wb= wb)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Skillup\2022_skillup\SubWindow\excel_control.py", line 105, in __init__
+    self.excel_setup()
+  File "d:\Skillup\2022_skillup\SubWindow\excel_control.py", line 169, in excel_setup
+    self.IMG_WIDTHSIZE = int(excel_setList[0]) # 이미지 가로 크기
+                             ~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+

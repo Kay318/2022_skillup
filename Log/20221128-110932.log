@@ -1,0 +1,166 @@
+[2022-11-28 11:09:32.894][D][LogManager.py(Init):10] LogManager Init function called !!!
+[2022-11-28 11:09:33.017][I][AutoBaseFunction.py(wrapper):11] __main__ : setupUi 실행 시작
+[2022-11-28 11:09:33.017][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:33.020][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-28 11:09:33.021][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:33.048][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-28 11:09:33.049][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-28 11:09:33.050][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:33.297][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-28 11:09:33.299][I][AutoBaseFunction.py(wrapper):16] __main__ : setupUi 실행 종료
+[2022-11-28 11:09:36.772][I][AutoBaseFunction.py(wrapper):11] __main__ : __ce_ui 실행 시작
+[2022-11-28 11:09:36.773][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:09:36.774][I][AutoBaseFunction.py(wrapper):11] __main__ : setupUi 실행 시작
+[2022-11-28 11:09:36.774][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:36.775][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-28 11:09:36.776][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:36.776][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-28 11:09:36.777][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-28 11:09:36.777][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:36.778][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-28 11:09:36.780][I][AutoBaseFunction.py(wrapper):16] __main__ : setupUi 실행 종료
+[2022-11-28 11:09:36.781][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : setupUI_CreateExcel 실행 시작
+[2022-11-28 11:09:36.781][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:36.781][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : new_excel_func 실행 시작
+[2022-11-28 11:09:36.781][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:36.782][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : new_excel_func 실행 종료
+[2022-11-28 11:09:36.782][I][AutoBaseFunction.py(wrapper):11] SubWindow.Menu_CreateExcel : set_excel_func 실행 시작
+[2022-11-28 11:09:36.782][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:09:36.782][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : set_excel_func 실행 종료
+[2022-11-28 11:09:36.783][I][AutoBaseFunction.py(wrapper):16] SubWindow.Menu_CreateExcel : setupUI_CreateExcel 실행 종료
+[2022-11-28 11:09:36.804][I][AutoBaseFunction.py(wrapper):16] __main__ : __ce_ui 실행 종료
+[2022-11-28 11:10:47.669][I][AutoBaseFunction.py(wrapper):11] __main__ : show_setup_Language 실행 시작
+[2022-11-28 11:10:47.670][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:10:47.670][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : setupUI_Language 실행 시작
+[2022-11-28 11:10:47.671][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:10:47.671][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : setLang_Button 실행 시작
+[2022-11-28 11:10:47.672][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:10:47.673][I][Setup_Language.py(setLang_Button):101] ['중국어', '독일어'], ['D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c', 'D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221115-171239/PASS/IBD_usage_guidanceEndInfo_destCoordinate__coord.c'] 기준으로 창에 표시하기 시작
+[2022-11-28 11:10:47.673][I][Setup_Language.py(addLang_Button_clicked):151] 중국어, D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c 추가됨
+[2022-11-28 11:10:47.674][I][Setup_Language.py(addLang_Button_clicked):151] 독일어, D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221115-171239/PASS/IBD_usage_guidanceEndInfo_destCoordinate__coord.c 추가됨
+[2022-11-28 11:10:47.674][I][Setup_Language.py(setLang_Button):105] ['중국어', '독일어'], ['D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c', 'D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221115-171239/PASS/IBD_usage_guidanceEndInfo_destCoordinate__coord.c'] 기준으로 창에 표시 완료
+[2022-11-28 11:10:47.674][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : setLang_Button 실행 종료
+[2022-11-28 11:10:47.675][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : sl_set_slot 실행 시작
+[2022-11-28 11:10:47.675][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:10:47.675][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : sl_set_slot 실행 종료
+[2022-11-28 11:10:47.675][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : setupUI_Language 실행 종료
+[2022-11-28 11:10:47.683][I][MainWindow.py(show_setup_Language):299] 언어 설정 팝업 열림
+[2022-11-28 11:10:47.683][I][AutoBaseFunction.py(wrapper):16] __main__ : show_setup_Language 실행 종료
+[2022-11-28 11:10:53.764][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : closeEvent 실행 시작
+[2022-11-28 11:10:53.764][I][AutoBaseFunction.py(wrapper):12] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x0000019305E23EB0>
+[2022-11-28 11:10:53.765][I][Setup_Language.py(closeEvent):249] 언어 설정 팝업 취소 버튼 선택
+[2022-11-28 11:10:53.766][I][MainWindow.py(sl_emit):343] 언어 설정 팝업 닫힘으로 메인창 활성화
+[2022-11-28 11:10:53.766][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : closeEvent 실행 종료
+[2022-11-28 11:10:59.629][I][AutoBaseFunction.py(wrapper):11] __main__ : show_imgList 실행 시작
+[2022-11-28 11:10:59.629][I][AutoBaseFunction.py(wrapper):12] Parameter : 중국어, D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c, <PyQt5.QtWidgets.QAction object at 0x0000019305DB2CB0>, True
+[2022-11-28 11:11:03.311][I][AutoBaseFunction.py(wrapper):11] __main__ : show_setup_Language 실행 시작
+[2022-11-28 11:11:03.311][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:11:03.312][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : setupUI_Language 실행 시작
+[2022-11-28 11:11:03.312][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:11:03.313][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : setLang_Button 실행 시작
+[2022-11-28 11:11:03.313][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:11:03.314][I][Setup_Language.py(setLang_Button):101] ['중국어', '독일어'], ['D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c', 'D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221115-171239/PASS/IBD_usage_guidanceEndInfo_destCoordinate__coord.c'] 기준으로 창에 표시하기 시작
+[2022-11-28 11:11:03.315][I][Setup_Language.py(addLang_Button_clicked):151] 중국어, D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c 추가됨
+[2022-11-28 11:11:03.315][I][Setup_Language.py(addLang_Button_clicked):151] 독일어, D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221115-171239/PASS/IBD_usage_guidanceEndInfo_destCoordinate__coord.c 추가됨
+[2022-11-28 11:11:03.315][I][Setup_Language.py(setLang_Button):105] ['중국어', '독일어'], ['D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221116-135824/FAIL/IBD_usage_search_directionToSelectedPoi__.c', 'D:/00.Work/00.Kraken/com.auto.script/Tool Project/PAT/Report/20221115-171239/PASS/IBD_usage_guidanceEndInfo_destCoordinate__coord.c'] 기준으로 창에 표시 완료
+[2022-11-28 11:11:03.316][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : setLang_Button 실행 종료
+[2022-11-28 11:11:03.316][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : sl_set_slot 실행 시작
+[2022-11-28 11:11:03.316][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:11:03.316][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : sl_set_slot 실행 종료
+[2022-11-28 11:11:03.316][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : setupUI_Language 실행 종료
+[2022-11-28 11:11:03.324][I][MainWindow.py(show_setup_Language):299] 언어 설정 팝업 열림
+[2022-11-28 11:11:03.324][I][AutoBaseFunction.py(wrapper):16] __main__ : show_setup_Language 실행 종료
+[2022-11-28 11:11:03.324][I][AutoBaseFunction.py(wrapper):16] __main__ : show_imgList 실행 종료
+[2022-11-28 11:12:46.191][I][Setup_Language.py(langList_toolButton_clicked):181] 이미지 폴더:D:/Skillup/2022_skillup 설정
+[2022-11-28 11:12:48.628][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : ok_Button_clicked 실행 시작
+[2022-11-28 11:12:48.629][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:12:48.629][I][Setup_Language.py(ok_Button_clicked):190] 언어 설정 팝업 확인 버튼 선택
+[2022-11-28 11:12:50.072][I][Setup_Language.py(ok_Button_clicked):229] 언어 설정 팝업에서 존재하지 않는 경로 알림 표시
+[2022-11-28 11:12:50.073][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : ok_Button_clicked 실행 종료
+[2022-11-28 11:12:56.184][I][Setup_Language.py(langList_toolButton_clicked):181] 이미지 폴더:C:/Users/9350816/Desktop 설정
+[2022-11-28 11:12:56.843][I][AutoBaseFunction.py(wrapper):11] SubWindow.Setup_Language : ok_Button_clicked 실행 시작
+[2022-11-28 11:12:56.844][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:12:56.844][I][Setup_Language.py(ok_Button_clicked):190] 언어 설정 팝업 확인 버튼 선택
+[2022-11-28 11:12:56.846][I][Setup_Language.py(ok_Button_clicked):239] 언어 설정 팝업에 중국어, D:/Skillup/2022_skillup 추가
+[2022-11-28 11:12:56.848][I][Setup_Language.py(ok_Button_clicked):239] 언어 설정 팝업에 독일어, C:/Users/9350816/Desktop 추가
+[2022-11-28 11:12:56.848][I][MainWindow.py(sl_emit):330] 퀵메뉴 clear
+[2022-11-28 11:12:56.851][I][MainWindow.py(sl_emit):341] 퀵메뉴 갱신 완료
+[2022-11-28 11:12:56.851][I][MainWindow.py(sl_emit):343] 언어 설정 팝업 닫힘으로 메인창 활성화
+[2022-11-28 11:12:56.855][I][AutoBaseFunction.py(wrapper):16] SubWindow.Setup_Language : ok_Button_clicked 실행 종료
+[2022-11-28 11:12:59.734][I][AutoBaseFunction.py(wrapper):11] __main__ : show_imgList 실행 시작
+[2022-11-28 11:12:59.734][I][AutoBaseFunction.py(wrapper):12] Parameter : 중국어, D:/Skillup/2022_skillup, <PyQt5.QtWidgets.QAction object at 0x0000019305E34C10>, True
+[2022-11-28 11:13:01.232][I][AutoBaseFunction.py(wrapper):16] __main__ : show_imgList 실행 종료
+[2022-11-28 11:13:03.326][I][AutoBaseFunction.py(wrapper):11] __main__ : show_imgList 실행 시작
+[2022-11-28 11:13:03.328][I][AutoBaseFunction.py(wrapper):12] Parameter : 독일어, C:/Users/9350816/Desktop, <PyQt5.QtWidgets.QAction object at 0x0000019305E34B80>, True
+[2022-11-28 11:13:06.204][I][MainWindow.py(show_imgList):777] 이미지 리스트 불러옴, 선택된 언어:독일어, 경로:C:/Users/9350816/Desktop
+[2022-11-28 11:13:06.229][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-28 11:13:06.229][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:13:06.230][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-28 11:13:06.230][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-28 11:13:06.230][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-28 11:13:06.231][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-28 11:13:06.231][I][MainWindow.py(show_imgList):870] self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:06.232][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시log.png
+[2022-11-28 11:13:06.294][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\log.png
+[2022-11-28 11:13:06.294][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:06.294][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:06.294][I][MainWindow.py(show_imgList):876] 이미지 불러온 후 첫번째 버튼 클릭
+[2022-11-28 11:13:06.294][I][AutoBaseFunction.py(wrapper):16] __main__ : show_imgList 실행 종료
+[2022-11-28 11:13:07.508][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시다국어 자동화.png
+[2022-11-28 11:13:07.509][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\다국어 자동화.png
+[2022-11-28 11:13:07.510][I][MainWindow.py(qbutton_clicked):646] 다른 이미지 클릭으로 이전 이미지 결과 저장함, self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:07.510][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:07.510][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:07.510][I][MainWindow.py(set_color):600] 색상처리를 위한 변수 result_count:{'pre_idx': ['', '', ''], 'idx': ['', '', '']}, pre_idx:0, idx:1
+[2022-11-28 11:13:07.510][I][MainWindow.py(set_color):621] 이전 버튼에 대한 색상 처리 완료
+[2022-11-28 11:13:07.884][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시log.png
+[2022-11-28 11:13:07.886][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\log.png
+[2022-11-28 11:13:07.887][I][MainWindow.py(qbutton_clicked):646] 다른 이미지 클릭으로 이전 이미지 결과 저장함, self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:07.888][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:07.888][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:07.888][I][MainWindow.py(set_color):600] 색상처리를 위한 변수 result_count:{'pre_idx': ['', '', ''], 'idx': ['', '', '']}, pre_idx:1, idx:0
+[2022-11-28 11:13:07.888][I][MainWindow.py(set_color):621] 이전 버튼에 대한 색상 처리 완료
+[2022-11-28 11:13:09.613][I][AutoBaseFunction.py(wrapper):11] __main__ : __allPass_clicked 실행 시작
+[2022-11-28 11:13:09.613][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:13:09.613][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시다국어 자동화.png
+[2022-11-28 11:13:09.614][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\다국어 자동화.png
+[2022-11-28 11:13:09.615][I][MainWindow.py(qbutton_clicked):646] 다른 이미지 클릭으로 이전 이미지 결과 저장함, self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': 'PASS', '테스트8': 'PASS', '테스트9': 'PASS', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': '', '테스트8': '', '테스트9': '', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:09.615][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:09.615][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:09.616][I][MainWindow.py(set_color):600] 색상처리를 위한 변수 result_count:{'pre_idx': ['PASS', 'PASS', 'PASS'], 'idx': ['', '', '']}, pre_idx:0, idx:1
+[2022-11-28 11:13:09.616][I][MainWindow.py(set_color):621] 이전 버튼에 대한 색상 처리 완료
+[2022-11-28 11:13:09.616][I][AutoBaseFunction.py(wrapper):16] __main__ : __allPass_clicked 실행 종료
+[2022-11-28 11:13:10.117][I][AutoBaseFunction.py(wrapper):11] __main__ : __allFail_clicked 실행 시작
+[2022-11-28 11:13:10.117][I][AutoBaseFunction.py(wrapper):12] Parameter : False
+[2022-11-28 11:13:10.118][I][AutoBaseFunction.py(wrapper):16] __main__ : __allFail_clicked 실행 종료
+[2022-11-28 11:13:11.651][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시log.png
+[2022-11-28 11:13:11.654][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\log.png
+[2022-11-28 11:13:11.654][I][MainWindow.py(qbutton_clicked):646] 다른 이미지 클릭으로 이전 이미지 결과 저장함, self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': 'PASS', '테스트8': 'PASS', '테스트9': 'PASS', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': 'FAIL', '테스트8': 'FAIL', '테스트9': 'FAIL', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:11.654][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:11.654][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:11.655][I][MainWindow.py(set_color):600] 색상처리를 위한 변수 result_count:{'pre_idx': ['FAIL', 'FAIL', 'FAIL'], 'idx': ['PASS', 'PASS', 'PASS']}, pre_idx:1, idx:0
+[2022-11-28 11:13:11.655][I][MainWindow.py(set_color):621] 이전 버튼에 대한 색상 처리 완료
+[2022-11-28 11:13:14.060][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시log.png
+[2022-11-28 11:13:14.061][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\log.png
+[2022-11-28 11:13:14.062][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:14.062][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:14.420][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시다국어 자동화.png
+[2022-11-28 11:13:14.421][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\다국어 자동화.png
+[2022-11-28 11:13:14.422][I][MainWindow.py(qbutton_clicked):646] 다른 이미지 클릭으로 이전 이미지 결과 저장함, self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': 'PASS', '테스트8': 'PASS', '테스트9': 'PASS', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': 'FAIL', '테스트8': 'FAIL', '테스트9': 'FAIL', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:14.422][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:14.422][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:14.423][I][MainWindow.py(set_color):600] 색상처리를 위한 변수 result_count:{'pre_idx': ['PASS', 'PASS', 'PASS'], 'idx': ['FAIL', 'FAIL', 'FAIL']}, pre_idx:0, idx:1
+[2022-11-28 11:13:14.423][I][MainWindow.py(set_color):621] 이전 버튼에 대한 색상 처리 완료
+[2022-11-28 11:13:14.804][I][MainWindow.py(qbutton_clicked):629] statusbar에 이미지명 표시log.png
+[2022-11-28 11:13:14.805][I][MainWindow.py(qbutton_clicked):636] 우측에 이미지 표시:C:/Users/9350816/Desktop\log.png
+[2022-11-28 11:13:14.805][I][MainWindow.py(qbutton_clicked):646] 다른 이미지 클릭으로 이전 이미지 결과 저장함, self.result:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': 'PASS', '테스트8': 'PASS', '테스트9': 'PASS', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': 'FAIL', '테스트8': 'FAIL', '테스트9': 'FAIL', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:14.805][I][MainWindow.py(set_color):587] 이전 버튼 색상 초기화:rgb(225, 225, 225)
+[2022-11-28 11:13:14.806][I][MainWindow.py(set_color):589] 현재 버튼 색상: 보라색,#cc79a7
+[2022-11-28 11:13:14.806][I][MainWindow.py(set_color):600] 색상처리를 위한 변수 result_count:{'pre_idx': ['FAIL', 'FAIL', 'FAIL'], 'idx': ['PASS', 'PASS', 'PASS']}, pre_idx:1, idx:0
+[2022-11-28 11:13:14.806][I][MainWindow.py(set_color):621] 이전 버튼에 대한 색상 처리 완료
+[2022-11-28 11:13:15.346][I][MainWindow.py(save_result):1006] 독일어 테이블 삭제
+[2022-11-28 11:13:15.346][I][MainWindow.py(save_result):1014] 평가결과 저장 query:CREATE TABLE IF NOT EXISTS '독일어' ('이미지' TEXT,'테스트6' TEXT,'테스트8' TEXT,'테스트9' TEXT,'이미지 설명' TEXT,'Scripts' TEXT,'3' TEXT,'버전정보' TEXT)
+[2022-11-28 11:13:15.453][I][MainWindow.py(save_result):1019] 저장할 평가결과:{0: {'이미지': 'C:/Users/9350816/Desktop\\log.png', '테스트6': 'PASS', '테스트8': 'PASS', '테스트9': 'PASS', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}, 1: {'이미지': 'C:/Users/9350816/Desktop\\다국어 자동화.png', '테스트6': 'FAIL', '테스트8': 'FAIL', '테스트9': 'FAIL', '이미지 설명': '', 'Scripts': '', '3': '', '버전 정보': ''}}
+[2022-11-28 11:13:16.748][I][AutoBaseFunction.py(wrapper):11] __main__ : closeEvent 실행 시작
+[2022-11-28 11:13:16.748][I][AutoBaseFunction.py(wrapper):12] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x0000019307D0C0D0>
+[2022-11-28 11:13:16.749][I][AutoBaseFunction.py(wrapper):16] __main__ : closeEvent 실행 종료

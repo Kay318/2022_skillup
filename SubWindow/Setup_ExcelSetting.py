@@ -125,51 +125,70 @@ class Setup_ExcelSetting(QDialog):
     def ok_Button_clicked(self, litter):
         LogManager.HLOG.info("엑셀 설정 팝업 확인 버튼 선택")
         testList = []
+        testCheck = False
 
         # 중복 체크
         for i in range(5):
             if globals()[f'lineEdit{i}'].text() != "":
-                if globals()[f'lineEdit{i}'].text() in ["%", "'", "{", "}", ":", ";"]:
-                    QMessageBox.warning(self, '주의', '["%", "\'", "\{", "\}", ":", ";"] 특수문자는 사용할 수 없습니다.')
-                    LogManager.HLOG.info(f'평가목록 설정 팝업에서 특수문자 알림 표시')
+
+                text = globals()[f'label{i}'].text()
+                intBool = False
+                try:
+                    int(globals()[f'lineEdit{i}'].text())
+                    intBool = True
+                except:
+                    QMessageBox.warning(self, '주의', f'{text} 수치를 숫자형태로 지정해주세요.')
+                    intBool = False
                     return
 
-                if len(globals()[f'lineEdit{i}'].text()) > 25:
-                    QMessageBox.warning(self, '주의', '최대 길이는 25자입니다.')
-                    LogManager.HLOG.info(f'평가목록 설정 팝업에서 최대 길이 알림 표시')
-                    return
-
-                if globals()[f'lineEdit{i}'].text() not in testList:
-                    testList.append(globals()[f'lineEdit{i}'].text())
-                else:
-                    QMessageBox.warning(self, '주의', '중복 라인이 있습니다.')
-                    LogManager.HLOG.info("평가 목록 팝업에서 중복 라인 알림 표시")
-                    return
-
-                if globals()[f'lineEdit{i}'].text() in self.fieldList:
-                    x = globals()[f'lineEdit{i}'].text()
-                    QMessageBox.warning(self, '주의', f'"{x}"는 필드에도 있습니다.')
-                    LogManager.HLOG.info(f'평가 목록 팝업과 필드 설정 팝업에서 "{x}" 겹침 알림 표시')
-                    return
-
+                if (intBool):
+                    if 0 > int(globals()[f'lineEdit{0}'].text()) or int(globals()[f'lineEdit{0}'].text()) > 999:
+                        text = globals()[f'label{0}'].text()
+                        QMessageBox.warning(self, '주의', f'{text} 0에서 1000자 사이여야 합니다.')
+                        testCheck = False
+                        return
+                    elif 0 > int(globals()[f'lineEdit{1}'].text()) or int(globals()[f'lineEdit{1}'].text()) > 999:
+                        text = globals()[f'label{1}'].text()
+                        QMessageBox.warning(self, '주의', f'{text} 0에서 1000자 사이여야 합니다.')
+                        testCheck = False
+                        return
+                    elif 0 > int(globals()[f'lineEdit{2}'].text()) or int(globals()[f'lineEdit{2}'].text()) > 409:
+                        QMessageBox.warning(self, '주의', '엑셀 이미지 행 너비는 0에서 409자 사이여야 합니다.')
+                        testCheck = False
+                        return
+                    elif 0 > int(globals()[f'lineEdit{3}'].text()) or int(globals()[f'lineEdit{3}'].text()) > 255:
+                        QMessageBox.warning(self, '주의', '엑셀 열 너비는 0에서 255자 사이여야 합니다.')
+                        LogManager.HLOG.info(f'엑셀설정 팝업에서 엑셀 열 크기 제한 알림 표시')
+                        testCheck = False
+                        return
+                    elif 0 > int(globals()[f'lineEdit{4}'].text()) or int(globals()[f'lineEdit{4}'].text()) > 409:
+                        QMessageBox.warning(self, '주의', '엑셀 행 너비는 0에서 409자 사이여야 합니다.')
+                        LogManager.HLOG.info(f'엑셀설정 팝업에서 엑셀 행 너비 제한 알림 표시')
+                        testCheck = False
+                        return
+                    else:
+                        testCheck = True
             else:
+                text = globals()[f'label{i}'].text()
+                QMessageBox.warning(self, '주의', f'{text} 수치가 비어있습니다.')
                 return
         else:
             self.signal.emit([], [])
             self.destroy()
 
-        self.sp.config["Excel_Setting"] = {}
-        for i in range(5):
-            if globals()[f'lineEdit{i}'].text() != "":
-                self.sp.write_setup(table = "Excel_Setting", 
-                                    count=None, 
-                                    val=self.start_settings[i],
-                                    val2=globals()[f'lineEdit{i}'].text())
-                LogManager.HLOG.info(f"{i+1}:평가 목록 팝업에 {globals()[f'lineEdit{i}'].text()} 추가")
-        if testList == []:
-            testList = ["OK"]
-            self.sp.clear_table("Excel_Setting")
-        self.destroy()
+        if (testCheck):
+            self.sp.config["Excel_Setting"] = {}
+            for i in range(5):
+                if globals()[f'lineEdit{i}'].text() != "":
+                    self.sp.write_setup(table = "Excel_Setting", 
+                                        count=None, 
+                                        val=self.start_settings[i],
+                                        val2=globals()[f'lineEdit{i}'].text())
+                    LogManager.HLOG.info(f"{i+1}:평가 목록 팝업에 {globals()[f'lineEdit{i}'].text()} 추가")
+            if testList == []:
+                testList = ["OK"]
+                self.sp.clear_table("Excel_Setting")
+            self.destroy()
 
     def check_changedData(self):
         """변경사항이 있는지 체크하는 함수
