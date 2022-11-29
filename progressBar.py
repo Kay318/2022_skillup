@@ -17,7 +17,7 @@ class ProgressApp(QDialog):
 
         self.numberVar = time
 
-        self.setWindowTitle('QProgressBar')
+        self.setWindowTitle('진행도')
         self.setFixedSize(230, 150)
         self.pbar = QProgressBar(self)
         self.pbar.setGeometry(30, 40, 200, 25)
@@ -60,7 +60,8 @@ class ProgressApp(QDialog):
 
     def closeEvent(self, a0) -> None:
         if self.difference and self.save_Bool:
-            self.wb.save(f'{self.path}\\excelTest.xlsx')
+            self.wb.save(self.path)
+            QApplication.processEvents()
 
         import os
         path = os.path.realpath(os.getcwd())

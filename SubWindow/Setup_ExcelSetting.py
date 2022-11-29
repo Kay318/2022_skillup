@@ -112,13 +112,13 @@ class Setup_ExcelSetting(QDialog):
                     QMessageBox.warning(self, '주의', f'{text} 수치를 숫자형태로 지정해주세요.')
                     return
 
-                if 100 > int(globals()[f'lineEdit{0}'].text()) or int(globals()[f'lineEdit{0}'].text()) > 1000:
+                if 310 > int(globals()[f'lineEdit{0}'].text()) or int(globals()[f'lineEdit{0}'].text()) > 569:
                     text = globals()[f'label{0}'].text()
-                    QMessageBox.warning(self, '주의', f'{text} 100에서 1000 사이여야 합니다.')
+                    QMessageBox.warning(self, '주의', f'{text} 310에서 569 사이여야 합니다.')
                     return
-                elif 50 > int(globals()[f'lineEdit{1}'].text()) or int(globals()[f'lineEdit{1}'].text()) > 300:
+                elif 100 > int(globals()[f'lineEdit{1}'].text()) or int(globals()[f'lineEdit{1}'].text()) > 400:
                     text = globals()[f'label{1}'].text()
-                    QMessageBox.warning(self, '주의', f'{text} 50에서 300 사이여야 합니다.')
+                    QMessageBox.warning(self, '주의', f'{text} 100에서 400 사이여야 합니다.')
                     return
                 elif 0 > int(globals()[f'lineEdit{2}'].text()) or int(globals()[f'lineEdit{2}'].text()) > 10:
                     text = globals()[f'label{2}'].text()

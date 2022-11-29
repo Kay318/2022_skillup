@@ -1,0 +1,13 @@
+[2022-11-29 10:40:05.642][D][LogManager.py(Init):10] LogManager Init function called !!!
+[2022-11-29 10:40:05.791][I][AutoBaseFunction.py(wrapper):11] __main__ : setupUi 실행 시작
+[2022-11-29 10:40:05.791][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-29 10:40:05.795][I][AutoBaseFunction.py(wrapper):11] __main__ : set_field_gridLayout 실행 시작
+[2022-11-29 10:40:05.796][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-29 10:40:05.824][I][AutoBaseFunction.py(wrapper):16] __main__ : set_field_gridLayout 실행 종료
+[2022-11-29 10:40:05.825][I][AutoBaseFunction.py(wrapper):11] __main__ : set_testList_hboxLayout 실행 시작
+[2022-11-29 10:40:05.825][I][AutoBaseFunction.py(wrapper):12] Parameter : 
+[2022-11-29 10:40:06.084][I][AutoBaseFunction.py(wrapper):16] __main__ : set_testList_hboxLayout 실행 종료
+[2022-11-29 10:40:06.088][I][AutoBaseFunction.py(wrapper):16] __main__ : setupUi 실행 종료
+[2022-11-29 10:40:08.095][I][AutoBaseFunction.py(wrapper):11] __main__ : closeEvent 실행 시작
+[2022-11-29 10:40:08.096][I][AutoBaseFunction.py(wrapper):12] Parameter : <PyQt5.QtGui.QCloseEvent object at 0x000001081BE732E0>
+[2022-11-29 10:40:08.096][I][AutoBaseFunction.py(wrapper):16] __main__ : closeEvent 실행 종료

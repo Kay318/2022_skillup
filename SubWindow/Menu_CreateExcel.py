@@ -233,7 +233,7 @@ class UI_CreateExcel(QWidget):
         """
 
         folderPath = QFileDialog.getExistingDirectory(self, 'Find Folder')
-        path = f'{folderPath}/ExselTest.xlsx'
+        path = f'{folderPath}/다국어자동화.xlsx'
 
         print(f"folderPath : {path}")
 

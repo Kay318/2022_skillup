@@ -118,11 +118,13 @@ class excelModul(QObject, DBManager):
         QTimer.singleShot(1000, loop.quit)
 
         # 초기설정
-        self.IMG_WIDTHSIZE = None # 이미지 가로 크기
-        self.IMG_HEIGHTSIZE = None # 이미지 세로 크기
-        self.IMG_SHEET_HEIGHTSIZE = None # 이미지 셀 행 크기
-        self.SHEET_WIDTHSIZE = None # 시트 셀 기본 열 크기
-        self.SHEET_HEIGHTSIZE = None # 시트 셀 기본 행 크기
+        self.IMG_WIDTHSIZE = 400 # 이미지 넓이
+        self.IMG_HEIGHTSIZE = 150 # 이미지 높이
+        self.SHEET_WIDTHSIZE = None # 필드 넓이
+        self.SHEET_HEIGHTSIZE = None # 필드 높이
+        self.IMG_SHEET_HEIGHTSIZE = 115 # 이미지 간격
+        self.IMG_Interval = None # 이미지 간격
+        self.IMG_FAINAL_WIDTH = 50
         self.SHEET_WIDTH_SHORTSIZE = 15 # 시트 열 기본 작은 크기
         self.TABLE_CELL_COLOR = 43 # 테이블 컬러
         
@@ -201,12 +203,25 @@ class excelModul(QObject, DBManager):
     def excel_setup(self):
         excel_setList, _ = self.sp.read_setup(table = "Excel_Setting")
 
-        self.IMG_WIDTHSIZE = int(excel_setList[0]) # 이미지 가로 크기
-        self.IMG_HEIGHTSIZE = int(excel_setList[1]) # 이미지 세로 크기
-        self.IMG_SHEET_HEIGHTSIZE = int(excel_setList[2]) # 이미지 셀 행 크기
-        self.SHEET_WIDTHSIZE = int(excel_setList[3]) # 시트 셀 기본 열 크기
-        self.SHEET_HEIGHTSIZE = int(excel_setList[4]) # 시트 셀 기본 행 크기
+        self.IMG_WIDTHSIZE = (int(excel_setList[0]) // 10) * 10 # 이미지 넓이
+        self.IMG_HEIGHTSIZE = (int(excel_setList[1]) // 10) * 10 # 이미지 높이
+        self.IMG_Interval = int(excel_setList[2]) # 이미지 간격
+        self.SHEET_WIDTHSIZE = int(excel_setList[3]) # 필드 넓이
+        self.SHEET_HEIGHTSIZE = int(excel_setList[4]) # 평가 목록 넓이
         
+        width = 0
+        if self.IMG_WIDTHSIZE <= 380:
+            width = 400 - self. IMG_WIDTHSIZE
+            width = width // 100 + 0.8
+        # 310 ~ 569
+        elif self.IMG_WIDTHSIZE >= 420:
+            width = self. IMG_WIDTHSIZE - 400 
+            width = width // 120 - 0.9
+            width = - width
+
+        self.IMG_FAINAL_WIDTH = self.IMG_WIDTHSIZE // 8 + width # 하기와 같이 수정 필요 제한 크기사항도 필요
+        self.IMG_SHEET_HEIGHTSIZE = self.IMG_HEIGHTSIZE // 5 * 4 # 하기와 같이 수정 필요 제한 크기사항도 필요
+
 
     def create_imgCellCount(self, lang) -> List:
         """
@@ -215,7 +230,7 @@ class excelModul(QObject, DBManager):
         3. 이미지 개수를 확인하고 : return 해당경로를 순서대로 List 반환
         """
 
-        self.c.execute(f'SELECT * FROM {lang}')
+        self.c.execute(f"SELECT * FROM '{lang}'")
         dataList = self.c.fetchall()
     
         idx = 0 # "평가결과저장된데이터중 경로위치"
@@ -237,7 +252,7 @@ class excelModul(QObject, DBManager):
         3. 이미지 개수를 확인하고 : return 해당경로를 순서대로 List 반환
         """
 
-        self.c.execute(f'SELECT * FROM {lang}')
+        self.c.execute(f"SELECT * FROM '{lang}'")
         dataList = self.c.fetchall()
         print(f'{dataList[sequence]} : {dataList[sequence][columns]}')
 
@@ -250,7 +265,7 @@ class excelModul(QObject, DBManager):
         3. 이미지 개수를 확인하고 : return 해당경로를 순서대로 List 반환
         """
 
-        self.c.execute(f'SELECT * FROM {lang}')
+        self.c.execute(f"SELECT * FROM '{lang}'")
         dataList = self.c.fetchall()
 
         return dataList[sequence]
@@ -367,7 +382,9 @@ class excelModul(QObject, DBManager):
                 else:
                     active.column_dimensions[self.column[i]].width = self.SHEET_WIDTH_SHORTSIZE
             else:
-                if (i == 0 or i > len(self.evaluation_len(key="Test_List"))):
+                if i == 0:
+                    active.column_dimensions[self.column[0]].width = self.IMG_FAINAL_WIDTH
+                elif (i == 1 or i > len(self.evaluation_len(key="Test_List"))):
                     active.column_dimensions[self.column[i]].width = self.SHEET_WIDTHSIZE
                 else:
                     active.column_dimensions[self.column[i]].width = self.SHEET_WIDTH_SHORTSIZE
@@ -398,6 +415,7 @@ class excelModul(QObject, DBManager):
                                         color='000000'))
                 time.sleep(0.005)
                 QApplication.processEvents()
+        print(f'upperEXIT')
 
 
     def set_Win32com_cellStyle(self, ws : object, terget : int, cell_idx : int, heightSize : int):

@@ -45,6 +45,7 @@ class MainWindow(QMainWindow):
         self.result = {}                         # 매 이미지에 대한 결과값 저장
         self.clicked_lang = ""                   # 선택된 언어
         self.pre_lang = ""                       # 그전에 선택된 언어
+        self.pre_langPath = ""                   # 그전에 선택된 언어
         self.pre_subMenu = None                  # 메뉴바에서 그전에 선택된 언어 subMenu
         self.nextImg_bool = True                 # 다음 이미지로 넘어갈지 판단
         self.first_index_in_sql = None           # DB에 첫번째 이미지 결과가 있는지 판단
@@ -709,7 +710,7 @@ class MainWindow(QMainWindow):
             lang : 현재 선택된 언어
         """
         
-        if lang != self.pre_lang:
+        if lang != self.pre_lang and langPath != self.pre_langPath:
             if self.check_result() and self.pre_lang != "":
                 reply = QMessageBox.question(self, '알림', '평가결과가 저장되지 않았습니다.\n평가결과를 저장하시겠습니까?',
                                     QMessageBox.Ok | QMessageBox.No | QMessageBox.Cancel, QMessageBox.Ok)
@@ -867,6 +868,7 @@ class MainWindow(QMainWindow):
                 self.setEnabled_bottom()
 
                 self.pre_lang = lang
+                self.pre_langPath = langPath
                 self.pre_subMenu = subMenu
                 self.pre_imgList = self.imgList
 
@@ -1086,7 +1088,7 @@ class LoadingScreen(QWidget):
 
         self.label_animation = QLabel(self)
         self.label_animation.resize(pw, ph)
-        self.movie = QMovie('./IMG_Source/loading-unscreen.gif')
+        self.movie = QMovie('./IMG_Source/loading1.gif')
         self.label_animation.setMovie(self.movie)
         self.label_animation.setAlignment(Qt.AlignCenter)
 
@@ -1161,7 +1163,7 @@ class SplashPanel(QSplashScreen):
         message_font.setBold(True)
         message_font.setPointSize(14)
         self.setFont(message_font)
-        pixmap = QPixmap("./IMG_Source/start.png")
+        pixmap = QPixmap("./IMG_Source/modim.png")
         # pixmap = QPixmap("D:\\github\\bdmaster\\app\\resource\\images\\timg.png")
         self.setPixmap(pixmap)
         # self.showMessage('正在加载文件资源', alignment=Qt.AlignBottom, color=Qt.black)
