@@ -222,6 +222,11 @@ class excelModul(QObject, DBManager):
         self.IMG_FAINAL_WIDTH = self.IMG_WIDTHSIZE // 8 + width # 하기와 같이 수정 필요 제한 크기사항도 필요
         self.IMG_SHEET_HEIGHTSIZE = self.IMG_HEIGHTSIZE // 5 * 4 # 하기와 같이 수정 필요 제한 크기사항도 필요
 
+        if int(excel_setList[1]) == 155:
+            print("TEST:B")
+            self.IMG_HEIGHTSIZE = 155
+            self.IMG_SHEET_HEIGHTSIZE = 115
+
 
     def create_imgCellCount(self, lang) -> List:
         """

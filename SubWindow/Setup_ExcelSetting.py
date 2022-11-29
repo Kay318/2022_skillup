@@ -28,11 +28,12 @@ class Setup_ExcelSetting(QDialog):
         self.reset_Button = QPushButton("초기화")
         self.verticalLayout.addWidget(self.reset_Button)
 
-        self.start_settings = ["이미지 넓이", "이미지 높이", "이미지 간격", "필드 넓이", "평가 목록 넓이"]
-        self.start_settings_val = [400, 155, 0, 50, 15]
+        self.start_settings = ["이미지 넓이", "이미지 높이", "필드 넓이", "평가 목록 넓이"]
+        self.start_settings_val = [400, 155, 50, 15]
+        self.value_range = [("310~569"),("100~400"),("10~200"),("10~50")]
         dataList, _ = self.sp.read_setup(table = "Excel_Setting")
 
-        for i in range(5):
+        for i in range(4):
             globals()[f'horizontalLayout{i}'] = QHBoxLayout()
 
             globals()[f'label{i}'] = QLabel()
@@ -41,6 +42,7 @@ class Setup_ExcelSetting(QDialog):
 
             globals()[f'lineEdit{i}'] = QLineEdit()
             globals()[f'lineEdit{i}'].setText(dataList[i])
+            globals()[f'lineEdit{i}'].setPlaceholderText(self.value_range[i])
             globals()[f'lineEdit{i}'].setFixedWidth(70)
             globals()[f'horizontalLayout{i}'].addWidget(globals()[f'lineEdit{i}'])
             self.verticalLayout.addLayout(globals()[f'horizontalLayout{i}'])
@@ -71,7 +73,7 @@ class Setup_ExcelSetting(QDialog):
     def tl_ini_set(self):
 
         start_set = False
-        for i in range(5):
+        for i in range(4):
             if globals()[f'lineEdit{i}'].text() == "":
                 start_set = True
             else:
@@ -79,7 +81,7 @@ class Setup_ExcelSetting(QDialog):
                 break
         
         if start_set:
-            for i in range(5):
+            for i in range(4):
                 globals()[f'lineEdit{i}'].setText(str(self.start_settings_val[i]))
             
     @AutomationFunctionDecorator
@@ -90,7 +92,7 @@ class Setup_ExcelSetting(QDialog):
 
         if reply == QMessageBox.Ok:
             LogManager.HLOG.info("엑셀 설정 초기화 선택")
-            for i in range(5):
+            for i in range(4):
                 globals()[f'lineEdit{i}'].setText(str(self.start_settings_val[i]))
 
         else:
@@ -102,7 +104,7 @@ class Setup_ExcelSetting(QDialog):
         LogManager.HLOG.info("엑셀 설정 팝업 확인 버튼 선택")
 
         # 중복 체크
-        for i in range(5):
+        for i in range(4):
             if globals()[f'lineEdit{i}'].text() != "":
 
                 text = globals()[f'label{i}'].text()
@@ -120,16 +122,12 @@ class Setup_ExcelSetting(QDialog):
                     text = globals()[f'label{1}'].text()
                     QMessageBox.warning(self, '주의', f'{text} 100에서 400 사이여야 합니다.')
                     return
-                elif 0 > int(globals()[f'lineEdit{2}'].text()) or int(globals()[f'lineEdit{2}'].text()) > 10:
+                elif 10 > int(globals()[f'lineEdit{2}'].text()) or int(globals()[f'lineEdit{2}'].text()) > 200:
                     text = globals()[f'label{2}'].text()
-                    QMessageBox.warning(self, '주의', f'{text} 0에서 10 사이여야 합니다.')
-                    return
-                elif 10 > int(globals()[f'lineEdit{3}'].text()) or int(globals()[f'lineEdit{3}'].text()) > 200:
-                    text = globals()[f'label{3}'].text()
                     QMessageBox.warning(self, '주의', f'{text} 10에서 200 사이여야 합니다.')
                     return
-                elif 10 > int(globals()[f'lineEdit{4}'].text()) or int(globals()[f'lineEdit{4}'].text()) > 50:
-                    text = globals()[f'label{4}'].text()
+                elif 10 > int(globals()[f'lineEdit{3}'].text()) or int(globals()[f'lineEdit{3}'].text()) > 50:
+                    text = globals()[f'label{3}'].text()
                     QMessageBox.warning(self, '주의', f'{text} 10에서 50 사이여야 합니다.')
                     return
             else:
@@ -138,7 +136,7 @@ class Setup_ExcelSetting(QDialog):
                 return
 
         self.sp.config["Excel_Setting"] = {}
-        for i in range(5):
+        for i in range(4):
             self.sp.write_setup(table = "Excel_Setting", 
                                 count=i, 
                                 val=globals()[f'lineEdit{i}'].text(),
@@ -154,7 +152,7 @@ class Setup_ExcelSetting(QDialog):
             _type_: 변경사항이 있으면 True, 없으면 False
         """
         setupList, _ = self.sp.read_setup("Excel_Setting")
-        lineList = [globals()[f'lineEdit{i}'].text() for i in range(5)]
+        lineList = [globals()[f'lineEdit{i}'].text() for i in range(4)]
         
         if setupList != lineList:
             return True
