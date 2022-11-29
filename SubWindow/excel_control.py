@@ -123,7 +123,6 @@ class excelModul(QObject, DBManager):
         self.SHEET_WIDTHSIZE = None # 필드 넓이
         self.SHEET_HEIGHTSIZE = None # 필드 높이
         self.IMG_SHEET_HEIGHTSIZE = 115 # 이미지 간격
-        self.IMG_Interval = None # 이미지 간격
         self.IMG_FAINAL_WIDTH = 50
         self.SHEET_WIDTH_SHORTSIZE = 15 # 시트 열 기본 작은 크기
         self.TABLE_CELL_COLOR = 43 # 테이블 컬러
@@ -205,9 +204,8 @@ class excelModul(QObject, DBManager):
 
         self.IMG_WIDTHSIZE = (int(excel_setList[0]) // 10) * 10 # 이미지 넓이
         self.IMG_HEIGHTSIZE = (int(excel_setList[1]) // 10) * 10 # 이미지 높이
-        self.IMG_Interval = int(excel_setList[2]) # 이미지 간격
-        self.SHEET_WIDTHSIZE = int(excel_setList[3]) # 필드 넓이
-        self.SHEET_HEIGHTSIZE = int(excel_setList[4]) # 평가 목록 넓이
+        self.SHEET_WIDTHSIZE = int(excel_setList[2]) # 필드 넓이
+        self.SHEET_HEIGHTSIZE = int(excel_setList[3]) # 평가 목록 넓이
         
         width = 0
         if self.IMG_WIDTHSIZE <= 380:
@@ -223,7 +221,6 @@ class excelModul(QObject, DBManager):
         self.IMG_SHEET_HEIGHTSIZE = self.IMG_HEIGHTSIZE // 5 * 4 # 하기와 같이 수정 필요 제한 크기사항도 필요
 
         if int(excel_setList[1]) == 155:
-            print("TEST:B")
             self.IMG_HEIGHTSIZE = 155
             self.IMG_SHEET_HEIGHTSIZE = 115
 
@@ -389,7 +386,7 @@ class excelModul(QObject, DBManager):
             else:
                 if i == 0:
                     active.column_dimensions[self.column[0]].width = self.IMG_FAINAL_WIDTH
-                elif (i == 1 or i > len(self.evaluation_len(key="Test_List"))):
+                elif (i > len(self.evaluation_len(key="Test_List"))):
                     active.column_dimensions[self.column[i]].width = self.SHEET_WIDTHSIZE
                 else:
                     active.column_dimensions[self.column[i]].width = self.SHEET_WIDTH_SHORTSIZE

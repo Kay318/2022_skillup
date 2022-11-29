@@ -1,7 +1,7 @@
 import sys
+import os
 from PyQt5.QtWidgets import QApplication, QDialog, QPushButton, QProgressBar, QMessageBox
 from PyQt5.QtCore import QBasicTimer, QEventLoop, QTimer
-from PyQt5.QtWidgets import QApplication
 
 class ProgressApp(QDialog):
 
@@ -33,10 +33,23 @@ class ProgressApp(QDialog):
         loop.exec_()
 
     def timerEvent(self, e):
-        if self.step >= 100:
+        if self.step == 99 and self.difference:
+            self.timer.stop()
+
+            idx = 1
+            while(os.path.isfile(self.path)):
+                self.path = str(os.path.dirname(self.path))
+                self.path = f"{self.path}\\다국어자동화({idx}).xlsx"
+                idx = idx + 1
+            else:
+                self.wb.save(self.path)
+                QApplication.processEvents()
+                self.timer.start(self.numberVar, self)
+            
+        elif self.step >= 100:
             self.timer.stop()
             self.btn.setText('Finished')
-            return
+            return 
 
         self.step = self.step + 1
         self.pbar.setValue(self.step)
@@ -59,12 +72,8 @@ class ProgressApp(QDialog):
         QApplication.processEvents()
 
     def closeEvent(self, a0) -> None:
-        if self.difference and self.save_Bool:
-            self.wb.save(self.path)
-            QApplication.processEvents()
-
-        import os
-        path = os.path.realpath(os.getcwd())
+        
+        path = str(os.path.dirname(self.path))
         os.startfile(path)
 
 
