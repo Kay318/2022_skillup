@@ -12,14 +12,15 @@ from PyQt5.QtWidgets import *
 from Settings import Setup as sp
 from functools import partial
 import sys, os
-from DataBase.DB import DBManager
+from DataBase import DB as db
 from Helper import *
 
-class UI_CreateExcel(QWidget, DBManager):
+class UI_CreateExcel(QWidget):
+    signal = pyqtSignal()
 
-    def __init__(self, mainwindow):
+    def __init__(self):
         super().__init__()
-        self.mainwin = mainwindow
+        self.setupUI_CreateExcel()
 
     @AutomationFunctionDecorator
     def setupUI_CreateExcel(self):
@@ -103,19 +104,21 @@ class UI_CreateExcel(QWidget, DBManager):
         self.vBoxLayout.addWidget(self.create_excel)
 
         self.hBoxLayout.addLayout(self.vBoxLayout)
+        self.langSetting()
 
     def langSetting(self):
 
         # 공유
         self.sp = sp.Settings()
-        langList, none = self.sp.read_setup(table = "Language")
+        langList, _ = self.sp.read_setup(table = "Language")
         dataList = []
 
         for lang in langList:
             appendBool = False
             try:
-                self.c.execute(f"SELECT * FROM '{lang}'")
-                dict = self.c.fetchall()
+                # self.c.execute(f"SELECT * FROM '{lang}'")
+                # dict = self.c.fetchall()
+                dict = db.db_select(f"SELECT * FROM '{lang}'")
 
                 for idx in range(len(dict)):
                     print(dict[idx])
@@ -162,6 +165,7 @@ class UI_CreateExcel(QWidget, DBManager):
         self.lang_scroll.setWidget(self.lang_widget)
         self.lang_vbox.addWidget(self.lang_scroll)
 
+        # 전체 체크박스 동작여부
         def func_check():
 
             if (the_check.isChecked() == True):
@@ -171,6 +175,7 @@ class UI_CreateExcel(QWidget, DBManager):
                 for val in dataList:
                     globals()[f'checkBox_{val}'].setChecked(False)
 
+        # 개별 체크박스 동작여부
         def func_checkbox():
 
             if (the_check.isChecked() == True):
@@ -297,8 +302,11 @@ class UI_CreateExcel(QWidget, DBManager):
         lang_choice_list = []
 
         for val in dataList:
-            if (globals()[f'checkBox_{val}'].isChecked() == True):
-                lang_choice_list.append(val)
+            try:
+                if (globals()[f'checkBox_{val}'].isChecked() == True):
+                    lang_choice_list.append(val)
+            except:
+                pass
         
         
         for idx in range(len(self.lang_data_vbox)):
@@ -318,24 +326,28 @@ class UI_CreateExcel(QWidget, DBManager):
             else:
                 QMessageBox.warning(self, '주의', '경로를 지정해주세요.')
         else:
-            QMessageBox.warning(self, '주의', '평가목록을 선택해주세요.')
+            QMessageBox.warning(self, '주의', '언어를 선택해주세요.')
 
     @AutomationFunctionDecorator
     def func_cencel(self, litter):
+        self.signal.emit()
         self.close()
 
     # 0726
     def closeEvent(self, litter) -> None:
-        self.mainwin.setDisabled(False)
+        self.signal.emit()
 
     # 0725
     def keyPressEvent(self, a0: QKeyEvent) -> None:
         
         KEY_ENTER = 16777220
+        KEY_CLOSE = 16777216
 
         print (f"a0.key() : {a0.key()}")
         if a0.key() == KEY_ENTER:
             self.func_check_run()
+        elif a0.key() == KEY_CLOSE:
+            self.close()
 
 if __name__ == '__main__':
     import sys

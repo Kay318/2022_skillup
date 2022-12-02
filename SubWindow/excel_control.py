@@ -133,8 +133,6 @@ class excelModul(QObject, DBManager):
         self.sp = sp.Settings()
         self.get_lang_List = lang_List
         self.wb = wb
-        
-        self.threadPool = QThreadPool().globalInstance()
 
         self.column = []
 
@@ -533,7 +531,7 @@ class excelModul(QObject, DBManager):
         for val in self.create_tupleBooks(lang=lang):
             lang_books.append(val)
 
-        # 태그적용
+        # 컬럼 설정
         for val in range(0, len(lang_books)):
             ws.cell(row = self.history_rows, # 현재 진행상황
                         column= cell_idx, # 평가한 나라 개수 영향

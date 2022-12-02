@@ -244,11 +244,12 @@ class MainWindow(QMainWindow):
         self.actionSave = QAction("Save", self)
         self.actionSave.setShortcut("Ctrl+S")
         self.actionCreateExcel = QAction("Create Excel", self)
+        self.actionCreateExcel.setShortcut("Ctrl+E")
         self.menu.addAction(self.actionNewProject)
         self.menu.addMenu(self.menuOpen)
         self.menu.addAction(self.actionSave)
         self.menu.addAction(self.actionCreateExcel)
-        self.actionCreateExcel.triggered.connect(partial(self.__ce_ui))
+        self.actionCreateExcel.triggered.connect(self.show_menu_CreateExcel)
         self.actionSave.triggered.connect(self.save_result)
         self.actionSave.setEnabled(False)
 
@@ -276,12 +277,12 @@ class MainWindow(QMainWindow):
         self.statusbar_label = QLabel()
         statusbar.addPermanentWidget(self.statusbar_label)
     
-    @AutomationFunctionDecorator
-    def __ce_ui(self, litter):
-        CE = UI_CreateExcel(MainWindow())
-        CE.setupUI_CreateExcel()
-        CE.langSetting()
-        CE.show()
+    # @AutomationFunctionDecorator
+    # def __ce_ui(self, litter):
+    #     CE = UI_CreateExcel(MainWindow())
+    #     CE.setupUI_CreateExcel()
+    #     CE.langSetting()
+    #     CE.show()
 
     def remove_db(self):
         # self.db = db.DBManager()
@@ -292,6 +293,14 @@ class MainWindow(QMainWindow):
                 # self.db.close()
                 # self.db.remove_db()
                 db.remove_db()
+
+    @AutomationFunctionDecorator
+    def show_menu_CreateExcel(self, litter=None):
+        self.setEnabled(False)
+        ce = UI_CreateExcel()
+        ce.signal.connect(self.ce_emit)
+        ce.show()
+        LogManager.HLOG.info(f"엑셀 생성 팝업 열림")
 
     @AutomationFunctionDecorator
     def show_setup_Language(self, litter=None):
@@ -326,6 +335,10 @@ class MainWindow(QMainWindow):
         ts.signal.connect(self.ts_emit)
         ts.show()
         LogManager.HLOG.info("엑셀 설정 팝업 열림")
+
+    def ce_emit(self):
+        self.setEnabled(True)
+        LogManager.HLOG.info("엑셀 생성 팝업 닫힘으로 메인창 활성화")
 
     def sl_emit(self, langPath):
         if langPath != []:

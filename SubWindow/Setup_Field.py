@@ -12,7 +12,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from pathlib import Path
-import sqlite3
 
 sys.path.append(str(Path(__file__).parents[1]))
 from Helper import *
