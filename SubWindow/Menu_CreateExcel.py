@@ -11,10 +11,11 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from Settings import Setup as sp
 from functools import partial
-import sys
+import sys, os
+from DataBase.DB import DBManager
 from Helper import *
 
-class UI_CreateExcel(QWidget):
+class UI_CreateExcel(QWidget, DBManager):
 
     def __init__(self, mainwindow):
         super().__init__()
@@ -105,8 +106,28 @@ class UI_CreateExcel(QWidget):
 
     def langSetting(self):
 
+        # 공유
         self.sp = sp.Settings()
-        dataList, none = self.sp.read_setup(table = "Language")
+        langList, none = self.sp.read_setup(table = "Language")
+        dataList = []
+
+        for lang in langList:
+            appendBool = False
+            try:
+                self.c.execute(f"SELECT * FROM '{lang}'")
+                dict = self.c.fetchall()
+
+                for idx in range(len(dict)):
+                    print(dict[idx])
+                    print(dict[idx][0])
+                    for jdx in range(1, len(dict[idx])):
+                        if dict[idx][jdx] != "":
+                            appendBool = True
+                
+                if appendBool:
+                    dataList.append(lang)
+            except:
+                pass
 
         self.lang_scroll.setFixedSize(80,380)
         self.lang_scroll.setWidgetResizable(True)
@@ -233,9 +254,16 @@ class UI_CreateExcel(QWidget):
         """
 
         folderPath = QFileDialog.getExistingDirectory(self, 'Find Folder')
-        path = f'{folderPath}/다국어자동화.xlsx'
+        path = f'{folderPath}\\다국어자동화.xlsx'
 
         print(f"folderPath : {path}")
+
+        idx = 1
+        print(f'path_Val : {path}')
+        while(os.path.isfile(path)):
+            path = str(os.path.dirname(path))
+            path = f"{path}\\다국어자동화({idx}).xlsx"
+            idx = idx + 1
 
         edit.setText(path)
 

@@ -22,7 +22,7 @@ from SubWindow.Setup_TestList import Setup_TestList
 from SubWindow.Setup_ExcelSetting import Setup_ExcelSetting
 from SubWindow.Menu_CreateExcel import UI_CreateExcel
 from Helper import *
-from DataBase.DB import DBManager
+from DataBase import DB as db
 from Log import LogManager
 from Settings import Setup as sp
 
@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         self.first_index_in_sql = None           # DB에 첫번째 이미지 결과가 있는지 판단
         self.save_result_no = None               # 평가결과 저장 안함 버튼
         self.sp = sp.Settings()
-        self.db = DBManager()
+        # self.db = db.DBManager()
         self.setupUi()
         
     @AutomationFunctionDecorator
@@ -284,12 +284,14 @@ class MainWindow(QMainWindow):
         CE.show()
 
     def remove_db(self):
-        if self.db.find_db():
+        # self.db = db.DBManager()
+        if db.find_db():
             reply = QMessageBox.question(self, '알림', '이전에 저장한 결과가 전부 삭제됩니다.\n계속하시겠습니까?',
                                 QMessageBox.Ok | QMessageBox.No, QMessageBox.Ok)
             if reply == QMessageBox.Ok:
-                self.db.close()
-                self.db.remove_db()
+                # self.db.close()
+                # self.db.remove_db()
+                db.remove_db()
 
     @AutomationFunctionDecorator
     def show_setup_Language(self, litter=None):
@@ -302,7 +304,7 @@ class MainWindow(QMainWindow):
     @AutomationFunctionDecorator
     def show_setup_Field(self, litter):
         self.setEnabled(False)
-        self.db.close()
+        # self.db.close()
         sf = Setup_Field(self)
         sf.signal.connect(self.sf_emit)
         sf.show()
@@ -311,7 +313,7 @@ class MainWindow(QMainWindow):
     @AutomationFunctionDecorator
     def show_setup_TestList(self, litter):
         self.setEnabled(False)
-        self.db.close()
+        # self.db.close()
         tl = Setup_TestList(self)
         tl.signal.connect(self.tl_emit)
         tl.show()
@@ -742,8 +744,9 @@ class MainWindow(QMainWindow):
                     reply = QMessageBox.question(self, '알림', f'"{self.clicked_lang}"에 이전에 평가한 결과가 있습니다.\n결과 같이 불러오시겠습니까?',
                                     QMessageBox.Ok | QMessageBox.No, QMessageBox.Ok)
                     if reply == QMessageBox.Ok:
-                        self.db.c.execute(f"SELECT * FROM '{self.clicked_lang}'")
-                        sql_all = self.db.c.fetchall()
+                        # self.db.c.execute(f"SELECT * FROM '{self.clicked_lang}'")
+                        # sql_all = self.db.c.fetchall()
+                        sql_all = db.db_select(f"SELECT * FROM '{self.clicked_lang}'")
                         sql_img = [str(file[0]) for file in sql_all]
 
                 self.actionSave.setEnabled(True)
@@ -988,12 +991,14 @@ class MainWindow(QMainWindow):
         self.startLoading()
         
         # SQLite에 현재 언어 table이 있으면 삭제
-        self.db = DBManager()
-        self.db.c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        sql_tables = self.db.c.fetchall()
+        # self.db = db.DBManager()
+        # self.db.c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        # sql_tables = self.db.c.fetchall()
+        sql_tables = db.db_select("SELECT name FROM sqlite_master WHERE type='table';")
         sql_tables_list = [table[0] for table in sql_tables]
         if self.clicked_lang in sql_tables_list:
-            self.db.c.execute(f"DROP TABLE '{self.clicked_lang}'")
+            # self.db.c.execute(f"DROP TABLE '{self.clicked_lang}'")
+            db.db_edit(f"DROP TABLE '{self.clicked_lang}'")
         LogManager.HLOG.info(f"{self.clicked_lang} 테이블 삭제")
 
         self.setupList = self.testList + self.fieldList
@@ -1004,16 +1009,19 @@ class MainWindow(QMainWindow):
         query += "'버전정보' TEXT)"
         LogManager.HLOG.info(f"평가결과 저장 query:{query}")
         
-        self.db.c.execute(query)
+        # self.db.c.execute(query)
+        db.db_edit(query)
 
         question_marks = ", ".join(['?' for _ in range(len(result_data.keys()))])
         LogManager.HLOG.info(f"저장할 평가결과:{self.result}")
         
         for val in self.result.values():
             try:
-                self.db.dbConn.execute(f"INSERT INTO '{self.clicked_lang}' VALUES ({question_marks})", 
+                # self.db.dbConn.execute(f"INSERT INTO '{self.clicked_lang}' VALUES ({question_marks})", 
+                #         (tuple(val.values())))
+                # self.db.dbConn.commit()
+                db.db_insert(f"INSERT INTO '{self.clicked_lang}' VALUES ({question_marks})", 
                         (tuple(val.values())))
-                self.db.dbConn.commit()
                 QApplication.processEvents()
             except RuntimeError:
                 continue
@@ -1043,9 +1051,10 @@ class MainWindow(QMainWindow):
             result_data = self.insert_result()
             self.result[self.idx] = result_data
         try:
-            self.db = DBManager()
-            self.db.c.execute(f"SELECT * FROM '{self.clicked_lang}'")
-            sql_result = self.db.c.fetchall()
+            # self.db = DBManager()
+            # self.db.c.execute(f"SELECT * FROM '{self.clicked_lang}'")
+            # sql_result = self.db.c.fetchall()
+            sql_result = db.db_select(f"SELECT * FROM '{self.clicked_lang}'")
         except:
             sql_result = []
         result_list = []
@@ -1063,7 +1072,8 @@ class MainWindow(QMainWindow):
         
     def check_sql_result(self):
         try:
-            self.db.c.execute(f"SELECT * FROM '{self.clicked_lang}'")
+            # self.db.c.execute(f"SELECT * FROM '{self.clicked_lang}'")
+            db.db_select(f"SELECT * FROM '{self.clicked_lang}'")
             return True
         except:
             return False

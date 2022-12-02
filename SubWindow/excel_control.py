@@ -151,7 +151,7 @@ class excelModul(QObject, DBManager):
         if (new_set_difference):
 
             ws = self.wb.active
-            ws.title = "RESULT"
+            ws.title = "SUMMARY"
             self.history_rows = 1
 
             for lang in lang_List:
@@ -178,7 +178,7 @@ class excelModul(QObject, DBManager):
             self.wb = excel.Workbooks.Open(save_path)
 
             for lang in lang_List:
-                self.update_sheet_history(lang, self.wb.Worksheets("RESULT"), TITLE_TERGET)
+                self.update_sheet_history(lang, self.wb.Worksheets("SUMMARY"), TITLE_TERGET)
                 ws = self.wb.Worksheets(lang)
 
                 kr_list = [] # 현재 엑셀 데이터
@@ -310,7 +310,7 @@ class excelModul(QObject, DBManager):
 
             if (path != ""):
 
-                columns= 0 + 1
+                columns= 1
                 columnsVal = 0
                 
                 try:
@@ -378,7 +378,7 @@ class excelModul(QObject, DBManager):
         i = 0
         for column in active.columns:
             
-            if fix == "RESULT":
+            if fix == "SUMMARY":
                 if (i == 1 or i > len(self.evaluation_len(key="Test_List")) + 1):
                     active.column_dimensions[self.column[i]].width = self.SHEET_WIDTHSIZE
                 else:
@@ -394,8 +394,6 @@ class excelModul(QObject, DBManager):
             active[f'{self.column[i]}{idx}'].font = Font(size=11)
 
             i = i + 1
-
-        active.row_dimensions[self.set_row].height = self.SHEET_HEIGHTSIZE
 
         upper = [f'{i}{idx}' for i in string.ascii_uppercase]
         
@@ -608,7 +606,7 @@ class excelModul(QObject, DBManager):
                     self.history_rows = self.history_rows + 1
                 sequence = sequence + 1
 
-        self.set_cellStyle(active= ws, idx = cell_row, fix= "RESULT")
+        self.set_cellStyle(active= ws, idx = cell_row, fix= "SUMMARY")
         self.history_rows = self.history_rows + 1
 
     def update_sheet_history(self, lang:str, ws:object, integer:int):
@@ -763,7 +761,7 @@ class excelModul(QObject, DBManager):
                         ws.Cells(self.historyUpdate_rows, val + 1).Value = ("" if "" == resultList[val] else resultList[val])
                         self.set_Win32com_cellStyle(ws = ws, terget = self.historyUpdate_rows, cell_idx = val + 1, heightSize = self.IMG_SHEET_HEIGHTSIZE)
                     
-                print(f'RESULT 진행도 : {key_terget}/{len(self.create_imgCellCount(lang=lang))}')
+                print(f'SUMMARY 진행도 : {key_terget}/{len(self.create_imgCellCount(lang=lang))}')
                 time.sleep(0.005)
                 QApplication.processEvents()
 

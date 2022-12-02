@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parents[1]))
 from Helper import *
 from Log import LogManager
-from DataBase.DB import DBManager
+from DataBase import DB as db
 from Settings import Setup as sp
 
 class Setup_TestList(QDialog):
@@ -15,7 +15,7 @@ class Setup_TestList(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.fieldList = parent.fieldList
-        self.db = DBManager()
+        # self.db = DBManager()
         self.sp = sp.Settings()
         self.setupUI_TestList()
 
@@ -108,18 +108,21 @@ class Setup_TestList(QDialog):
                 newColumns = newColumns + testList + self.fieldList
                 newColumns.append("버전정보")
                 newColumnsSet = set(newColumns)
-                self.db.c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-                sql_tables = self.db.c.fetchall()
+                # self.db.c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+                # sql_tables = self.db.c.fetchall()
+                sql_tables = db.db_select("SELECT name FROM sqlite_master WHERE type='table';")
                 sql_tables_list = [table[0] for table in sql_tables]
                 for sql_table in sql_tables_list:
-                    self.db.c.execute(f"SELECT * FROM '{sql_table}'")
-                    sql_col_set = set([col_tuple[0] for col_tuple in self.db.c.description])
+                    # self.db.c.execute(f"SELECT * FROM '{sql_table}'")
+                    # sql_col_set = set([col_tuple[0] for col_tuple in self.db.c.description])
+                    sql_col_set = db.db_tables(f"SELECT * FROM '{sql_table}'")
                     col_intersection = tuple(sql_col_set & newColumnsSet)
                     col_subtraction = tuple(newColumnsSet - set(col_intersection))
                     
                     # 컬럼 편집(BACKUP 테이블 만듬 > 기존 테이블 내용을 BACKUP에 옮김 > BACKUP 테이블명 변경)
                     try:
-                        self.db.c.execute("DROP TABLE BACKUP")
+                        # self.db.c.execute("DROP TABLE BACKUP")
+                        db.db_edit("DROP TABLE BACKUP")
                     except:
                         pass
                     
@@ -130,11 +133,9 @@ class Setup_TestList(QDialog):
                         else:
                             query += f"'{col}' TEXT)"
                     LogManager.HLOG.info(f"평가결과 저장 query:{query}")
-                    try:
-                        self.db.c.execute(query)
-                    except:
-                        self.db.close()
-                        self.db.c.execute(query)
+
+                    # self.db.c.execute(query)
+                    db.db_edit(query)
 
                     query_insert = f"INSERT INTO BACKUP {col_intersection} SELECT "
                     for col in col_intersection:
@@ -145,8 +146,9 @@ class Setup_TestList(QDialog):
                         query_insert += f'"{col}",'
                     query_insert = f"{query_insert[:-1]} FROM '{sql_table}'"
                     LogManager.HLOG.info(query_insert)
-                    self.db.c.execute(query_insert)
-                    self.db.dbConn.commit()
+                    # self.db.c.execute(query_insert)
+                    # self.db.dbConn.commit()
+                    db.db_edit(query_insert)
 
                     if col_subtraction != ():
                         query_update = f"UPDATE BACKUP SET "
@@ -154,12 +156,15 @@ class Setup_TestList(QDialog):
                             query_update += f"'{col}' = '',"
                         query_update = query_update[:-1]
                         LogManager.HLOG.info(query_update)
-                        self.db.c.execute(query_update)
-                        self.db.dbConn.commit()
+                        # self.db.c.execute(query_update)
+                        # self.db.dbConn.commit()
+                        db.db_edit(query_update)
 
-                    self.db.c.execute(f"DROP TABLE '{sql_table}'")
-                    self.db.c.execute(f"ALTER TABLE BACKUP RENAME TO '{sql_table}'")
-                self.db.close()
+                #     self.db.c.execute(f"DROP TABLE '{sql_table}'")
+                    # self.db.c.execute(f"ALTER TABLE BACKUP RENAME TO '{sql_table}'")
+                    db.db_edit(f"DROP TABLE '{sql_table}'")
+                    db.db_edit(f"ALTER TABLE BACKUP RENAME TO '{sql_table}'")
+                # self.db.close()
                     
             else:
                 return

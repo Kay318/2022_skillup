@@ -39,7 +39,7 @@ class ProgressApp(QDialog):
             idx = 1
             while(os.path.isfile(self.path)):
                 self.path = str(os.path.dirname(self.path))
-                self.path = f"{self.path}\\다국어자동화({idx}).xlsx"
+                self.path = f"{self.path}\\다국어평가결과({idx}).xlsx"
                 idx = idx + 1
             else:
                 self.wb.save(self.path)
